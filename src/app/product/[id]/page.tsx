@@ -1,11 +1,23 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { singleProduct } from "@/data";
 import Price from "@/components/Price";
 import styles from "./page.module.css";
+import { ProductType } from "@/types/types";
 
-const SingleProductPage = () => {
+const getData = async (id: string) => {
+  const res = await fetch(`http://localhost:3000/api/products/${id}`, {
+    cache: "no-store",
+  });
+
+  if (!res) {
+    throw new Error("failed to fetch data");
+  }
+  return res.json();
+};
+
+const SingleProductPage = async ({ params }: { params: ProductType }) => {
+  const singleProduct: ProductType = await getData(params.id);
   return (
     <div
       className={`p-5 flex flex-col ${styles.swingIn} lg:px-20 xl:px-40 h-screen gap-4 text-red-500 justify-around md:flex-row md:gap-9 md:items-center`}
@@ -27,11 +39,7 @@ const SingleProductPage = () => {
           {singleProduct.title}
         </h1>
         <p>{singleProduct.desc}</p>
-        <Price
-          price={singleProduct.price}
-          id={singleProduct.id}
-          options={singleProduct.options}
-        />
+        <Price product={singleProduct} />
       </div>
       <div className="flex justify-between">
         {/* sizes buttons */}

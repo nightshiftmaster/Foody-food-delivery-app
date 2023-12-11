@@ -1,13 +1,34 @@
-import { pizzas } from "@/data";
+"use client";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { ProductType } from "@/types/types";
+import { useCartStore } from "@/utils/store";
 
-const CategoryPage = () => {
+type Props = {
+  params: { category: string };
+};
+
+const getData = async (category: string) => {
+  const res = await fetch(
+    `http://localhost:3000/api/products?cat=${category}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!res) {
+    throw new Error("failed to fetch data");
+  }
+  return res.json();
+};
+
+const CategoryPage = async ({ params }: Props) => {
+  const products: ProductType[] = await getData(params.category);
   return (
     <div className="flex flex-wrap text-red-500">
-      {pizzas.map((item) => {
+      {products.map((item) => {
         return (
           <Link
             className={`transition-all duration-500 w-full p-4 h-[60vh] flex flex-col ${styles.choice} hover:bg-fuchsia-50 hover:shadow-2xl justify-between sm:w-1/2 lg:w-1/3 shadow-xl rounded-xl group `}
