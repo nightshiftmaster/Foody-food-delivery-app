@@ -8,14 +8,14 @@ import { CartItemType } from "@/types/types";
 import Image from "next/image";
 import prisma from "@/utils/connect";
 import { toast } from "react-toastify";
+import { LuRefreshCcw } from "react-icons/lu";
 
 const OrdersPage = () => {
-  const { data: session, status } = useSession();
+  const session = useSession();
   const router = useRouter();
 
-  if (status === "unauthenticated") return router.push("/");
-
   const { isPending, error, data } = useQuery({
+    // unique key
     queryKey: ["orders"],
     queryFn: () =>
       fetch("http://localhost:3000/api/orders").then((res) => res.json()),
@@ -25,6 +25,9 @@ const OrdersPage = () => {
 
   const queryClient = useQueryClient();
 
+  ///refresh list without reload page - mutation
+
+  // renew data on server
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: number; status: string }) => {
       return fetch(`http://localhost:3000/api/orders/${id}`, {
@@ -35,6 +38,8 @@ const OrdersPage = () => {
         body: JSON.stringify(status),
       });
     },
+
+    // when suceess renew data on page from cash with updated data from server
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["orders"] });
     },
@@ -50,7 +55,11 @@ const OrdersPage = () => {
     toast.success("The order status has been changed");
   };
 
-  if (isPending || status === "loading") return "Loading...";
+  if (session.status === "unauthenticated") {
+    return router.push("/");
+  }
+
+  if (isPending || session.status === "loading") return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
 
@@ -68,9 +77,14 @@ const OrdersPage = () => {
         </thead>
         <tbody>
           {data?.map((item: OrderType) => (
-            <tr className="text-sm md:text-base odd:bg-red-50" key={item.id}>
+            <tr
+              className={`text-sm md:text-base ${
+                item.status !== "delivered" ? "bg-slate-100" : "bg-red-50"
+              } key={item.id}`}
+            >
               <td className="hidden md:block py-6 px-1">{item.id}</td>
               <td className="py-6 px-1">
+                {/* date */}
                 {item.createAt.toString().slice(0, 10)}
               </td>
               <td className="py-6 px-1">{item.price}</td>
@@ -78,7 +92,7 @@ const OrdersPage = () => {
                 {item.products[0].title}
               </td>
               <td>
-                {session?.user.isAdmin ? (
+                {session?.data?.user.isAdmin ? (
                   <form
                     className="flex justify-center items-center gap-5"
                     onSubmit={(e) => handleUpdate(e, item.id)}
@@ -87,8 +101,10 @@ const OrdersPage = () => {
                       placeholder={item.status}
                       className="p-2 ring-1 ring-red-100 rounded-md"
                     />
-                    <button className="bg-red-500 rounded-full p-2">
-                      <Image src="/edit.png" alt="" width={20} height={20} />
+                    <button className="bg-red-500 hover:bg-red-300 rounded-full p-2">
+                      <LuRefreshCcw color="white" />
+
+                      {/* <Image src="/edit.png" alt="" width={20} height={20} /> */}
                     </button>
                   </form>
                 ) : (

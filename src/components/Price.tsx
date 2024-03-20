@@ -2,43 +2,36 @@
 import { ProductType } from "@/types/types";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useCartStore } from "@/utils/store";
+import { useCartStore } from "@/utils/store"; // CART STORE
 
 import { toast } from "react-toastify";
 
 const Price = ({ product }: { product: ProductType }) => {
-  const { price, options } = product;
-  const [total, setTotal] = useState(price);
+  const [total, setTotal] = useState(product.price);
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState(0);
   const { addToCart } = useCartStore();
 
-  const handleCart = () => {
-    addToCart({
-      id: product.id,
-      title: product.title,
-      price: total,
-      img: product.img,
-      quantity: quantity,
-      ...(product.options?.length && {
-        optionTitle: product.options[selected].title,
-      }),
-    });
-    toast.success("The product added to the cart !");
-  };
+  useEffect(() => {
+    if (product.options?.length) {
+      const price =
+        quantity * product.price + product.options[selected].additionalPrice;
+      setTotal(price);
+    }
+  }, [quantity, selected, product]);
 
   useEffect(() => {
-    if (options?.length) {
-      setTotal(quantity * price + options[selected].additionalPrice);
-    }
-  }, [quantity, selected, options, price]);
+    useCartStore.persist.rehydrate();
+  }, []);
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="font-bold text-xl">${total}</h2>
+      <h2 className="font-bold text-xl">
+        ${typeof total !== "string" ? total?.toFixed(2) : total}
+      </h2>
       {/* options */}
       <div className="flex gap-4">
-        {options?.map(
+        {product.options?.map(
           (
             option: { title: string; additionalPrice: number },
             index: number
@@ -81,7 +74,19 @@ const Price = ({ product }: { product: ProductType }) => {
         {/* add to cart */}
         <button
           className="uppercase bg-red-500 text-white p-2 ring-1 ring-red-500"
-          onClick={handleCart}
+          onClick={() => {
+            addToCart({
+              id: product.id,
+              title: product.title,
+              price: total,
+              img: product.img,
+              quantity: quantity,
+              ...(product.options?.length && {
+                optionTitle: product.options[selected].title,
+              }),
+            });
+            toast.success("The product added to the cart !");
+          }}
         >
           Add to Cart
         </button>

@@ -13,6 +13,7 @@ export type ProductType = {
   desc?: string;
   img?: string;
   price: number;
+  catSlug: string;
   options?: { title: string; additionalPrice: number }[];
 };
 
@@ -25,11 +26,8 @@ export type OrderType = {
   status: string;
 };
 
-export type CartItemType = {
+export type CartItemType = Pick<ProductType, "title" | "price" | "img"> & {
   id: string;
-  title: string;
-  price: number;
-  img?: string;
   quantity: number;
   optionTitle?: string;
 };

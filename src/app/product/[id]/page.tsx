@@ -23,7 +23,7 @@ const SingleProductPage = async ({ params }: { params: ProductType }) => {
       className={`p-5 flex flex-col ${styles.swingIn} lg:px-20 xl:px-40 h-screen gap-4 text-red-500 justify-around md:flex-row md:gap-9 md:items-center`}
     >
       {/* image */}
-      {singleProduct.img && (
+      {singleProduct?.img && (
         <div className="relative  w-full h-1/2 md:h-[70%]">
           <Image
             src={singleProduct.img}
@@ -40,18 +40,10 @@ const SingleProductPage = async ({ params }: { params: ProductType }) => {
         </h1>
         <p>{singleProduct.desc}</p>
         <Price product={singleProduct} />
-      </div>
-      <div className="flex justify-between">
-        {/* sizes buttons */}
-        {/* <button className="bg-red-500 text-white px-5 py-2 rounded-lg">
-          Small
-        </button>
-        <button className="bg-red-500 text-white px-5 py-2 rounded-lg">
-          Medium
-        </button>
-        <button className="bg-red-500 text-white px-5 py-2 rounded-lg">
-          Large
-        </button> */}
+        <Link
+          href={`/menu/${singleProduct.catSlug}`}
+          className="cursor-pointer text-sm md:text-xl text-center mt-5"
+        >{`<<Back`}</Link>
       </div>
     </div>
   );

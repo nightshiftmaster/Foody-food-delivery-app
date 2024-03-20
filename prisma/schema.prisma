@@ -90,5 +90,5 @@ model Order {
   status    String
   intent_id String?  @unique
   user      User     @relation(fields: [userEmail], references: [email])
-  userEmail String   @default("")
+  userEmail String
 }

@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCartStore } from "@/utils/store";
 
 const CartIcon = () => {
-  const { products, totalItems } = useCartStore();
+  const { totalItems } = useCartStore();
+
   return (
     <Link href="/cart" className="flex items-center gap-4">
       <div className="relative w-8 h-8 md:h-5 md:w-5">

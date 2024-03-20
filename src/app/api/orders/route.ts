@@ -18,7 +18,6 @@ export const GET = async () => {
             userEmail: session.user.email!,
           },
         });
-        console.log(orders);
         return new NextResponse(JSON.stringify(orders), { status: 200 });
       }
     } catch (e) {
@@ -32,5 +31,23 @@ export const GET = async () => {
       JSON.stringify({ message: "You are not aunthenticated" }),
       { status: 401 }
     );
+  }
+};
+
+// create order
+
+export const POST = async (req: NextRequest) => {
+  const session = await getAuthSession();
+
+  if (session) {
+    try {
+      const body = await req.json();
+      if (session.user) {
+        const order = await prisma?.order.create({ data: body });
+        return new NextResponse(JSON.stringify(order), { status: 201 });
+      }
+    } catch (e) {
+      return new NextResponse("User not found", { status: 500 });
+    }
   }
 };
