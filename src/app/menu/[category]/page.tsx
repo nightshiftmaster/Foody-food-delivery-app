@@ -24,7 +24,7 @@ const getData = async (category: string) => {
 const CategoryPage = async ({ params }: Props) => {
   const products: ProductType[] = await getData(params.category);
   return (
-    <div className="flex flex-col">
+    <div className="flex  flex-col gap-10">
       <div className="flex flex-wrap text-red-500">
         {products?.map((item) => {
           return (
@@ -60,8 +60,8 @@ const CategoryPage = async ({ params }: Props) => {
       </div>
       <Link
         href="/menu"
-        className="cursor-pointer text-sm md:text-xl m-auto text-red-500 mt-20"
-      >{`<<Back to main menu`}</Link>
+        className="cursor-pointer text-sm md:text-xl m-auto text-red-500 "
+      >{`<<Back to Menu`}</Link>
     </div>
   );
 };

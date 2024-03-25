@@ -25,7 +25,7 @@ const Featured = async () => {
         {/* single element */}
         {featuredProducts?.map((product) => (
           <Link
-            className={`transition-all duration-500 w-full p-4 h-[60vh] md:h-[70vh] flex flex-col  hover:bg-fuchsia-50 hover:shadow-2xl justify-between sm:w-1/2 lg:w-1/3 shadow-xl rounded-xl group `}
+            className={`transition-all duration-500 w-full p-5 h-[60vh] md:h-[70vh] flex flex-col  hover:bg-fuchsia-50 hover:shadow-2xl justify-between sm:w-1/2 lg:w-1/3 shadow-xl rounded-xl group `}
             href={`/product/${product.id}`}
             key={product.id}
           >
@@ -46,11 +46,11 @@ const Featured = async () => {
               )}
               {/* text */}
               <div className="flex-1 flex flex-col md:gap-3 gap-2 items-center justify-center text-center">
-                <h1 className="text-sm  font-bold uppercase md:text-lg 2xl:text-xl">
+                <h1 className="font-bold uppercase text-sm md:text-lg 2xl:text-2xl">
                   {product.title}
                 </h1>
                 <p className="p-4 text-xs md:text-base ">{product.desc}</p>
-                <span className="text-sm  md:text-base font-bold">
+                <span className="text-sm md:text-base xl:text-2xl font-bold">
                   ${product.price}
                 </span>
                 <Button name={"Add to Cart"} />

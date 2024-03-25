@@ -38,16 +38,18 @@ const SingleProductPage = async ({ params }: { params: ProductType }) => {
         </div>
       )}
       {/* text */}
-      <div className="h-1/2 flex flex-col gap-4  md:h-[70%] md:justify-center md:gap-6 xl:gap-8">
-        <h1 className="text-3xl uppercase font-bold xl:text-5xl ">
+      <div className="flex flex-col gap-4  md:h-[70%] md:justify-center md:gap-6 xl:gap-8">
+        <h1 className="text-xl md:text-2xl uppercase font-bold xl:text-5xl">
           {singleProduct.title}
         </h1>
-        <p>{singleProduct.desc}</p>
-        <Price product={singleProduct} />
-        <Link
-          href={`/menu/${singleProduct.catSlug}`}
-          className="cursor-pointer text-sm md:text-xl text-center mt-5"
-        >{`<<Back`}</Link>
+        <div className="flex flex-col gap-2">
+          <p className="text-sm md:text-lg 2xl:text-xl">{singleProduct.desc}</p>
+          <Price product={singleProduct} />
+          <Link
+            href={`/menu/${singleProduct.catSlug}`}
+            className="cursor-pointer text-sm md:text-lg xl:text-xl text-center mt-5"
+          >{`<<Back`}</Link>
+        </div>
       </div>
     </div>
   );

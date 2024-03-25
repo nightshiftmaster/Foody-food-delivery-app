@@ -38,7 +38,7 @@ const Price = ({ product }: { product: ProductType }) => {
           ) => {
             return (
               <button
-                className="min-w-[6rem] p-2 ring-1 ring-red-400 rounded-md"
+                className="min-w-[6rem] text-sm md:text-base p-2 ring-1 ring-red-400 rounded-md"
                 style={{
                   backgroundColor:
                     selected === index ? "rgb(248 113 113 )" : "white",
@@ -54,8 +54,8 @@ const Price = ({ product }: { product: ProductType }) => {
         )}
       </div>
       {/* quantity and add button */}
-      <div className="flex justify-between items-center">
-        <div className="flex justify-between w-full p-5 ring-1 ring-red-500">
+      <div className="flex justify-between text-xs md:text-base items-center">
+        <div className="flex justify-between  w-full p-4 md:p-5 ring-1 ring-red-500 rounded-l-md">
           <span>Quantity</span>
           <div className="flex gap-4 items-center justify-center">
             <button
@@ -73,7 +73,7 @@ const Price = ({ product }: { product: ProductType }) => {
         </div>
         {/* add to cart */}
         <button
-          className="uppercase bg-red-500 text-white p-2 ring-1 ring-red-500"
+          className="uppercase bg-red-500 text-white p-2  ring-1 ring-red-500 rounded-r-md"
           onClick={() => {
             addToCart({
               id: product.id,
