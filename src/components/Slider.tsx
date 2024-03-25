@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Button from "./Button";
 
 const data = [
   {
@@ -36,15 +37,10 @@ const Slider = () => {
       {/* Text Container */}
 
       <div className="flex items-center justify-center flex-col gap-8 font-bold text-red-500 lg:h-full flex-1 bg-fuchsia-50">
-        <h1 className="text-5xl text-center uppercase p-4 xl:text-7xl md:p-10">
+        <h1 className="md:text-5xl text-3xl text-center uppercase p-4 xl:text-7xl md:p-10">
           {data[currentSlide].title}
         </h1>
-        <button
-          type="button"
-          className="bg-red-500 text-white py-4 px-8 rounded-lg"
-        >
-          Order Now
-        </button>
+        <Button name={"Oreder Now"} />
       </div>
       {/* Image Container */}
       <div className="w-full relative lg:h-full flex-1 ">

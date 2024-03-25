@@ -1,6 +1,11 @@
+"use client";
 import React from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import CountDown from "./CountDown";
+import Button from "./Button";
+
+const CountDownNoSSR = dynamic(() => import("./CountDown"), { ssr: false });
 
 const Offer = () => {
   return (
@@ -17,17 +22,17 @@ const Offer = () => {
       </video>
       {/* text */}
       <div className="flex-1 flex flex-col justify-center items-center text-center gap-8 p-6 z-20">
-        <h1 className="text-white text-5xl font-bold xl:text-6xl">
+        <h1 className="text-white text-3xl md:text-5xl font-bold xl:text-6xl">
           Delicious Burger & French Fry
         </h1>
-        <p className="text-white xl:text-xl">
+        <p className="text-white text-sm xl:text-xl">
           Progressively simplify effective e-toilers and process-centric methods
           of empowerment. Quickly pontificate parallel.
         </p>
-        <CountDown />
-        <button className="bg-red-500 text-white px-6 py-3 rounded-lg">
-          Order Now
-        </button>
+
+        <CountDownNoSSR />
+
+        <Button name={"Order Now"} />
       </div>
       {/* image */}
       <div className="flex-1 w-full relative md:h-full z-20">
