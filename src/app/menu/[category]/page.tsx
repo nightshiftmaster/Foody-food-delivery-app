@@ -4,18 +4,16 @@ import React from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { ProductType } from "@/types/types";
+import { BASE_API_URL } from "@/utils/constants";
 
 type Props = {
   params: { category: string };
 };
 
 const getData = async (category: string) => {
-  const res = await fetch(
-    `http://localhost:3000/api/products?cat=${category}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`${BASE_API_URL}/api/products?cat=${category}`, {
+    cache: "no-store",
+  });
 
   if (!res) {
     throw new Error("failed to fetch data");
@@ -28,7 +26,7 @@ const CategoryPage = async ({ params }: Props) => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-wrap text-red-500">
-        {products.map((item) => {
+        {products?.map((item) => {
           return (
             <Link
               className={`transition-all duration-500 w-full p-4 h-[60vh] flex flex-col ${styles.choice} hover:bg-fuchsia-50 hover:shadow-2xl justify-between sm:w-1/2 lg:w-1/3 shadow-xl rounded-xl group `}
