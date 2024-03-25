@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { ProductType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
+import Button from "@/components/Button";
 
 type Props = {
   params: { category: string };
@@ -29,7 +30,7 @@ const CategoryPage = async ({ params }: Props) => {
         {products?.map((item) => {
           return (
             <Link
-              className={`transition-all duration-500 w-full p-4 h-[60vh] flex flex-col ${styles.choice} hover:bg-fuchsia-50 hover:shadow-2xl justify-between sm:w-1/2 lg:w-1/3 shadow-xl rounded-xl group `}
+              className={`transition-all gap-2 duration-500 w-full p-7 md:p-20 h-[60vh] flex flex-col ${styles.choice} hover:bg-fuchsia-50 hover:shadow-2xl justify-between sm:w-1/2 lg:w-1/3 shadow-xl rounded-xl group `}
               href={`/product/${item.id}`}
               key={item.id}
             >
@@ -47,12 +48,10 @@ const CategoryPage = async ({ params }: Props) => {
                 </div>
               )}
               {/* text */}
-              <div className="flex items-center justify-between font-bold ">
-                <h1 className="text-2xl uppercase p-2">{item.title}</h1>
-                <h2 className="text-xl group-hover:hidden">${item.price}</h2>
-                <button className="hidden group-hover:block uppercase bg-red-500 text-white p-2 rounded-lg">
-                  Add to Cart
-                </button>
+              <div className="flex md:text-xl flex-col text-base items-center justify-between font-bold gap-4">
+                <h1 className="uppercase p-2">{item.title}</h1>
+                <h2 className="">${item.price}</h2>
+                <Button name={"Add to Cart"} />
               </div>
             </Link>
           );
