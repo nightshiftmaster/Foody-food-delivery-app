@@ -9,6 +9,7 @@ import Image from "next/image";
 import prisma from "@/utils/connect";
 import { toast } from "react-toastify";
 import { LuRefreshCcw } from "react-icons/lu";
+import { BASE_API_URL } from "@/utils/constants";
 
 const OrdersPage = () => {
   const session = useSession();
@@ -18,7 +19,7 @@ const OrdersPage = () => {
     // unique key
     queryKey: ["orders"],
     queryFn: () =>
-      fetch("http://localhost:3000/api/orders").then((res) => res.json()),
+      fetch(`${BASE_API_URL}/api/orders`).then((res) => res.json()),
   });
 
   // update / edit status of order being andmin (user.isAdmin: true)!
@@ -30,7 +31,7 @@ const OrdersPage = () => {
   // renew data on server
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: number; status: string }) => {
-      return fetch(`http://localhost:3000/api/orders/${id}`, {
+      return fetch(`${BASE_API_URL}/api/orders/${id}`, {
         method: "PUT",
         headers: {
           "Content-type": "application/json",

@@ -17,9 +17,6 @@ const getData = async () => {
 
 const Featured = async () => {
   const featuredProducts: ProductType[] = await getData();
-  if (!BASE_API_URL) {
-    return null;
-  }
   return (
     <div className="w-screen overflow-x-scroll text-red-500">
       {/* wrapper */}

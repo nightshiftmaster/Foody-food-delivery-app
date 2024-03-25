@@ -1,4 +1,5 @@
 "use client";
+import { BASE_API_URL } from "@/utils/constants";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 
@@ -10,7 +11,7 @@ const SuccesPage = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        await fetch(`/api/confirm/${payment_intent}`, {
+        await fetch(`${BASE_API_URL}/api/confirm/${payment_intent}`, {
           method: "PUT",
         });
         router.push("/orders");
