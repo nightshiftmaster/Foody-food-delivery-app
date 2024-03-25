@@ -5,7 +5,7 @@ import { MenuType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
 
 const getData = async () => {
-  const res = await fetch(`https://foody-app-gray.vercel.app/api/categories`, {
+  const res = await fetch(`${BASE_API_URL}/api/categories`, {
     cache: "no-store",
   });
 
@@ -16,10 +16,10 @@ const getData = async () => {
 };
 
 const MenuPage = async () => {
-  // if (!BASE_API_URL) {
-  //   return null;
-  // }
   const menu: MenuType = await getData();
+  if (!BASE_API_URL) {
+    return null;
+  }
   return (
     <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col md:flex-row items-center">
       {menu?.reverse().map((category) => (
