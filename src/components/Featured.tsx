@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BASE_API_URL } from "@/utils/constants";
 
 const getData = async () => {
-  const res = await fetch(`${BASE_API_URL}/api/products`, {
+  const res = await fetch(`https://foody-app-gray.vercel.app/api/products`, {
     cache: "no-store",
   });
 
@@ -16,9 +16,9 @@ const getData = async () => {
 };
 
 const Featured = async () => {
-  if (!BASE_API_URL) {
-    return null;
-  }
+  // if (!BASE_API_URL) {
+  //   return null;
+  // }
   const featuredProducts: ProductType[] = await getData();
   return (
     <div className="w-screen overflow-x-scroll text-red-500">

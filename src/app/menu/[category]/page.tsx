@@ -11,9 +11,12 @@ type Props = {
 };
 
 const getData = async (category: string) => {
-  const res = await fetch(`${BASE_API_URL}/api/products?cat=${category}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `https://foody-app-gray.vercel.app/api/products?cat=${category}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res) {
     throw new Error("failed to fetch data");
@@ -22,9 +25,9 @@ const getData = async (category: string) => {
 };
 
 const CategoryPage = async ({ params }: Props) => {
-  if (!BASE_API_URL) {
-    return null;
-  }
+  // if (!BASE_API_URL) {
+  //   return null;
+  // }
   const products: ProductType[] = await getData(params.category);
   return (
     <div className="flex flex-col">
