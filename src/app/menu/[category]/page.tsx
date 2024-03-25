@@ -22,6 +22,9 @@ const getData = async (category: string) => {
 };
 
 const CategoryPage = async ({ params }: Props) => {
+  if (!BASE_API_URL) {
+    return null;
+  }
   const products: ProductType[] = await getData(params.category);
   return (
     <div className="flex flex-col">
