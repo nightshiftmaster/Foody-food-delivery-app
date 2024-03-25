@@ -47,7 +47,7 @@ const CartPage = () => {
       {/* products */}
 
       {products.length === 0 ? (
-        <div className="flex flex-col items-center gap-10 mt-32">
+        <div className="flex flex-col w-full justify-center  items-center gap-10 mt-32">
           <h1 className="text-xl">Cart is Empty</h1>
           <MdOutlineRemoveShoppingCart size={100} />
         </div>
