@@ -41,7 +41,7 @@ const PayPage = ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="w-full h-full flex justify-center items-center ">
-      <div className="w-1/2 h-1/2 mt-20">
+      <div className="w-[80%] h-1/2 mt-20">
         {clientSecret && (
           <Elements options={options} stripe={stripePromise}>
             <CheckoutForm />

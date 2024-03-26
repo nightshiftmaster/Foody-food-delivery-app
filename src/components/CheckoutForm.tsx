@@ -6,6 +6,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import AddressForm from "./AddressForm";
+import { BASE_API_URL } from "@/utils/constants";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -63,7 +64,7 @@ const CheckoutForm = () => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/success",
+        return_url: `${BASE_API_URL}/success`,
       },
     });
 
@@ -95,7 +96,13 @@ const CheckoutForm = () => {
         id="submit"
       >
         <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+          {isLoading ? (
+            <div className="spinner" id="spinner">
+              ...Please wait
+            </div>
+          ) : (
+            "Pay now"
+          )}
         </span>
       </button>
       {/* Show any error or success messages */}
