@@ -12,4 +12,4 @@ const CountDown = () => {
   );
 };
 
-export default CountDown;
+export default React.memo(CountDown);

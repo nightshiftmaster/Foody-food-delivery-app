@@ -30,7 +30,7 @@ const CategoryPage = async ({ params }: Props) => {
         {products?.map((item) => {
           return (
             <Link
-              className={`transition-all gap-2 duration-500 w-full p-7 md:p-20 h-[60vh] flex flex-col ${styles.choice} hover:bg-fuchsia-50 hover:shadow-2xl justify-between sm:w-1/2 lg:w-1/3 shadow-xl rounded-xl group `}
+              className={`transition-all gap-2 duration-500 w-full p-7 md:p-10 h-[60vh] flex flex-col ${styles.choice} hover:bg-fuchsia-50 hover:shadow-2xl justify-between sm:w-1/2 lg:w-1/3 shadow-xl rounded-xl group `}
               href={`/product/${item.id}`}
               key={item.id}
             >
@@ -44,6 +44,7 @@ const CategoryPage = async ({ params }: Props) => {
                     alt="item image"
                     fill
                     className="object-contain"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>
               )}
@@ -51,7 +52,7 @@ const CategoryPage = async ({ params }: Props) => {
               <div className="flex md:text-xl flex-col text-base items-center justify-between font-bold gap-4">
                 <h1 className="uppercase p-2">{item.title}</h1>
                 <h2 className="">${item.price}</h2>
-                <Button name={"Add to Cart"} />
+                <Button name={"Order Now"} path={`/product/${item.id}`} />
               </div>
             </Link>
           );

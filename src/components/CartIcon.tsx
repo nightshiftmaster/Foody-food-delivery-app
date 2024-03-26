@@ -8,11 +8,11 @@ const CartIcon = () => {
   const { totalItems } = useCartStore();
 
   return (
-    <Link href="/cart" className="flex items-center  gap-2">
+    <Link href="/cart" className="flex items-center  gap-2 ">
       <div className="relative w-6 h-6 md:h-5 md:w-5">
         <Image src="/cart.png" alt="cart image" fill />
       </div>
-      <span>Cart {totalItems}</span>
+      <span>{totalItems > 0 ? totalItems : null}</span>
     </Link>
   );
 };

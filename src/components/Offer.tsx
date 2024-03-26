@@ -2,8 +2,8 @@
 import React from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import CountDown from "./CountDown";
 import Button from "./Button";
+import CountDown from "./CountDown";
 
 const CountDownNoSSR = dynamic(() => import("./CountDown"), { ssr: false });
 
@@ -30,13 +30,19 @@ const Offer = () => {
           of empowerment. Quickly pontificate parallel.
         </p>
 
-        <CountDownNoSSR />
-
-        <Button name={"Order Now"} />
+        {/* <CountDownNoSSR /> */}
+        {/* <CountDown /> */}
+        <Button name={"Order Now"} path="/menu/burgers" />
       </div>
       {/* image */}
       <div className="flex-1 w-full relative md:h-full z-20">
-        <Image src="/offerProduct.png" alt="" fill className="object-contain" />
+        <Image
+          src="/offerProduct.png"
+          alt=""
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       </div>
     </div>
   );

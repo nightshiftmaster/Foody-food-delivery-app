@@ -16,12 +16,15 @@ const Navbar = () => {
         <Link href="/">Contact</Link>
       </div>
       {/* {Logo} */}
-      <div className="md:text-xl md:font-bold text-lg flex-1 md:text-center ">
+      <div className="md:hidden flex">
+        <Menu />
+      </div>
+      <div className="md:text-xl md:font-bold text-lg flex-1 md:text-center  ">
         <Link href="/">Foody</Link>
       </div>
       {/* {Mobil Menue} */}
-      <div className="md:hidden">
-        <Menu />
+      <div className="md:hidden flex">
+        <CartIcon />
       </div>
       {/* right links */}
       <div className="hidden text-xs xl:text-base md:flex flex-1 gap-4 items-center justify-end">

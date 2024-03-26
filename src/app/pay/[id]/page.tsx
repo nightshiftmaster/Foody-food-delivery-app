@@ -35,17 +35,19 @@ const PayPage = ({ params }: { params: { id: string } }) => {
   const options: StripeElementsOptions = {
     clientSecret,
     appearance: {
-      theme: "stripe",
+      theme: "flat",
     },
   };
 
   return (
-    <div>
-      {clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm />
-        </Elements>
-      )}
+    <div className="w-full h-full flex justify-center items-center ">
+      <div className="w-1/2 h-1/2 mt-20">
+        {clientSecret && (
+          <Elements options={options} stripe={stripePromise}>
+            <CheckoutForm />
+          </Elements>
+        )}
+      </div>
     </div>
   );
 };

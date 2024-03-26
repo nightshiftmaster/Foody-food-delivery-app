@@ -3,8 +3,8 @@ import React from "react";
 
 const AddressForm = () => {
   return (
-    <form action="">
-      <h1>Address</h1>
+    <form action="" className="flex flex-col gap-10">
+      <h1 className="text-2xl text-center font-semibold">Address</h1>
       <AddressElement
         options={{ mode: "shipping" }}
         onChange={(e) => {

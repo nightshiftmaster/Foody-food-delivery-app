@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
@@ -9,13 +9,16 @@ const LogingPage = () => {
   const { data, status } = useSession();
   const router = useRouter();
 
-  if (status === "loading") {
-    return <p>Loading...</p>;
-  }
+  console.log(status);
 
   if (status === "authenticated") {
     router.push("/");
   }
+
+  if (status === "loading") {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="p-4 flex items-center justify-center h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)]">
       {/* box */}

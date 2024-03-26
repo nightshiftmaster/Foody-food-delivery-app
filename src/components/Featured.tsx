@@ -49,11 +49,11 @@ const Featured = async () => {
                 <h1 className="font-bold uppercase text-sm md:text-lg 2xl:text-2xl">
                   {product.title}
                 </h1>
-                <p className="p-4 text-xs md:text-base ">{product.desc}</p>
+                <p className="p-3 text-xs md:text-base ">{product.desc}</p>
                 <span className="text-sm md:text-base xl:text-2xl font-bold">
                   ${product.price}
                 </span>
-                <Button name={"Add to Cart"} />
+                <Button name={"Order Now"} path={`/product/${product.id}`} />
               </div>
             </div>
           </Link>

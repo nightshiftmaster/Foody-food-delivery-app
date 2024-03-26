@@ -1,10 +1,12 @@
 "use client";
 import { BASE_API_URL } from "@/utils/constants";
+import { useCartStore } from "@/utils/store";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 
 const SuccesPage = () => {
   const searchParams = useSearchParams();
+  const { removeAllFromCart } = useCartStore();
   const payment_intent = searchParams.get("payment_intent");
   const router = useRouter();
 
@@ -14,6 +16,7 @@ const SuccesPage = () => {
         await fetch(`${BASE_API_URL}/api/confirm/${payment_intent}`, {
           method: "PUT",
         });
+        removeAllFromCart();
         router.push("/orders");
       } catch (err) {
         console.log(err);

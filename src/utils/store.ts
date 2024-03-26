@@ -50,6 +50,13 @@ export const useCartStore = create(
           totalPrice: state.totalPrice - item.price,
         }));
       },
+      removeAllFromCart() {
+        set((state) => ({
+          products: (state.products = []),
+          totalItems: (state.totalItems = 0),
+          totalPrice: (state.totalPrice = 0),
+        }));
+      },
     }),
     { name: "cart", skipHydration: true }
   )

@@ -5,12 +5,14 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import { StripePaymentElementOptions } from "@stripe/stripe-js";
 import AddressForm from "./AddressForm";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const appearance = {
+    theme: "flat",
+  };
 
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -80,10 +82,18 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form
+      id="payment-form"
+      onSubmit={handleSubmit}
+      className="flex gap-10 flex-col"
+    >
       <AddressForm />
       <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
+      <button
+        className="bg-red-500 font-bold text-white text-xs md:text-sm xl:text-base py-4 px-8 rounded-lg"
+        disabled={isLoading || !stripe || !elements}
+        id="submit"
+      >
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>
