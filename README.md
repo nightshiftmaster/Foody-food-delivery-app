@@ -21,6 +21,7 @@ Foody is a web application for ordering and delivering food, specializing in piz
 - **Database:**
   - PostgreSQL
   - Prisma
+  - Supabase
 - **Authentication:**
   - NextAuth.js
 - **Payment System:**
@@ -29,6 +30,10 @@ Foody is a web application for ordering and delivering food, specializing in piz
   - Zustand
 - **Data Fetching:**
   - React Query
+- **Deploy:**
+  - Vercel
+- **Testing**
+  - Playwright
 
 ## Installation
 
