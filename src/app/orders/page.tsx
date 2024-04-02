@@ -4,12 +4,10 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { OrderType } from "@/types/types";
-import { CartItemType } from "@/types/types";
-import Image from "next/image";
-import prisma from "@/utils/connect";
 import { toast } from "react-toastify";
 import { LuRefreshCcw } from "react-icons/lu";
 import { BASE_API_URL } from "@/utils/constants";
+import Loader from "@/components/Loader";
 
 const OrdersPage = () => {
   const session = useSession();
@@ -60,7 +58,7 @@ const OrdersPage = () => {
     return router.push("/");
   }
 
-  if (isPending || session.status === "loading") return "Loading...";
+  if (isPending || session.status === "loading") return <Loader />;
 
   if (error) return "An error has occurred: " + error.message;
 

@@ -14,6 +14,7 @@ export const PUT = async (
       },
       data: { status: "Being prepared" },
     });
+
     return new NextResponse(JSON.stringify({ message: "Order has updated " }), {
       status: 200,
     });
