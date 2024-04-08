@@ -1,26 +1,45 @@
 "use client";
+import { TimeObject } from "@/app/tracking/[paymentId]/page";
 import React, { useEffect, useState } from "react";
 import Countdown from "react-countdown";
-import Cookies from "js-cookie";
-import { TimeObject } from "@/app/tracking/[paymentId]/page";
 
 const CountDown = ({
-  targetDate,
+  date,
   setRemainingTime,
 }: {
-  targetDate: number;
+  date: number;
   setRemainingTime: (value: TimeObject | undefined) => void;
 }) => {
+  const [currentTime, setCurrentTime] = useState(0);
+  const [timeDiff, setTimeDiff] = useState<number>(0);
+
   useEffect(() => {
-    Cookies.set("targetDate", targetDate.toString());
-  }, [targetDate]);
+    // if (currentTime + 800000 - timeDiff < currentTime) {
+    //   setCurrentTime(Date.now());
+    // }
+    const interval = setInterval(() => {
+      const newCurrentTime = Date.now();
+      setCurrentTime(newCurrentTime);
+      setTimeDiff(newCurrentTime - date);
+    }, 1000);
+
+    // console.log(currentTime + 800000 - timeDiff > currentTime);
+
+    return () => clearInterval(interval);
+  }, [date]);
+
+  console.log(currentTime);
 
   return (
     <div>
       <Countdown
         className="font-semibold md:text-3xl text-3xl xl:text-5xl text-gray-500"
-        date={targetDate}
+        date={currentTime + 800000 - timeDiff}
         onTick={(time) => {
+          console.log(time.minutes);
+          // if (time.completed) {
+          //   console.log("completed");
+          // }
           return setRemainingTime(time);
         }}
       />

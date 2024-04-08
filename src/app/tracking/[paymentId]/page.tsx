@@ -4,6 +4,7 @@ import Stepper from "../components/Stepper";
 import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
 import { BASE_API_URL } from "@/utils/constants";
+import CountDown from "@/components/CountDown";
 
 export interface TimeObject {
   completed: boolean;
@@ -23,29 +24,20 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
   const { paymentId } = params;
   const [step, setStep] = useState(0);
   const [success, setSuccess] = useState("");
-  const [orderStatus, setOrderStatus] = useState<string>();
-  const [targetDate, setTargetDate] = useState(() => {
-    const savedTargetDate = Cookies.get("targetDate");
-    return savedTargetDate
-      ? parseInt(savedTargetDate, 10)
-      : Date.now() + 1800000;
-  });
-
-  // const resetTimer = () => {
-  //   setTargetDate(Date.now() + 1800000);
-  // };
-
-  //   const [targetDate, setTargetDate] = useState(Date.now() + 1800000);
+  // const [orderStatus, setOrderStatus] = useState<string>();
+  const [createDate, setCreateDate] = useState<number>();
 
   const [remainingTime, setRemainingTime] = useState<TimeObject | undefined>();
 
   const minutes = remainingTime?.minutes;
 
+  console.log(minutes);
+
   const status = {
-    placed: minutes! < 29 && minutes! > 27,
-    kitchen: minutes! < 27 && minutes! > 25,
-    way: minutes! < 25 && minutes! > 23,
-    success: minutes! < 23,
+    placed: minutes! >= 7,
+    kitchen: minutes! < 7 && minutes! > 5,
+    way: minutes! < 5 && minutes! > 2,
+    success: minutes! < 1,
   };
 
   useEffect(() => {
@@ -54,65 +46,75 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
         const res = await fetch(`${BASE_API_URL}/api/status/${paymentId}`, {
           cache: "no-store",
         });
-
-        if (res) {
-          const order = await res.json();
-          if (order.status === "Being prepared") {
-            setTargetDate(Date.now() + 1800000);
-          } else {
-            return;
-          }
-        }
+        const order = await res.json();
+        return order.createAt;
+        // if (res) {
+        //   if (order.status === "Being prepared") {
+        //     setTargetDate(Date.now() + 430000);
+        //     setOrderStatus("placed");
+        //     setStep(0);
+        //   } else {
+        //     // const statusNames = Object.keys(status);
+        //     // const currStep = statusNames.indexOf(order.status);
+        //     setTargetDate(Date.parse(order.createAt) + 430000);
+        //     // setOrderStatus(statusNames[currStep]);
+        //     // setStep(currStep);
+        //   }
+        // }
       } catch (err) {
         console.log(err);
       }
     };
-    void getOrder(paymentId);
-  }, [step]);
+    getOrder(paymentId).then((data) => setCreateDate(Date.parse(data)));
+  }, [minutes]);
+
+  // useEffect(() => {
+  //   const updateOrder = async (paymentId: string) => {
+  //     try {
+  //       fetch(`${BASE_API_URL}/api/status/${paymentId}`, {
+  //         method: "PUT",
+  //         headers: {
+  //           "Content-type": "application/json",
+  //         },
+  //         body: JSON.stringify({ status: orderStatus }),
+  //       });
+  //     } catch (e) {
+  //       console.log(e);
+  //     }
+  //   };
+  //   void updateOrder(paymentId);
+  // }, [step, status]);
 
   useEffect(() => {
-    const updateOrder = async (paymentId: string) => {
-      try {
-        fetch(`${BASE_API_URL}/api/status/${paymentId}`, {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ status: orderStatus }),
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    void updateOrder(paymentId);
-  }, [orderStatus]);
-
-  useLayoutEffect(() => {
     if (minutes) {
       switch (true) {
         case status.placed:
           setStep(0);
-          setOrderStatus("order placed");
+          remainingTime.completed = true;
+          // setOrderStatus("placed");
           break;
         case status.kitchen:
           setStep(1);
-          setOrderStatus("order prepared");
+
+          // setOrderStatus("kitchen");
           break;
         case status.way:
           setStep(2);
-          setOrderStatus("order on the way");
+          // setOrderStatus("way");
           break;
         case status.success:
           setStep(3);
-          setOrderStatus("order delivered");
-          setSuccess("Thank you for ordering!");
-        // Cookies.remove("targetDate");
+
+        // setOrderStatus("success");
         default:
           break;
       }
     }
     return;
-  }, [minutes]);
+  }, [remainingTime?.seconds]);
+
+  // console.log(`step-${step}, order-status-${orderStatus}`);
+  console.log(`step-${step}`);
 
   return (
     <div className="h-[100vh] w-full">
@@ -139,9 +141,13 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
                 Order placed on 01 July 2024, 08:15 pm
               </h1>
               <CountDownNoSSR
-                targetDate={targetDate}
+                date={createDate ? createDate : 0}
                 setRemainingTime={setRemainingTime}
               />
+              {/* <CountDown
+                targetDate={targetDate}
+                setRemainingTime={setRemainingTime}
+              /> */}
               {/* <button onClick={resetTimer}>Сбросить таймер</button> */}
             </div>
           )}

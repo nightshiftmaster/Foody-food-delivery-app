@@ -28,7 +28,7 @@ const LogingPage = () => {
 
   if (status === "unauthenticated") {
     return (
-      <div className="p-4 flex items-center justify-center h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)]">
+      <div className="p-4 flex items-center justify-center h-[calc(100vh-6rem)] md:h-[calc(100vh-8rem)]">
         {/* box */}
         <div className="h-[90%]  shadow-2xl rounded-md flex flex-col md:flex-row w-[80%] md:h-[70%]  lg:w-[70%] 2xl:w-1/2">
           {/* image */}
@@ -37,14 +37,14 @@ const LogingPage = () => {
               src="/loginBg.png"
               alt="login image"
               fill
-              className="object-cover rounded-md
+              className="object-cover sm:rounded-t-md md:rounded-l-md md:rounded-r-none 
             "
             />
           </div>
           {/* form */}
-          <div className="p-12 flex flex-col md:gap-8 gap-5 text-center md:w-1/2 md:text-base text-xs">
+          <div className="p-12 flex flex-col md:gap-8 gap-5 justify-center items-center text-center md:w-1/2 md:text-sm text-xs">
             <h1 className="font-bold text-xl xl:text-3xl">Welcome</h1>
-            <p>Log into your account using social buttons</p>
+            <p>Log into your account</p>
             <button
               className="flex gap-4 md:p-5 p-2 ring-1 ring-orange-100 items-center rounded-md"
               onClick={() => signIn("google")}
@@ -71,7 +71,7 @@ const LogingPage = () => {
               />
               <span>Sign in with Facebook</span>
             </button>
-            <p className="md:text-base text-xs">
+            <p>
               Have a problem{" "}
               <Link className="underline" href="/">
                 Contact us

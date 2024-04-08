@@ -7,7 +7,7 @@ const Button = React.memo(
     const router = useRouter();
     return (
       <button
-        className="bg-red-500 font-bold text-white text-xs md:text-sm xl:text-base py-4 px-8 rounded-lg"
+        className="bg-red-500 font-bold text-white text-xs md:text-sm xl:text-base py-4 px-8 rounded-lg hover:scale-110 transition-all duration-500"
         onClick={() => {
           console.log("push");
           router.push(path);

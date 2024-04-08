@@ -19,6 +19,8 @@ const CartPage = () => {
     useCartStore.persist.rehydrate();
   }, []);
 
+  console.log(products);
+
   const handleCheckout = async () => {
     if (session.status === "unauthenticated") {
       router.push("/login");
@@ -30,7 +32,7 @@ const CartPage = () => {
           body: JSON.stringify({
             price: totalPrice.toFixed(2),
             products,
-            status: "Not Paid !",
+            status: "Not Paid",
             userEmail: session?.data?.user.email,
           }),
         });
@@ -55,11 +57,11 @@ const CartPage = () => {
         <div className="h-h-[calc(100vh-6rem)] text-sm md:text-base md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row">
           <div className="h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-20">
             {/* single item */}
-            {products.map((item: CartItemType) => {
+            {products.map((item: CartItemType, i) => {
               return (
                 <div
                   className="flex items-center gap-5  justify-between mb-4"
-                  key={item.id}
+                  key={i}
                 >
                   {item.img && (
                     <Image
@@ -120,7 +122,7 @@ const CartPage = () => {
       )}
       <Link
         href="/menu"
-        className="cursor-pointer flex justify-center items-center text-sm md:text-xl text-red-500 "
+        className="cursor-pointer flex justify-center items-center text-sm md:text-base xl:text-xl text-red-500 "
       >{`<<Back to Menu`}</Link>
     </div>
   );

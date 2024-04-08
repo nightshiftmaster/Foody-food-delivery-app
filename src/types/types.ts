@@ -21,6 +21,7 @@ export type OrderType = {
   id: number;
   createAt: number;
   date: number;
+  intent_id: string;
   price: number;
   products: CartItemType[];
   status: string;

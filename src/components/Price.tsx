@@ -38,10 +38,10 @@ const Price = ({ product }: { product: ProductType }) => {
           ) => {
             return (
               <button
-                className="min-w-[6rem] text-sm md:text-base p-2 ring-1 ring-red-400 rounded-md"
+                className="min-w-[6rem] text-sm md:text-base p-2 ring-1 ring-red-400 rounded-md active:bg-red-300 active:transition-all duration-500"
                 style={{
                   backgroundColor:
-                    selected === index ? "rgb(248 113 113 )" : "white",
+                    selected === index ? "rgb(239 68 68)" : "white",
                   color: selected === index ? "white" : "red",
                 }}
                 key={option.title}
@@ -55,7 +55,7 @@ const Price = ({ product }: { product: ProductType }) => {
       </div>
       {/* quantity and add button */}
       <div className="flex justify-between text-xs md:text-base items-center">
-        <div className="flex justify-between  w-full p-4 md:p-5 ring-1 ring-red-500 rounded-l-md">
+        <div className="flex justify-between  w-full p-4 md:p-4 ring-1 ring-red-500 rounded-l-md">
           <span>Quantity</span>
           <div className="flex gap-4 items-center justify-center">
             <button
@@ -73,7 +73,7 @@ const Price = ({ product }: { product: ProductType }) => {
         </div>
         {/* add to cart */}
         <button
-          className="uppercase bg-red-500 text-white p-2  ring-1 ring-red-500 rounded-r-md"
+          className="uppercase bg-red-500 text-white p-2 md:text-sm text-xs ring-1 ring-red-500 rounded-r-md active:bg-red-300 active:transition-all duration-500"
           onClick={() => {
             addToCart({
               id: product.id,

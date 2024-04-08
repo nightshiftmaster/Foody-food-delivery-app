@@ -45,7 +45,7 @@ export const POST = async (
         { status: 200 }
       );
     } else {
-      return new NextResponse("Order not fount", { status: 404 });
+      return new NextResponse("Order not found", { status: 404 });
     }
   } catch (err) {}
 };

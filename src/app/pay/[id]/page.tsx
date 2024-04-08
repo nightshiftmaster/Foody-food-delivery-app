@@ -13,6 +13,7 @@ const stripePromise = loadStripe(
 
 const PayPage = ({ params }: { params: { id: string } }) => {
   const [clientSecret, setClientSecret] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const session = useSession();
   const router = useRouter();
 
@@ -26,6 +27,7 @@ const PayPage = ({ params }: { params: { id: string } }) => {
         });
         const data = await res.json();
         setClientSecret(data.clientSecret);
+        setIsLoading(false);
       } catch (e) {
         console.log(e);
       }
@@ -41,7 +43,9 @@ const PayPage = ({ params }: { params: { id: string } }) => {
     },
   };
 
-  if (session.status === "loading") {
+  console.log(isLoading);
+
+  if (session.status === "loading" || isLoading) {
     return <Loader />;
   }
 

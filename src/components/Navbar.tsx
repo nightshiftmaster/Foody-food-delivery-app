@@ -19,15 +19,32 @@ const Navbar = () => {
       <div className="md:hidden flex">
         <Menu />
       </div>
-      <div className="md:text-xl md:font-bold text-lg flex-1 md:text-center  ">
-        <Link href="/">Foody</Link>
+      <div className="md:text-xl md:font-bold text-lg  justify-center items-center  md:text-center  ">
+        <Link className="hidden md:block" href="/">
+          <Image
+            src="/logo-no-background-sm.svg"
+            alt=""
+            height={120}
+            width={120}
+            sizes="(max-width: 768px) 100vw,  1920px"
+          />
+        </Link>
+        <Link className="block md:hidden" href="/">
+          <Image
+            src="/logo-no-background-sm.svg"
+            alt=""
+            height={60}
+            width={60}
+            sizes="(max-width: 768px) 100vw,  1920px"
+          />
+        </Link>
       </div>
       {/* {Mobil Menue} */}
       <div className="md:hidden flex">
         <CartIcon />
       </div>
       {/* right links */}
-      <div className="hidden text-xs xl:text-base md:flex flex-1 gap-4 items-center justify-end">
+      <div className="hidden text-sm xl:text-base md:flex flex-1 gap-4 items-center justify-end">
         <div className="md:absolute top-3 right-2  lg:static flex gap-2 items-center bg-orange-300 px-1 cursor-pointer rounded-md ">
           <Image src="/phone.png" alt="" width={20} height={20} />
           <span className="">1700 700 700</span>

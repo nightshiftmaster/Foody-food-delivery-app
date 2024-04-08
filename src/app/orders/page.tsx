@@ -45,13 +45,17 @@ const OrdersPage = () => {
   });
 
   // update / edit status of order being andmin (user.isAdmin: true)!
-  const handleUpdate = (e: React.FormEvent<HTMLFormElement>, id: number) => {
-    e.preventDefault();
-    const form = e.target as HTMLFormElement;
-    const input = form[0] as HTMLInputElement;
-    const status = input.value;
-    mutation.mutate({ id, status });
-    toast.success("The order status has been changed");
+  // const handleUpdate = (e: React.FormEvent<HTMLFormElement>, id: number) => {
+  //   e.preventDefault();
+  //   const form = e.target as HTMLFormElement;
+  //   const input = form[0] as HTMLInputElement;
+  //   const status = input.value;
+  //   mutation.mutate({ id, status });
+  //   toast.success("The order status has been changed");
+  // };
+
+  const handleTrackOrder = (payment_intent: string) => {
+    router.push(`/tracking/${payment_intent}`);
   };
 
   if (session.status === "unauthenticated") {
@@ -90,26 +94,15 @@ const OrdersPage = () => {
               <td className="hidden md:block py-6 px-1">
                 {item.products[0].title}
               </td>
-              <td>
-                {session?.data?.user.isAdmin ? (
-                  <form
-                    className="flex justify-center items-center gap-5"
-                    onSubmit={(e) => handleUpdate(e, item.id)}
-                  >
-                    <input
-                      placeholder={item.status}
-                      className="p-2 ring-1 ring-red-100 rounded-md"
-                    />
-                    <button className="bg-red-500 hover:bg-red-300 rounded-full p-2">
-                      <LuRefreshCcw color="white" />
-
-                      {/* <Image src="/edit.png" alt="" width={20} height={20} /> */}
-                    </button>
-                  </form>
-                ) : (
-                  item.status
-                )}
-              </td>
+              <td>{item.status}</td>
+              <button
+                className="bg-red-500 p-3 text-white rounded-md"
+                onClick={() => {
+                  router.push(`/tracking/${item.intent_id}`);
+                }}
+              >
+                track order
+              </button>
             </tr>
           ))}
         </tbody>
