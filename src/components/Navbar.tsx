@@ -22,7 +22,7 @@ const Navbar = () => {
       <div className="md:text-xl md:font-bold text-lg  justify-center items-center  md:text-center  ">
         <Link className="hidden md:block" href="/">
           <Image
-            src="/logo-no-background-sm.svg"
+            src="/logo-no-background.svg"
             alt=""
             height={120}
             width={120}
