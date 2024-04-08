@@ -43,8 +43,6 @@ const PayPage = ({ params }: { params: { id: string } }) => {
     },
   };
 
-  console.log(isLoading);
-
   if (session.status === "loading" || isLoading) {
     return <Loader />;
   }
@@ -56,7 +54,7 @@ const PayPage = ({ params }: { params: { id: string } }) => {
   if (session.status === "authenticated") {
     return (
       <div className="w-full h-full flex justify-center items-center ">
-        <div className="w-[80%] h-1/2 mt-20">
+        <div className="w-[80%] md:w-[60%] h-1/2 mt-20">
           {clientSecret && (
             <Elements options={options} stripe={stripePromise}>
               <CheckoutForm />
