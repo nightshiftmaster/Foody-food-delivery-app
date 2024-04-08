@@ -7,7 +7,6 @@ import {
 } from "@stripe/react-stripe-js";
 import AddressForm from "./AddressForm";
 import { BASE_API_URL } from "@/utils/constants";
-import Loader from "./Loader";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -82,10 +81,6 @@ const CheckoutForm = () => {
 
     setIsLoading(false);
   };
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <form

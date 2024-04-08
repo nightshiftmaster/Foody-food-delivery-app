@@ -137,9 +137,9 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
               <h1 className="uppercase font-semibold text-2xl text-red-500 text-center">
                 Your order will be delivered soon{" "}
               </h1>
-              <h1 className="uppercase tracking-widest text-center">
+              {/* <h1 className="uppercase tracking-widest text-center">
                 Order placed on 01 July 2024, 08:15 pm
-              </h1>
+              </h1> */}
               <CountDownNoSSR
                 date={createDate ? createDate : 0}
                 setRemainingTime={setRemainingTime}

@@ -10,7 +10,7 @@ const CountDown = ({
   date: number;
   setRemainingTime: (value: TimeObject | undefined) => void;
 }) => {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState(Date.now());
   const [timeDiff, setTimeDiff] = useState<number>(0);
 
   useEffect(() => {

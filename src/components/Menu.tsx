@@ -47,7 +47,7 @@ const Menu = () => {
       )}
 
       <div
-        className={`bg-red-500 text-white absolute top-24 transition-all ease-in-out delay-300 duration-300 ${
+        className={`bg-red-500 text-white fixed top-24 transition-all ease-in-out delay-300 duration-300 ${
           open ? "left-0" : "left-full"
         } h-[calc(100vh-6rem)] flex items-center justify-center text-base flex-col gap-7 w-full z-10`}
       >
