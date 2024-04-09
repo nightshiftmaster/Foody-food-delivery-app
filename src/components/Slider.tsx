@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import Button from "./Button";
-import { url } from "inspector";
 
 const data = [
   {
@@ -43,11 +41,12 @@ const Slider = () => {
     <div className="flex flex-col h-[calc(100vh-15rem)] md:h-[calc(100vh-9rem)] lg:flex-row w-screen">
       {/* Text Container */}
       <video
-        className="md:h-[90%] h-[65%] w-full absolute object-cover  z-0"
+        className="md:h-[83%] h-[65%] w-full absolute object-cover z-0"
         id="video"
         loop
         autoPlay
         muted
+        playsInline
       >
         <source
           src="https://videos.pexels.com/video-files/5898900/5898900-hd_2048_1080_30fps.mp4"
@@ -60,7 +59,7 @@ const Slider = () => {
           {data[currentSlide].title}
         </h1>
         <div className="z-10 drop-shadow-lg">
-          <Button name={"Menu"} path="/menu" />
+          <Button name={"Check Out Menu"} path="/menu" />
         </div>
       </div>
       {/* Image Container */}

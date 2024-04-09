@@ -14,16 +14,11 @@ const CountDown = ({
   const [timeDiff, setTimeDiff] = useState<number>(0);
 
   useEffect(() => {
-    // if (currentTime + 800000 - timeDiff < currentTime) {
-    //   setCurrentTime(Date.now());
-    // }
     const interval = setInterval(() => {
       const newCurrentTime = Date.now();
       setCurrentTime(newCurrentTime);
       setTimeDiff(newCurrentTime - date);
     }, 1000);
-
-    // console.log(currentTime + 800000 - timeDiff > currentTime);
 
     return () => clearInterval(interval);
   }, [date]);

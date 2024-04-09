@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=Assistant:wght@800&family=Bebas+Neue&family=Heebo:wght@100..900&family=Indie+Flower&family=Permanent+Marker&family=Tac+One&family=Teko:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Assistant:wght@500&family=Dosis:wght@200..800&family=Bebas+Neue&family=Heebo:wght@100..900&family=Indie+Flower&family=Permanent+Marker&family=Tac+One&family=Teko:wght@300..700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,7 +12,7 @@
 .bebas-neue-regular {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
-  letter-spacing: 0.3px;
+
   font-style: normal;
 }
 
@@ -22,10 +22,24 @@
   font-style: normal;
 }
 
+.heebo-regular {
+  font-family: "Heebo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
 .teko-regular {
   font-family: "Teko", sans-serif;
   font-optical-sizing: auto;
   font-weight: 300;
+  letter-spacing: 1px;
+  font-style: normal;
+}
+.teko-bold {
+  font-family: "Teko", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
   font-style: normal;
 }
 .permanent-marker-regular {
@@ -40,16 +54,28 @@
   font-style: normal;
 }
 
-/* .assistant-font {
-  font-family: "Anton", sans-serif;
-  font-weight: 700;
-  color: rgb(108, 105, 105);
+.assistant-regular {
+  font-family: "Assistant", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
   font-style: normal;
-} */
+}
 
-/* .assistant-font {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 700;
-  color: rgb(67, 66, 66);
+.dosis-regular {
+  font-family: "Dosis", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
   font-style: normal;
-} */
+}
+.dosis-bold {
+  font-family: "Dosis", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.montserrat-regular {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}

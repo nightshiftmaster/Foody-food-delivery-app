@@ -25,7 +25,7 @@ const getData = async (category: string) => {
 const CategoryPage = async ({ params }: Props) => {
   const products: ProductType[] = await getData(params.category);
   return (
-    <div className="flex  flex-col gap-10">
+    <div className="flex flex-col gap-10">
       <div className="flex flex-wrap text-red-500">
         {products?.map((item) => {
           return (
@@ -37,7 +37,7 @@ const CategoryPage = async ({ params }: Props) => {
               {/* image */}
               {item.img && (
                 <div
-                  className={`transition-all duration-500 relative w-full h-full ${styles.shake}`}
+                  className={`transition-all duration-500 relative w-full h-1/2  ${styles.shake}`}
                 >
                   <Image
                     src={item.img}
@@ -49,11 +49,15 @@ const CategoryPage = async ({ params }: Props) => {
                 </div>
               )}
               {/* text */}
-              <div className="flex md:text-xl flex-col text-base items-center justify-between font-bold gap-4">
-                <h1 className="uppercase p-2">{item.title}</h1>
-                <h2 className="assistant-font">${item.price}</h2>
-                <Button name={"Order Now"} path={`/product/${item.id}`} />
+              <div
+                className="flex flex-col items-center justify-evenly h-1/2 
+              "
+              >
+                <h1 className="heebo-regular p-2">{item.title}</h1>
+                <h1 className="dosis-regular text-sm p-2">{item.desc}</h1>
+                {/* <h2 className="anton-regular text-gray-600">${item.price}</h2> */}
               </div>
+              <Button name={`Order Now`} path={`/product/${item.id}`} />
             </Link>
           );
         })}

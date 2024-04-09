@@ -10,10 +10,16 @@ const Navbar = () => {
   return (
     <div className="h-12 bg-white text-red-500 px-4 flex justify-between border-b-0 items-center text-center bebas-neue-regular xl:text-3xl md:text-2xl text-base cursor-pointer md:h-24 lg:px-20 xl:px-36">
       {/* left links */}
-      <div className="hidden md:flex gap-4 flex-1">
-        <Link href="/">HomePage</Link>
-        <Link href="/menu">Menu</Link>
-        <Link href="/contact">Contact</Link>
+      <div className="hidden md:flex gap-4 flex-1 ">
+        <Link className="hover:text-gray-300" href="/">
+          HomePage
+        </Link>
+        <Link className="hover:text-gray-300" href="/menu">
+          Menu
+        </Link>
+        <Link className="hover:text-gray-300" href="/contact">
+          Contact
+        </Link>
       </div>
       {/* {Logo} */}
       <div className="md:hidden flex">

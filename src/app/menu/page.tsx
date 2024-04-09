@@ -28,10 +28,12 @@ const MenuPage = async () => {
         >
           {/* text */}
           <div className={`text-${category.color} w-1/2 flex flex-col`}>
-            <h1 className="uppercase font-bold text-lg sm:text-3xl">
+            <h1 className="heebo-regular text-lg sm:text-3xl uppercase">
               {category.title}
             </h1>
-            <p className="sm:text-sm text-xs my-5 md:my-8">{category.desc}</p>
+            <p className="sm:text-sm dosis-regular text-xs my-5 md:my-8">
+              {category.desc}
+            </p>
             <button
               className={`hidden mx-0 2xl:block bg-${category.color} text-${
                 category.color === "black" ? "white" : "red-500"

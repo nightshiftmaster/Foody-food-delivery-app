@@ -44,7 +44,7 @@ const Menu = () => {
       <div
         className={`bg-red-500 text-white fixed top-24 transition-all ease-in-out delay-300 duration-300 ${
           open ? "left-0" : "left-full"
-        } h-[calc(100vh-6rem)] flex items-center justify-center text-2xl flex-col gap-7 w-full z-10`}
+        } h-[calc(100vh-6rem)] flex items-center justify-center text-2xl flex-col gap-7 w-full z-30`}
       >
         {links.map((link, i) => (
           <Link

@@ -46,14 +46,18 @@ const Featured = async () => {
               )}
               {/* text */}
               <div className="flex-1 flex flex-col md:gap-3 gap-2 items-center justify-center text-center">
-                <h1 className="font-bold uppercase text-sm md:text-lg 2xl:text-2xl">
+                <h1 className="heebo-regular text-sm md:text-lg 2xl:text-2xl">
                   {product.title}
                 </h1>
-                <p className="p-3 text-xs md:text-base ">{product.desc}</p>
+                <p className="dosis-regular p-3 w-[90%] text-sm">
+                  {product.desc}
+                </p>
                 {/* <span className="text-sm md:text-base xl:text-2xl assistant-font">
                   ${product.price}
                 </span> */}
-                <Button name={"Order Now"} path={`/product/${product.id}`} />
+                <div className="w-1/2">
+                  <Button name={"Order Now"} path={`/product/${product.id}`} />
+                </div>
               </div>
             </div>
           </Link>

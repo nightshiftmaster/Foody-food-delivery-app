@@ -17,6 +17,7 @@ const Offer = () => {
         loop
         autoPlay
         muted
+        playsInline
       >
         <source src="/fire3.mp4" type="video/mp4" />
       </video>
@@ -32,7 +33,9 @@ const Offer = () => {
 
         {/* <CountDownNoSSR /> */}
         {/* <CountDown /> */}
-        <Button name={"Order Now"} path="/menu/burgers" />
+        <div className="w-1/3">
+          <Button name={"Find out more here!"} path="/menu/burgers" />
+        </div>
       </div>
       {/* image */}
       <div className="flex-1 w-full relative md:h-full z-20">

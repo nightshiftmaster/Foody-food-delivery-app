@@ -4,13 +4,6 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useCartStore } from "@/utils/store"; // CART STORE
 import { toast } from "react-toastify";
-// import { Roboto } from "next/font/google";
-
-// const roboto = Roboto({
-//   subsets: ["latin"],
-//   weight: ["700"],
-//   variable: "--font-roboto",
-// });
 
 const Price = ({ product }: { product: ProductType }) => {
   const [total, setTotal] = useState(product.price);
@@ -36,7 +29,7 @@ const Price = ({ product }: { product: ProductType }) => {
         ${typeof total !== "string" ? total?.toFixed(2) : total}
       </h2>
       {/* options */}
-      <div className="flex gap-4">
+      <div className="flex gap-4 assistant-regular ">
         {product.options?.map(
           (
             option: { title: string; additionalPrice: number },
@@ -60,7 +53,7 @@ const Price = ({ product }: { product: ProductType }) => {
         )}
       </div>
       {/* quantity and add button */}
-      <div className="flex justify-between text-xs md:text-base items-center">
+      <div className="flex justify-between text-sm md:text-base items-center teko-regular">
         <div className="flex justify-between  w-full p-4 md:p-4 ring-1 ring-red-500 rounded-l-3xl">
           <span>Quantity</span>
           <div className="flex gap-4 items-center justify-center">
