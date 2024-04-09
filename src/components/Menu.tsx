@@ -1,16 +1,23 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { useState } from "react";
+import { CiMenuBurger } from "react-icons/ci";
+import { IoMdClose } from "react-icons/io";
+import { IoHomeOutline } from "react-icons/io5";
+import { MdOutlineMenuBook } from "react-icons/md";
+import { TfiEmail } from "react-icons/tfi";
+import { SlLogin } from "react-icons/sl";
+import { SlLogout } from "react-icons/sl";
+
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/utils/store";
 
 const links = [
-  { id: 1, title: "Homepage", url: "/" },
-  { id: 2, title: "Menu", url: "/menu" },
-  { id: 3, title: "Contact", url: "/contact" },
+  { id: 1, title: "Homepage", url: "/", icon: <IoHomeOutline size={20} /> },
+  { id: 2, title: "Menu", url: "/menu", icon: <MdOutlineMenuBook size={20} /> },
+  { id: 3, title: "Contact", url: "/contact", icon: <TfiEmail size={20} /> },
 ];
 
 const Menu = () => {
@@ -29,42 +36,42 @@ const Menu = () => {
   return (
     <div onClick={() => setOpen(!open)}>
       {!open ? (
-        <Image
-          src="/open.png"
-          alt=""
-          width={20}
-          height={20}
-          onClick={() => setOpen(true)}
-        />
+        <CiMenuBurger size={20} onClick={() => setOpen(true)} />
       ) : (
-        <Image
-          src="/close.png"
-          alt=""
-          width={20}
-          height={20}
-          onClick={() => setOpen(false)}
-        />
+        <IoMdClose size={20} onClick={() => setOpen(false)} />
       )}
 
       <div
         className={`bg-red-500 text-white fixed top-24 transition-all ease-in-out delay-300 duration-300 ${
           open ? "left-0" : "left-full"
-        } h-[calc(100vh-6rem)] flex items-center justify-center text-base flex-col gap-7 w-full z-10`}
+        } h-[calc(100vh-6rem)] flex items-center justify-center text-2xl flex-col gap-7 w-full z-10`}
       >
         {links.map((link, i) => (
-          <Link href={link.url} onClick={() => setOpen(false)} key={i}>
+          <Link
+            className="flex gap-3 justify-start items-center w-1/3"
+            href={link.url}
+            onClick={() => setOpen(false)}
+            key={i}
+          >
+            {link.icon}
             {link.title}
           </Link>
         ))}
         {!user ? (
-          <span
+          <div
+            className="flex justify-start gap-3 items-center w-1/3"
             onClick={() => {
               setOpen(false);
               session.status === "authenticated" ? logout() : login();
             }}
           >
+            {session.status === "authenticated" ? (
+              <SlLogout size={20} />
+            ) : (
+              <SlLogin size={20} />
+            )}
             {session.status === "authenticated" ? "Logout" : "Login"}
-          </span>
+          </div>
         ) : (
           <Link href="/orders" onClick={() => setOpen(false)}>
             Orders

@@ -2,22 +2,29 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "./Button";
+import { url } from "inspector";
 
 const data = [
   {
     id: 1,
-    title: "allways fresh & always crispy & allwaus hot",
+    title: "Allways fresh & always crispy & allwaus hot",
     image: "/slide1.png",
+    backGroundUrl:
+      "https://images.pexels.com/photos/5419175/pexels-photo-5419175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
     id: 2,
-    title: "we deliver your order wherever you are in NY",
+    title: "We deliver your order wherever you are in NY",
     image: "/slide2.png",
+    backGroundUrl:
+      "https://images.pexels.com/photos/4518583/pexels-photo-4518583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
     id: 3,
-    title: "the best pizza to share with your family",
+    title: "The best pizza to share with your family",
     image: "/slide3.jpg",
+    backGroundUrl:
+      "https://images.pexels.com/photos/4226765/pexels-photo-4226765.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
 ];
 
@@ -33,18 +40,31 @@ const Slider = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="flex flex-col h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] lg:flex-row">
+    <div className="flex flex-col h-[calc(100vh-15rem)] md:h-[calc(100vh-9rem)] lg:flex-row w-screen">
       {/* Text Container */}
+      <video
+        className="md:h-[90%] h-[65%] w-full absolute object-cover  z-0"
+        id="video"
+        loop
+        autoPlay
+        muted
+      >
+        <source
+          src="https://videos.pexels.com/video-files/5898900/5898900-hd_2048_1080_30fps.mp4"
+          type="video/mp4"
+        />
+      </video>
 
-      <div className="flex items-center justify-center flex-col gap-8 font-bold text-red-500 lg:h-full flex-1 bg-fuchsia-50">
-        <h1 className="md:text-5xl text-3xl text-center uppercase p-4 xl:text-6xl md:p-10">
+      <div className="flex bg-local items-center justify-center flex-col gap-8 font-extrabold text-white  lg:h-full flex-1 bg-fuchsia-50">
+        <h1 className="md:text-6xl text-3xl drop-shadow-lg  text-center indie-flower-regular p-4 xl:text-7xl md:p-10 z-20">
           {data[currentSlide].title}
         </h1>
-
-        <Button name={"Order Now"} path="/menu" />
+        <div className="z-10 drop-shadow-lg">
+          <Button name={"Menu"} path="/menu" />
+        </div>
       </div>
       {/* Image Container */}
-      <div className="w-full relative lg:h-full flex-1 ">
+      {/* <div className="w-full relative lg:h-full flex-1 ">
         <Image
           src={data[currentSlide].image}
           alt=""
@@ -52,7 +72,7 @@ const Slider = () => {
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
-      </div>
+      </div> */}
     </div>
   );
 };

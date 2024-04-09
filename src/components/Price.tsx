@@ -3,8 +3,14 @@ import { ProductType } from "@/types/types";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useCartStore } from "@/utils/store"; // CART STORE
-
 import { toast } from "react-toastify";
+// import { Roboto } from "next/font/google";
+
+// const roboto = Roboto({
+//   subsets: ["latin"],
+//   weight: ["700"],
+//   variable: "--font-roboto",
+// });
 
 const Price = ({ product }: { product: ProductType }) => {
   const [total, setTotal] = useState(product.price);
@@ -26,7 +32,7 @@ const Price = ({ product }: { product: ProductType }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="font-bold text-xl">
+      <h2 className={`text-2xl font-roboto`}>
         ${typeof total !== "string" ? total?.toFixed(2) : total}
       </h2>
       {/* options */}
@@ -38,7 +44,7 @@ const Price = ({ product }: { product: ProductType }) => {
           ) => {
             return (
               <button
-                className="min-w-[6rem] text-sm md:text-base p-2 ring-1 ring-red-400 rounded-md active:bg-red-300 active:transition-all duration-500"
+                className="min-w-[6rem] text-sm md:text-base p-2 ring-1 ring-red-400 rounded-3xl active:bg-red-300 active:transition-all duration-500"
                 style={{
                   backgroundColor:
                     selected === index ? "rgb(239 68 68)" : "white",
@@ -55,7 +61,7 @@ const Price = ({ product }: { product: ProductType }) => {
       </div>
       {/* quantity and add button */}
       <div className="flex justify-between text-xs md:text-base items-center">
-        <div className="flex justify-between  w-full p-4 md:p-4 ring-1 ring-red-500 rounded-l-md">
+        <div className="flex justify-between  w-full p-4 md:p-4 ring-1 ring-red-500 rounded-l-3xl">
           <span>Quantity</span>
           <div className="flex gap-4 items-center justify-center">
             <button
@@ -73,7 +79,7 @@ const Price = ({ product }: { product: ProductType }) => {
         </div>
         {/* add to cart */}
         <button
-          className="uppercase bg-red-500 text-white p-2 md:text-sm text-xs ring-1 ring-red-500 rounded-r-md active:bg-red-300 active:transition-all duration-500"
+          className="uppercase bg-red-500 text-white p-2 md:text-sm text-xs ring-1 ring-red-500 rounded-r-3xl active:bg-red-300 active:transition-all duration-500"
           onClick={() => {
             addToCart({
               id: product.id,
