@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import Stepper from "../components/Stepper";
-import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
 import { BASE_API_URL } from "@/utils/constants";
 import CountDown from "@/components/CountDown";
@@ -24,20 +23,19 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
   const { paymentId } = params;
   const [step, setStep] = useState(0);
   const [success, setSuccess] = useState("");
-  // const [orderStatus, setOrderStatus] = useState<string>();
+  const [orderStatus, setOrderStatus] = useState<string>();
   const [createDate, setCreateDate] = useState<number>();
 
   const [remainingTime, setRemainingTime] = useState<TimeObject | undefined>();
 
   const minutes = remainingTime?.minutes;
-
-  console.log(minutes);
+  console.log(remainingTime);
 
   const status = {
     placed: minutes! >= 7,
     kitchen: minutes! < 7 && minutes! > 5,
     way: minutes! < 5 && minutes! > 2,
-    success: minutes! < 1,
+    success: remainingTime?.completed,
   };
 
   useEffect(() => {
@@ -47,20 +45,8 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
           cache: "no-store",
         });
         const order = await res.json();
+        // setOrderStatus(order.status);
         return order.createAt;
-        // if (res) {
-        //   if (order.status === "Being prepared") {
-        //     setTargetDate(Date.now() + 430000);
-        //     setOrderStatus("placed");
-        //     setStep(0);
-        //   } else {
-        //     // const statusNames = Object.keys(status);
-        //     // const currStep = statusNames.indexOf(order.status);
-        //     setTargetDate(Date.parse(order.createAt) + 430000);
-        //     // setOrderStatus(statusNames[currStep]);
-        //     // setStep(currStep);
-        //   }
-        // }
       } catch (err) {
         console.log(err);
       }
@@ -68,61 +54,61 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
     getOrder(paymentId).then((data) => setCreateDate(Date.parse(data)));
   }, [minutes]);
 
-  // useEffect(() => {
-  //   const updateOrder = async (paymentId: string) => {
-  //     try {
-  //       fetch(`${BASE_API_URL}/api/status/${paymentId}`, {
-  //         method: "PUT",
-  //         headers: {
-  //           "Content-type": "application/json",
-  //         },
-  //         body: JSON.stringify({ status: orderStatus }),
-  //       });
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   };
-  //   void updateOrder(paymentId);
-  // }, [step, status]);
+  useEffect(() => {
+    const updateOrder = async (paymentId: string) => {
+      if (step === 0) {
+        return;
+      }
+      try {
+        fetch(`${BASE_API_URL}/api/status/${paymentId}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ status: orderStatus }),
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    void updateOrder(paymentId);
+  }, [step, status]);
 
   useEffect(() => {
-    if (minutes) {
-      switch (true) {
-        case status.placed:
-          setStep(0);
-          remainingTime.completed = true;
-          // setOrderStatus("placed");
-          break;
-        case status.kitchen:
-          setStep(1);
+    switch (true) {
+      case status.placed:
+        setStep(0);
+        setOrderStatus("order placed");
+        break;
+      case status.kitchen:
+        setStep(1);
 
-          // setOrderStatus("kitchen");
-          break;
-        case status.way:
-          setStep(2);
-          // setOrderStatus("way");
-          break;
-        case status.success:
-          setStep(3);
-
-        // setOrderStatus("success");
-        default:
-          break;
-      }
+        setOrderStatus("cooking");
+        break;
+      case status.way:
+        setStep(2);
+        setOrderStatus("on the way");
+        break;
+      case status.success:
+        setStep(3);
+        setOrderStatus("delivered");
+        break;
+      default:
+        break;
     }
     return;
-  }, [remainingTime?.seconds]);
+  }, [remainingTime]);
 
   // console.log(`step-${step}, order-status-${orderStatus}`);
-  console.log(`step-${step}`);
+  console.log(`step-${step} orderStatus-${orderStatus}`);
 
   return (
     <div className="h-[100vh] w-full">
       {/* container */}
       <div className="h-full w-full">
         <div className="bg-red-500 md:h-1/3 h-1/5 flex justify-center items-center">
-          <h1 className="text-white text-2xl md:text-6xl uppercase font-medium">
-            Order Tracking
+          <h1 className="text-white text-2xl md:text-6xl bebas-neue-regular font-medium">
+            Order Tracker
           </h1>
         </div>
 
@@ -134,7 +120,7 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
             <div className="md:text-4xl  text-2xl text-center">{success}</div>
           ) : (
             <div className="flex flex-col  justify-center items-center gap-3 md:gap-10">
-              <h1 className="uppercase font-semibold text-2xl text-red-500 text-center">
+              <h1 className="uppercase assistant-regular text-lg md:text-2xl text-red-500 text-center">
                 Your order will be delivered soon{" "}
               </h1>
               {/* <h1 className="uppercase tracking-widest text-center">

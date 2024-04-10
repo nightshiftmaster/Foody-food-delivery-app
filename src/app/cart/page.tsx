@@ -19,8 +19,6 @@ const CartPage = () => {
     useCartStore.persist.rehydrate();
   }, []);
 
-  console.log(products);
-
   const handleCheckout = async () => {
     if (session.status === "unauthenticated") {
       router.push("/login");

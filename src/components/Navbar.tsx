@@ -5,6 +5,7 @@ import Image from "next/image";
 import CartIcon from "./CartIcon";
 import UserLinks from "./UserLinks";
 import { IoHomeOutline } from "react-icons/io5";
+import { PiClockCountdownLight } from "react-icons/pi";
 
 const Navbar = () => {
   const user = false;
@@ -28,30 +29,8 @@ const Navbar = () => {
       </Link>
 
       <h1 className="anton-regular md:text-3xl text-2xl">Foody</h1>
-
-      {/* <div className="md:text-xl md:font-bold text-lg  justify-center items-center  md:text-center  ">
-        <Link className="hidden md:block" href="/">
-          <Image
-            src="/logo-no-background.svg"
-            alt=""
-            height={110}
-            width={110}
-            sizes="(max-width: 768px) 100vw,  1920px"
-          />
-        </Link>
-        <Link className="block md:hidden" href="/">
-          <Image
-            src="/logo-no-background-sm.svg"
-            alt=""
-            height={60}
-            width={60}
-            sizes="(max-width: 768px) 100vw,  1920px"
-          />
-        </Link>
-      </div> */}
-      {/* {Mobil Menue} */}
-
       <div className="md:hidden flex items-center gap-3 justify-center">
+        {/* <PiClockCountdownLight size={23} /> */}
         <CartIcon />
         <Menu />
       </div>

@@ -4,7 +4,7 @@ import React from "react";
 const AddressForm = () => {
   return (
     <form action="" className="flex flex-col gap-10 w-full">
-      <div className="h-32 md:h-60 w-full bg-yellow-300 rounded-md">
+      <div className="h-32 md:h-60 w-full rounded-md">
         <img
           className="object-cover h-full w-screen rounded-md"
           src="https://foundersguide.com/wp-content/uploads/2019/09/delivery.jpg"

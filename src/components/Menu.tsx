@@ -8,6 +8,7 @@ import { MdOutlineMenuBook } from "react-icons/md";
 import { TfiEmail } from "react-icons/tfi";
 import { SlLogin } from "react-icons/sl";
 import { SlLogout } from "react-icons/sl";
+import { PiClockCountdownLight } from "react-icons/pi";
 
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
@@ -17,7 +18,13 @@ import { useCartStore } from "@/utils/store";
 const links = [
   { id: 1, title: "Homepage", url: "/", icon: <IoHomeOutline size={20} /> },
   { id: 2, title: "Menu", url: "/menu", icon: <MdOutlineMenuBook size={20} /> },
-  { id: 3, title: "Contact", url: "/contact", icon: <TfiEmail size={20} /> },
+  {
+    id: 3,
+    title: "My Orders",
+    url: "/orders",
+    icon: <PiClockCountdownLight size={20} />,
+  },
+  { id: 4, title: "Contact", url: "/contact", icon: <TfiEmail size={20} /> },
 ];
 
 const Menu = () => {

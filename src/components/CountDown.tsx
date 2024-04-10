@@ -1,6 +1,6 @@
 "use client";
 import { TimeObject } from "@/app/tracking/[paymentId]/page";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Countdown from "react-countdown";
 
 const CountDown = ({
@@ -12,6 +12,8 @@ const CountDown = ({
 }) => {
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [timeDiff, setTimeDiff] = useState<number>(0);
+  const clockRef: any = useRef();
+  // const handleStart = () => clockRef?.current.start();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,20 +25,26 @@ const CountDown = ({
     return () => clearInterval(interval);
   }, [date]);
 
-  console.log(currentTime);
-
+  const handleComplete = () => {
+    setRemainingTime((prevTime: TimeObject | undefined) => {
+      // Указание типа параметра prevTime
+      if (prevTime) {
+        return { ...prevTime, completed: true, minutes: 0 };
+      }
+      return prevTime;
+    });
+  };
   return (
     <div>
       <Countdown
-        className="font-semibold md:text-3xl text-3xl xl:text-5xl text-gray-500"
-        date={currentTime + 800000 - timeDiff}
+        ref={clockRef}
+        className="teko-bold md:text-3xl text-xl xl:text-5xl text-gray-500"
+        date={currentTime + 500000 - timeDiff}
         onTick={(time) => {
-          console.log(time.minutes);
-          // if (time.completed) {
-          //   console.log("completed");
-          // }
           return setRemainingTime(time);
         }}
+        onComplete={handleComplete}
+        // onStart={handleStart}
       />
     </div>
   );

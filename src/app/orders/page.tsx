@@ -67,7 +67,7 @@ const OrdersPage = () => {
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <div className="p-4 lg:px-20 xl:px-40">
+    <div className="h-[100vh] p-4 lg:px-20 xl:px-40">
       <table className="w-full border-separate border-spacing-3">
         <thead className="">
           <tr className="text-left">
@@ -81,7 +81,7 @@ const OrdersPage = () => {
         <tbody>
           {data?.map((item: OrderType) => (
             <tr
-              className={`text-sm md:text-base ${
+              className={`md:text-base text-xs ${
                 item.status !== "delivered" ? "bg-slate-100" : "bg-red-50"
               } key={item.id}`}
             >
@@ -95,14 +95,17 @@ const OrdersPage = () => {
                 {item.products[0].title}
               </td>
               <td>{item.status}</td>
-              <button
-                className="bg-red-500 p-3 text-white rounded-md"
-                onClick={() => {
-                  router.push(`/tracking/${item.intent_id}`);
-                }}
-              >
-                track order
-              </button>
+              <td>
+                <button
+                  className="bg-red-500 px-3 py-2  text-white rounded-2xl disabled:bg-red-300"
+                  disabled={item.status === "delivered"}
+                  onClick={() => {
+                    router.push(`/tracking/${item.intent_id}`);
+                  }}
+                >
+                  tracker
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

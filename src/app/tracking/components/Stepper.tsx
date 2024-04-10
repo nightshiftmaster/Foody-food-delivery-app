@@ -57,7 +57,7 @@ const Stepper = ({ step }: { step: number }) => {
             )}
           </div>
         </div>
-        <div className="flex justify-between py-10 font-semibold text-xs md:text-sm">
+        <div className="flex justify-between py-10 bebas-neue-regular text-xs md:text-base">
           <h1>Order Placed</h1>
           <h1>Preparing</h1>
           <h1>On the way</h1>
