@@ -25,7 +25,7 @@ const Price = ({ product }: { product: ProductType }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className={`text-2xl font-roboto`}>
+      <h2 className={`text-2xl bebas-neue-regular`}>
         ${typeof total !== "string" ? total?.toFixed(2) : total}
       </h2>
       {/* options */}
@@ -53,7 +53,7 @@ const Price = ({ product }: { product: ProductType }) => {
         )}
       </div>
       {/* quantity and add button */}
-      <div className="flex justify-between text-sm md:text-base items-center teko-regular">
+      <div className="flex justify-between text-xs md:text-base items-center teko-regular">
         <div className="flex justify-between  w-full p-4 md:p-4 ring-1 ring-red-500 rounded-l-3xl">
           <span>Quantity</span>
           <div className="flex gap-4 items-center justify-center">
@@ -72,7 +72,7 @@ const Price = ({ product }: { product: ProductType }) => {
         </div>
         {/* add to cart */}
         <button
-          className="uppercase bg-red-500 text-white p-2 md:text-sm text-xs ring-1 ring-red-500 rounded-r-3xl active:bg-red-300 active:transition-all duration-500"
+          className="uppercase bg-red-500 text-white px-4 py-2 md:text-sm text-xs ring-1 ring-red-500 rounded-r-3xl active:bg-red-300 active:transition-all duration-500"
           onClick={() => {
             addToCart({
               id: product.id,

@@ -4,13 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import CartIcon from "./CartIcon";
 import UserLinks from "./UserLinks";
+import { IoHomeOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const user = false;
   return (
-    <div className="h-12 bg-white text-red-500 px-4 flex justify-between border-b-0 items-center text-center bebas-neue-regular xl:text-3xl md:text-2xl text-base cursor-pointer md:h-24 lg:px-20 xl:px-36">
+    <div className="h-12 bg-white text-red-500 px-4 flex justify-between border-b items-center text-center border-b-slate-200 bebas-neue-regular 2xl:text-2xl md:text-xl text-base cursor-pointer md:h-20 lg:px-20 xl:px-36">
       {/* left links */}
-      <div className="hidden md:flex gap-4 flex-1 ">
+      <div className="hidden md:flex gap-4 flex-1 items-center ">
         <Link className="hover:text-gray-300" href="/">
           HomePage
         </Link>
@@ -22,16 +23,17 @@ const Navbar = () => {
         </Link>
       </div>
       {/* {Logo} */}
-      <div className="md:hidden flex">
-        <Menu />
-      </div>
+      <Link href="/" className="md:hidden">
+        <IoHomeOutline size={20} />
+      </Link>
+
       <div className="md:text-xl md:font-bold text-lg  justify-center items-center  md:text-center  ">
         <Link className="hidden md:block" href="/">
           <Image
             src="/logo-no-background.svg"
             alt=""
-            height={120}
-            width={120}
+            height={110}
+            width={110}
             sizes="(max-width: 768px) 100vw,  1920px"
           />
         </Link>
@@ -46,9 +48,12 @@ const Navbar = () => {
         </Link>
       </div>
       {/* {Mobil Menue} */}
-      <div className="md:hidden flex">
+
+      <div className="md:hidden flex items-center gap-2 justify-center">
         <CartIcon />
+        <Menu />
       </div>
+
       {/* right links */}
       <div className="hidden  md:flex flex-1 gap-4 items-center justify-end">
         <div className="md:absolute top-3 right-2  lg:static flex gap-2 items-center bg-orange-300 px-1 cursor-pointer rounded-md ">

@@ -45,7 +45,7 @@ const CartPage = () => {
   };
 
   return (
-    <div className="h-[100vh]">
+    <div className="">
       {/* products */}
 
       {products.length === 0 ? (
@@ -55,7 +55,7 @@ const CartPage = () => {
         </div>
       ) : (
         <div className="h-h-[calc(100vh-6rem)] text-sm md:text-base md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row">
-          <div className="h-1/2 p-4 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-20">
+          <div className="h-1/2 p-5 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-20">
             {/* single item */}
             {products.map((item: CartItemType, i) => {
               return (
@@ -72,15 +72,19 @@ const CartPage = () => {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   )}
-                  <div className="uppercase font-bold">
-                    <h1>
-                      {item.title} x {item.quantity}
-                    </h1>
-                    <span>{item.optionTitle}</span>
+                  <div className="flex justify-between items-center w-[80%] gap-10 text-sm md:text-base">
+                    <div className="heebo-regular">
+                      <h1>
+                        {item.title} x {item.quantity}
+                      </h1>
+                      <span className="dosis-regular ">{item.optionTitle}</span>
+                    </div>
+                    <h2 className="bebas-neue-regular">
+                      ${item.price.toFixed(2)}
+                    </h2>
                   </div>
-                  <h2 className="font-bold">{item.price.toFixed(2)}</h2>
                   <span
-                    className="cursor-pointer"
+                    className="cursor-pointer dosis-regular"
                     onClick={() => removeFromCart(item)}
                   >
                     X
@@ -90,7 +94,7 @@ const CartPage = () => {
             })}
           </div>
           {/* payment */}
-          <div className="flex h-1/2 p-14 flex-col justify-center bg-fuchsia-50 lg:h-full lg:w-1/3 2xl:w-1/2 lg:px-20 xl:px-20 2xl:text-xl 2xl:gap-6">
+          <div className="flex h-1/2 p-14 flex-col justify-center bg-fuchsia-50 lg:h-full lg:w-1/3 2xl:w-1/2 lg:px-20 xl:px-20 2xl:text-xl text-base 2xl:gap-6 bebas-neue-regular">
             <div className="flex justify-between mb-5">
               <span className="">Subtotal {totalItems} items</span>
               <span className="">${totalPrice.toFixed(2)}</span>
@@ -117,13 +121,13 @@ const CartPage = () => {
                 CHECKOUT
               </button>
             </div>
+            <Link
+              href="/menu"
+              className="cursor-pointer mt-5 flex justify-center items-center text-sm md:text-base bebas-neue-regular xl:text-xl text-red-500 "
+            >{`<<Back to Menu`}</Link>
           </div>
         </div>
       )}
-      <Link
-        href="/menu"
-        className="cursor-pointer flex justify-center items-center text-sm md:text-base xl:text-xl text-red-500 "
-      >{`<<Back to Menu`}</Link>
     </div>
   );
 };

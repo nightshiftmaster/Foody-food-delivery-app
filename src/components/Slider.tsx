@@ -12,7 +12,7 @@ const data = [
   },
   {
     id: 2,
-    title: "We deliver your order wherever you are in NY",
+    title: "We deliver your order wherever you are in TA",
     image: "/slide2.png",
     backGroundUrl:
       "https://images.pexels.com/photos/4518583/pexels-photo-4518583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",

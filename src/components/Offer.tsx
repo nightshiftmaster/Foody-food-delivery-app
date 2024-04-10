@@ -33,7 +33,7 @@ const Offer = () => {
 
         {/* <CountDownNoSSR /> */}
         {/* <CountDown /> */}
-        <div className="w-1/3">
+        <div className="w-1/2">
           <Button name={"Find out more here!"} path="/menu/burgers" />
         </div>
       </div>
