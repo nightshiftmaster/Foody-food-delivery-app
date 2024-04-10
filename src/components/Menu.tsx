@@ -36,9 +36,9 @@ const Menu = () => {
   return (
     <div onClick={() => setOpen(!open)}>
       {!open ? (
-        <CiMenuBurger size={20} onClick={() => setOpen(true)} />
+        <CiMenuBurger size={22} onClick={() => setOpen(true)} />
       ) : (
-        <IoMdClose size={20} onClick={() => setOpen(false)} />
+        <IoMdClose size={22} onClick={() => setOpen(false)} />
       )}
 
       <div

@@ -24,7 +24,7 @@ const Navbar = () => {
       </div>
       {/* {Logo} */}
       <Link href="/" className="md:hidden">
-        <IoHomeOutline size={20} />
+        <IoHomeOutline size={22} />
       </Link>
 
       <div className="md:text-xl md:font-bold text-lg  justify-center items-center  md:text-center  ">
@@ -49,7 +49,7 @@ const Navbar = () => {
       </div>
       {/* {Mobil Menue} */}
 
-      <div className="md:hidden flex items-center gap-2 justify-center">
+      <div className="md:hidden flex items-center gap-3 justify-center">
         <CartIcon />
         <Menu />
       </div>
