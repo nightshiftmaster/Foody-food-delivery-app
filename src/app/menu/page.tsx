@@ -31,7 +31,7 @@ const MenuPage = async () => {
             <h1 className="heebo-regular text-lg sm:text-3xl uppercase">
               {category.title}
             </h1>
-            <p className="sm:text-sm dosis-regular text-xs my-5 md:my-8">
+            <p className="md:text-base dosis-regular text-xs my-5 md:my-8">
               {category.desc}
             </p>
             <button

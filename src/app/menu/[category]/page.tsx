@@ -64,7 +64,7 @@ const CategoryPage = async ({ params }: Props) => {
       </div>
       <Link
         href="/menu"
-        className="cursor-pointer text-sm md:text-base xl:text-xl m-auto bebas-neue-regular text-red-500 "
+        className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
       >{`<<Back to Menu`}</Link>
     </div>
   );

@@ -43,8 +43,8 @@ const LogingPage = () => {
           </div>
           {/* form */}
           <div className="p-12 flex flex-col md:gap-8 gap-5 justify-center items-center text-center md:w-1/2 md:text-sm text-xs">
-            <h1 className="font-bold text-xl xl:text-3xl">Welcome</h1>
-            <p>Log into your account</p>
+            <h1 className="teko-regular  text-3xl xl:text-5xl">Welcome</h1>
+            <p className="teko-regular text-lg">Log into your account</p>
             <button
               className="flex gap-4 md:p-5 p-2 ring-1 ring-orange-100 items-center rounded-md"
               onClick={() => signIn("google")}
@@ -56,7 +56,7 @@ const LogingPage = () => {
                 height={20}
                 className="object-contain"
               />
-              <span>Sign in with Google</span>
+              <span className="assistant-regular">Sign in with Google</span>
             </button>
             <button
               className="flex gap-4 md:p-5 p-2 items-center ring-1 ring-orange-100 rounded-md"
@@ -69,9 +69,9 @@ const LogingPage = () => {
                 height={20}
                 className="object-contain"
               />
-              <span>Sign in with Facebook</span>
+              <span className="assistant-regular">Sign in with Facebook</span>
             </button>
-            <p>
+            <p className="dosis-regular">
               Have a problem{" "}
               <Link className="underline" href="/">
                 Contact us

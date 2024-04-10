@@ -49,13 +49,13 @@ const CartPage = () => {
       {/* products */}
 
       {products.length === 0 ? (
-        <div className="flex flex-col h-[50%] justify-center items-center gap-10 mt-32">
+        <div className="flex flex-col h-[100vh] justify-center items-center gap-10 ">
           <h1 className="text-xl text-red-500">Cart is Empty</h1>
           <MdOutlineRemoveShoppingCart size={100} color="red" />
         </div>
       ) : (
         <div className="h-h-[calc(100vh-6rem)] text-sm md:text-base md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row">
-          <div className="h-1/2 p-5 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-20">
+          <div className="h-1/2 p-6 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-20">
             {/* single item */}
             {products.map((item: CartItemType, i) => {
               return (
@@ -72,14 +72,14 @@ const CartPage = () => {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   )}
-                  <div className="flex justify-between items-center w-[80%] gap-10 text-sm md:text-base">
+                  <div className="flex justify-between items-center w-[80%] gap-10 text-sm md:text-base xl:text-lg">
                     <div className="heebo-regular">
                       <h1>
                         {item.title} x {item.quantity}
                       </h1>
                       <span className="dosis-regular ">{item.optionTitle}</span>
                     </div>
-                    <h2 className="bebas-neue-regular">
+                    <h2 className="bebas-neue-regular text-sm md:text-base xl:text-lg">
                       ${item.price.toFixed(2)}
                     </h2>
                   </div>
@@ -123,7 +123,7 @@ const CartPage = () => {
             </div>
             <Link
               href="/menu"
-              className="cursor-pointer mt-5 flex justify-center items-center text-sm md:text-base bebas-neue-regular xl:text-xl text-red-500 "
+              className="cursor-pointer mt-5 flex justify-center items-center text-sm md:text-base bebas-neue-regular xl:text-lg text-red-500 "
             >{`<<Back to Menu`}</Link>
           </div>
         </div>

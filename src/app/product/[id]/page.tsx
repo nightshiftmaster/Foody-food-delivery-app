@@ -49,7 +49,7 @@ const SingleProductPage = async ({ params }: { params: ProductType }) => {
           <Price product={singleProduct} />
           <Link
             href={`/menu/${singleProduct.catSlug}`}
-            className="cursor-pointer text-sm md:text-base xl:text-xl m-auto bebas-neue-regular text-red-500 "
+            className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
           >{`<<Back to menu`}</Link>
         </div>
       </div>
