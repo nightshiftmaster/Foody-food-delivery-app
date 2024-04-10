@@ -27,7 +27,9 @@ const Navbar = () => {
         <IoHomeOutline size={22} />
       </Link>
 
-      <div className="md:text-xl md:font-bold text-lg  justify-center items-center  md:text-center  ">
+      <h1 className="anton-regular md:text-3xl text-2xl">Foody</h1>
+
+      {/* <div className="md:text-xl md:font-bold text-lg  justify-center items-center  md:text-center  ">
         <Link className="hidden md:block" href="/">
           <Image
             src="/logo-no-background.svg"
@@ -46,7 +48,7 @@ const Navbar = () => {
             sizes="(max-width: 768px) 100vw,  1920px"
           />
         </Link>
-      </div>
+      </div> */}
       {/* {Mobil Menue} */}
 
       <div className="md:hidden flex items-center gap-3 justify-center">
