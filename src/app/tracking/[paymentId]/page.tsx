@@ -4,6 +4,7 @@ import Stepper from "../components/Stepper";
 import dynamic from "next/dynamic";
 import { BASE_API_URL } from "@/utils/constants";
 import { CiFaceSmile } from "react-icons/ci";
+import Link from "next/link";
 
 export interface TimeObject {
   completed: boolean;
@@ -145,6 +146,10 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
               <div className="md:text-5xl bebas-neue-regular  text-2xl text-center">
                 {success}
               </div>
+              <Link
+                href={`/menu`}
+                className="cursor-pointer bg-green-400 text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
+              >{`<<Back to menu`}</Link>
             </div>
           ) : (
             <div className="flex flex-col  justify-center items-center gap-3 md:gap-10">
@@ -156,6 +161,10 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
                 date={createDate ? createDate : 0}
                 setRemainingTime={setRemainingTime}
               />
+              <Link
+                href={`/menu`}
+                className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
+              >{`<<Back to menu`}</Link>
             </div>
           )}
         </div>

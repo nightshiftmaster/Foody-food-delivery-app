@@ -9,7 +9,8 @@ const PizzaLoader = () => {
   }
 
   return (
-    <div className="h-[100vh] flex justify-center items-center">
+    <div className="h-[100vh] flex text-gray-500 justify-center items-center flex-col gap-7">
+      <h1 className="bebas-neue-regular">Loading...</h1>
       <div className={styles.pizza}>{slices}</div>
     </div>
   );

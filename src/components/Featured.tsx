@@ -56,7 +56,10 @@ const Featured = async () => {
                   ${product.price}
                 </span> */}
                 <div className="w-1/2">
-                  <Button name={"Order Now"} path={`/product/${product.id}`} />
+                  <Button
+                    name={`$${product.price}\u00A0 Order Now`}
+                    path={`/product/${product.id}`}
+                  />
                 </div>
               </div>
             </div>

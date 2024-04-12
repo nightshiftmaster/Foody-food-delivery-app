@@ -5,6 +5,7 @@ import Price from "@/components/Price";
 import styles from "./page.module.css";
 import { ProductType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
+import Button from "@/components/Button";
 
 const getData = async (id: string) => {
   const res = await fetch(`${BASE_API_URL}/api/products/${id}`, {
@@ -47,6 +48,7 @@ const SingleProductPage = async ({ params }: { params: ProductType }) => {
             {singleProduct.desc}
           </p>
           <Price product={singleProduct} />
+          <Button name="Go to Cart" path="/cart" />
           <Link
             href={`/menu/${singleProduct.catSlug}`}
             className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "

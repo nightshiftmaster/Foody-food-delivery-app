@@ -1,8 +1,10 @@
+// Определение переменных
 $number: 12;
 $cheese: #ffdc73;
 $crust: #bbb083;
 $roni: #cc333f;
 
+// Миксин для задания размера
 @mixin size($h: 100%, $w: 100%) {
   height: $h;
   width: $w;
@@ -71,6 +73,7 @@ $roni: #cc333f;
       }
     }
 
+    // Добавление корки и пепперони
     &:before {
       content: "";
       position: absolute;

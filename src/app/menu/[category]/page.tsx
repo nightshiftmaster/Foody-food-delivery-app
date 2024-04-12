@@ -30,7 +30,7 @@ const CategoryPage = async ({ params }: Props) => {
         {products?.map((item) => {
           return (
             <Link
-              className={`transition-all gap-2 duration-500 w-full p-7 md:p-10 h-[60vh] flex flex-col ${styles.choice} hover:bg-fuchsia-50 hover:shadow-2xl justify-between sm:w-1/2 lg:w-1/3 border-b group `}
+              className={`transition-all gap-2 duration-500 w-full p-7 md:p-10 h-[60vh] flex flex-col ${styles.choice} hover:bg-fuchsia-50 hover:shadow-2xl justify-between items-center sm:w-1/2 lg:w-1/3 border-b group `}
               href={`/product/${item.id}`}
               key={item.id}
             >
@@ -57,7 +57,12 @@ const CategoryPage = async ({ params }: Props) => {
                 <h1 className="dosis-regular text-sm p-2">{item.desc}</h1>
                 {/* <h2 className="anton-regular text-gray-600">${item.price}</h2> */}
               </div>
-              <Button name={`Order Now`} path={`/product/${item.id}`} />
+              <div className="w-1/2">
+                <Button
+                  name={`$${item.price}\u00A0 Order Now`}
+                  path={`/product/${item.id}`}
+                />
+              </div>
             </Link>
           );
         })}

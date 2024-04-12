@@ -5,7 +5,7 @@ import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/utils/store";
-import Loader from "@/components/Loader";
+import PizzaLoader from "../loading";
 
 const LogingPage = () => {
   const { status } = useSession();
@@ -23,7 +23,7 @@ const LogingPage = () => {
   }, [status]);
 
   if (status === "loading") {
-    return <Loader />;
+    return <PizzaLoader />;
   }
 
   if (status === "unauthenticated") {
