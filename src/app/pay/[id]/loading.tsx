@@ -1,3 +1,3 @@
-import Loader from "@/components/Loader";
+import PizzaLoader from "@/components/PizzaLoader";
 
-export default Loader;
+export default PizzaLoader;

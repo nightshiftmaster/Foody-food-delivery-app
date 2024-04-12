@@ -3,7 +3,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import Stepper from "../components/Stepper";
 import dynamic from "next/dynamic";
 import { BASE_API_URL } from "@/utils/constants";
-import CountDown from "@/components/CountDown";
+import { CiFaceSmile } from "react-icons/ci";
 
 export interface TimeObject {
   completed: boolean;
@@ -29,14 +29,7 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
   const [remainingTime, setRemainingTime] = useState<TimeObject | undefined>();
 
   const minutes = remainingTime?.minutes;
-  console.log(remainingTime);
-
-  const status = {
-    placed: minutes! >= 7,
-    kitchen: minutes! < 7 && minutes! > 5,
-    way: minutes! < 5 && minutes! > 2,
-    success: remainingTime?.completed,
-  };
+  const seconds = remainingTime?.seconds;
 
   useEffect(() => {
     const getOrder = async (paymentId: string) => {
@@ -45,14 +38,72 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
           cache: "no-store",
         });
         const order = await res.json();
-        // setOrderStatus(order.status);
+        if (order.status === "delivered") {
+          setStep(3);
+          setSuccess("Thank you for ordering !");
+        }
         return order.createAt;
       } catch (err) {
         console.log(err);
       }
     };
     getOrder(paymentId).then((data) => setCreateDate(Date.parse(data)));
-  }, [minutes]);
+  }, [minutes, paymentId]);
+
+  useEffect(() => {
+    console.log(minutes);
+
+    if (minutes! >= 7) {
+      console.log("0");
+      setStep(0);
+      setOrderStatus("order placed");
+    }
+    if (minutes! >= 5 && minutes! < 7) {
+      setStep(1);
+      console.log("1");
+      setOrderStatus("preparing");
+    }
+    if (minutes! < 5) {
+      setStep(2);
+      console.log("2");
+      setOrderStatus("on the way");
+    }
+    if (remainingTime?.total === 1000) {
+      console.log("3");
+      setStep(3);
+      setOrderStatus("delivered");
+      setSuccess("Thank you for ordering !");
+    }
+  }, [seconds, paymentId]);
+
+  // useLayoutEffect(() => {
+  //   if (remainingTime) {
+  //     switch (true) {
+  //       case minutes! >= 7:
+  //         console.log("0");
+  //         setStep(0);
+  //         setOrderStatus("order placed");
+  //         break;
+  //       case minutes! < 7 && minutes! > 5:
+  //         setStep(1);
+  //         console.log("1");
+  //         setOrderStatus("preparing");
+  //         break;
+  //       case minutes! < 5 && minutes! > 2:
+  //         console.log("2");
+  //         setStep(2);
+  //         setOrderStatus("on the way");
+  //         break;
+  //       case minutes === 0 && seconds! < 1:
+  //         console.log("0");
+  //         setStep(3);
+  //         setOrderStatus("delivered");
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   }
+  // }, [remainingTime?.seconds, remainingTime?.minutes, paymentId]);
 
   useEffect(() => {
     const updateOrder = async (paymentId: string) => {
@@ -72,34 +123,8 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
       }
     };
     void updateOrder(paymentId);
-  }, [step, status]);
+  }, [minutes, step]);
 
-  useEffect(() => {
-    switch (true) {
-      case status.placed:
-        setStep(0);
-        setOrderStatus("order placed");
-        break;
-      case status.kitchen:
-        setStep(1);
-
-        setOrderStatus("cooking");
-        break;
-      case status.way:
-        setStep(2);
-        setOrderStatus("on the way");
-        break;
-      case status.success:
-        setStep(3);
-        setOrderStatus("delivered");
-        break;
-      default:
-        break;
-    }
-    return;
-  }, [remainingTime]);
-
-  // console.log(`step-${step}, order-status-${orderStatus}`);
   console.log(`step-${step} orderStatus-${orderStatus}`);
 
   return (
@@ -117,7 +142,12 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
             <Stepper step={step} />
           </div>
           {success ? (
-            <div className="md:text-4xl  text-2xl text-center">{success}</div>
+            <div className="flex flex-col gap-10 justify-center items-center text-gray-600">
+              <CiFaceSmile size={50} />
+              <div className="md:text-5xl bebas-neue-regular  text-2xl text-center">
+                {success}
+              </div>
+            </div>
           ) : (
             <div className="flex flex-col  justify-center items-center gap-3 md:gap-10">
               <h1 className="uppercase assistant-regular text-lg md:text-2xl text-red-500 text-center">

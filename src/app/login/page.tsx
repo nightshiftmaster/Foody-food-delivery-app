@@ -58,7 +58,7 @@ const LogingPage = () => {
               />
               <span className="assistant-regular">Sign in with Google</span>
             </button>
-            <button
+            {/* <button
               className="flex gap-4 md:p-5 p-2 items-center ring-1 ring-orange-100 rounded-md"
               onClick={() => signIn("facebook")}
             >
@@ -70,7 +70,7 @@ const LogingPage = () => {
                 className="object-contain"
               />
               <span className="assistant-regular">Sign in with Facebook</span>
-            </button>
+            </button> */}
             <p className="dosis-regular">
               Have a problem{" "}
               <Link className="underline" href="/">
