@@ -6,6 +6,8 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import AddressForm from "./AddressForm";
+import Loader from "rsuite/Loader";
+import "rsuite/Loader/styles/index.css";
 import { BASE_API_URL } from "@/utils/constants";
 
 const CheckoutForm = () => {
@@ -83,14 +85,18 @@ const CheckoutForm = () => {
       <AddressForm />
       <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
       <button
-        className="bg-red-500 font-bold text-white text-xs md:text-sm xl:text-base py-4 px-8 rounded-lg"
+        className="bg-red-500 hover:scale-110 transition-all duration-500 font-bold text-white text-xs md:text-sm xl:text-base py-4 px-8 rounded-lg"
         disabled={isLoading || !stripe || !elements}
         id="submit"
       >
         <span id="button-text">
           {isLoading ? (
-            <div className="spinner" id="spinner">
-              ...Please wait
+            <div
+              className="spinner flex gap-5 justify-center items-center"
+              id="spinner"
+            >
+              <Loader size="sm" />
+              <span>Please wait...</span>
             </div>
           ) : (
             "Pay now"
