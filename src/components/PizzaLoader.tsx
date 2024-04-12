@@ -10,7 +10,7 @@ const PizzaLoader = () => {
 
   return (
     <div className="h-[100vh] flex justify-center items-center">
-      <div className={styles.pizza}>{slices}</div>;
+      <div className={styles.pizza}>{slices}</div>
     </div>
   );
 };

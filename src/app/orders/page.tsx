@@ -83,7 +83,8 @@ const OrdersPage = () => {
             <tr
               className={`md:text-base text-xs ${
                 item.status !== "delivered" ? "bg-slate-100" : "bg-red-50"
-              } key={item.id}`}
+              } `}
+              key={item.id}
             >
               <td className="hidden md:block py-6 px-1">{item.id}</td>
               <td className="py-6 px-1">

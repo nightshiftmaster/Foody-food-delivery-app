@@ -9,22 +9,16 @@ import { TfiEmail } from "react-icons/tfi";
 import { SlLogin } from "react-icons/sl";
 import { SlLogout } from "react-icons/sl";
 import { PiClockCountdownLight } from "react-icons/pi";
-
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/utils/store";
+import OrdersIcon from "./OrdersIcon";
 
 const links = [
   { id: 1, title: "Homepage", url: "/", icon: <IoHomeOutline size={20} /> },
   { id: 2, title: "Menu", url: "/menu", icon: <MdOutlineMenuBook size={20} /> },
-  {
-    id: 3,
-    title: "My Orders",
-    url: "/orders",
-    icon: <PiClockCountdownLight size={20} />,
-  },
-  { id: 4, title: "Contact", url: "/contact", icon: <TfiEmail size={20} /> },
+  { id: 3, title: "Contact", url: "/contact", icon: <TfiEmail size={20} /> },
 ];
 
 const Menu = () => {
@@ -64,6 +58,10 @@ const Menu = () => {
             {link.title}
           </Link>
         ))}
+        <div className="flex gap-3 justify-start items-center w-1/3">
+          <PiClockCountdownLight size={20} />
+          <OrdersIcon />
+        </div>
         {!user ? (
           <div
             className="flex justify-start gap-3 items-center w-1/3"
@@ -80,9 +78,7 @@ const Menu = () => {
             {session.status === "authenticated" ? "Logout" : "Login"}
           </div>
         ) : (
-          <Link href="/orders" onClick={() => setOpen(false)}>
-            Orders
-          </Link>
+          <OrdersIcon />
         )}
       </div>
     </div>

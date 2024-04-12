@@ -51,8 +51,6 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
   }, [minutes, paymentId]);
 
   useEffect(() => {
-    console.log(minutes);
-
     if (minutes! >= 7) {
       console.log("0");
       setStep(0);
@@ -153,18 +151,11 @@ const Status = ({ params }: { params: { paymentId: string } }) => {
               <h1 className="uppercase assistant-regular text-lg md:text-2xl text-red-500 text-center">
                 Your order will be delivered soon{" "}
               </h1>
-              {/* <h1 className="uppercase tracking-widest text-center">
-                Order placed on 01 July 2024, 08:15 pm
-              </h1> */}
+
               <CountDownNoSSR
                 date={createDate ? createDate : 0}
                 setRemainingTime={setRemainingTime}
               />
-              {/* <CountDown
-                targetDate={targetDate}
-                setRemainingTime={setRemainingTime}
-              /> */}
-              {/* <button onClick={resetTimer}>Сбросить таймер</button> */}
             </div>
           )}
         </div>

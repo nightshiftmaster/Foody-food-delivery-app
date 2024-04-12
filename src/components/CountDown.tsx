@@ -17,13 +17,11 @@ const CountDown = ({
     <div>
       <Countdown
         className="teko-bold md:text-3xl text-xl xl:text-5xl text-gray-500"
-        date={Date.now() + 100000 - timeDiff}
+        date={Date.now() + 500000 - timeDiff}
         onTick={(time) => {
           setTimeDiff(Date.now() - date);
           return setRemainingTime(time);
         }}
-        // onComplete={handleComplete} // Обработчик события завершения отсчета времени
-        // autoStart={false}
       />
     </div>
   );
