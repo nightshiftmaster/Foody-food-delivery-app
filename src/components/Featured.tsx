@@ -39,7 +39,7 @@ const Featured = async () => {
           {featuredProducts?.map((product) => (
             <SwiperSlide key={product.id}>
               <Link
-                className={`transition-all duration-500 py-5 h-[75vh] md:h-[75vh] flex flex-col  hover:bg-fuchsia-50 hover:shadow-2xl w-full shadow-xl group `}
+                className={`transition-all duration-500 py-5 h-[75vh] flex flex-col  hover:bg-fuchsia-50 hover:shadow-2xl w-full shadow-xl group `}
                 href={`/product/${product.id}`}
               >
                 {/* <div
@@ -58,11 +58,11 @@ const Featured = async () => {
                   </div>
                 )}
                 {/* text */}
-                <div className="flex-1 flex flex-col md:gap-3 gap-2 items-center justify-center text-center">
+                <div className="flex-1 flex flex-col md:gap-10 gap-2 items-center justify-center text-center">
                   <h1 className="heebo-regular text-sm md:text-lg 2xl:text-2xl">
                     {product.title}
                   </h1>
-                  <p className="dosis-regular p-3 w-[90%] text-sm">
+                  <p className="dosis-regular p-3 w-[90%] text-sm md:text-base">
                     {product.desc}
                   </p>
                   {/* <span className="text-sm md:text-base xl:text-2xl assistant-font">
