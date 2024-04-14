@@ -41,10 +41,10 @@ const SuccesPage = () => {
   ) : (
     <div className="h-[80vh] flex justify-center items-center flex-col gap-5">
       <FaCircleCheck color="green" size={80} />
-      <h1 className="text-center text-gray-600 font-semibold  text-2xl">
+      <h1 className="text-center text-gray-600 font-semibold  text-xl md:text-2xl">
         Your payment was successful.
       </h1>
-      <h2 className="text-center text-gray-500 text-base">
+      <h2 className="text-center text-gray-500 md:text-base text-sm">
         You are redirected to the Order Tracking page. Plesase don't close the
         page
       </h2>
