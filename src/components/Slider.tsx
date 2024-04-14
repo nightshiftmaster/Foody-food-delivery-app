@@ -38,10 +38,10 @@ const Slider = () => {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div className="flex flex-col h-[calc(100vh-15rem)] md:h-[calc(100vh-8rem)] lg:flex-row w-screen">
+    <div className="flex flex-col relative h-[calc(100vh-30rem)] lg:flex-row w-screen">
       {/* Text Container */}
       <video
-        className="md:h-[83%] h-[65%] w-full absolute object-cover z-0"
+        className="h-full absolute w-full  object-cover z-0"
         id="video"
         loop
         autoPlay

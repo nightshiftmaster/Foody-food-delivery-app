@@ -39,7 +39,7 @@ const Featured = async () => {
           {featuredProducts?.map((product) => (
             <SwiperSlide key={product.id}>
               <Link
-                className={`transition-all duration-500 py-5 h-[75vh] flex flex-col  hover:bg-fuchsia-50 hover:shadow-2xl w-full shadow-xl group `}
+                className={`transition-all duration-500 py-10 h-[53vh] flex flex-col  hover:bg-fuchsia-50 hover:shadow-2xl w-full shadow-xl group `}
                 href={`/product/${product.id}`}
               >
                 {/* <div
