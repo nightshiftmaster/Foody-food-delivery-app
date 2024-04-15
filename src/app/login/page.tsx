@@ -44,9 +44,11 @@ const LogingPage = () => {
           {/* form */}
           <div className="p-12 flex flex-col md:gap-8 gap-5 justify-center items-center text-center md:w-1/2 md:text-sm text-xs">
             <h1 className="teko-regular  text-3xl xl:text-5xl">Welcome</h1>
-            <p className="teko-regular text-lg">Log into your account</p>
+            <p className="teko-regular text-lg">
+              Please login to purchase products
+            </p>
             <button
-              className="flex gap-4 md:p-5 p-2 ring-1 ring-orange-100 items-center rounded-md"
+              className="flex gap-4 md:p-5 p-3 w-[90%] ring-1 ring-gray-200 items-center justify-center rounded-md"
               onClick={() => signIn("google")}
             >
               <Image
@@ -58,8 +60,8 @@ const LogingPage = () => {
               />
               <span className="assistant-regular">Sign in with Google</span>
             </button>
-            {/* <button
-              className="flex gap-4 md:p-5 p-2 items-center ring-1 ring-orange-100 rounded-md"
+            <button
+              className="flex gap-4 md:p-5 w-[90%] p-3 items-center ring-1 justify-center ring-gray-200 rounded-md"
               onClick={() => signIn("facebook")}
             >
               <Image
@@ -70,10 +72,10 @@ const LogingPage = () => {
                 className="object-contain"
               />
               <span className="assistant-regular">Sign in with Facebook</span>
-            </button> */}
+            </button>
             <p className="dosis-regular">
               Have a problem{" "}
-              <Link className="underline" href="/">
+              <Link className="underline" href="/contact">
                 Contact us
               </Link>
             </p>
