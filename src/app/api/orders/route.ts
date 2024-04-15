@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/connect";
 import { getAuthSession } from "@/utils/auth";
 
-//fetch orders
-
 export const GET = async () => {
   const session = await getAuthSession();
 
@@ -33,8 +31,6 @@ export const GET = async () => {
     );
   }
 };
-
-// create order
 
 export const POST = async (req: NextRequest) => {
   const session = await getAuthSession();

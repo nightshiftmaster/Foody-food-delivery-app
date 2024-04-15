@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 import prisma from "@/utils/connect";
-import { getAuthSession } from "@/utils/auth";
-
-//fetch all categories
 
 export const GET = async () => {
   try {

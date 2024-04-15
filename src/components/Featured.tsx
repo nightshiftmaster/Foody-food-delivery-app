@@ -6,7 +6,7 @@ import Link from "next/link";
 import { BASE_API_URL } from "@/utils/constants";
 import Button from "./Button";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -42,10 +42,6 @@ const Featured = async () => {
                 className={`transition-all duration-500 py-10 h-[53vh] md:h-[60vh] flex flex-col  hover:bg-fuchsia-50 hover:shadow-2xl w-full shadow-xl group `}
                 href={`/product/${product.id}`}
               >
-                {/* <div
-                  className="w-screen h-[60vh] gap-2 flex flex-col items-center justify-around p-2 hover:shadow-2xl hover:bg-fuchsia-50 transition-all duration-300 md:w-[50vw] xl:w-[33vw] xl:h-[90vh]"
-                  key={product.id}
-                > */}
                 {/* image element */}
                 {product.img && (
                   <div className="relative flex-1 w-full hover:rotate-[100deg] transition-all duration-300">
@@ -65,16 +61,13 @@ const Featured = async () => {
                   <p className="dosis-regular p-3 w-[90%] text-sm md:text-base">
                     {product.desc}
                   </p>
-                  {/* <span className="text-sm md:text-base xl:text-2xl assistant-font">
-                  ${product.price}
-                </span> */}
+
                   <div className="w-1/2">
                     <Button
                       name={`$${product.price}\u00A0 Order Now`}
                       path={`/product/${product.id}`}
                     />
                   </div>
-                  {/* </div> */}
                 </div>
               </Link>
             </SwiperSlide>

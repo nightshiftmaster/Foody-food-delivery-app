@@ -55,7 +55,6 @@ const CategoryPage = async ({ params }: Props) => {
               >
                 <h1 className="heebo-regular p-2">{item.title}</h1>
                 <h1 className="dosis-regular text-sm p-2">{item.desc}</h1>
-                {/* <h2 className="anton-regular text-gray-600">${item.price}</h2> */}
               </div>
               <div className="w-1/2">
                 <Button

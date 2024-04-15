@@ -5,7 +5,6 @@ import Image from "next/image";
 import CartIcon from "./CartIcon";
 import UserLinks from "./UserLinks";
 import { IoHomeOutline } from "react-icons/io5";
-import { PiClockCountdownLight } from "react-icons/pi";
 
 const Navbar = () => {
   const user = false;

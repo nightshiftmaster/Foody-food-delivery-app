@@ -4,8 +4,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { OrderType } from "@/types/types";
-import { toast } from "react-toastify";
-import { LuRefreshCcw } from "react-icons/lu";
 import { BASE_API_URL } from "@/utils/constants";
 import Loader from "@/components/Loader";
 

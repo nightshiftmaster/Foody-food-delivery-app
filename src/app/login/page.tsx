@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
@@ -37,8 +37,7 @@ const LogingPage = () => {
               src="/loginBg.png"
               alt="login image"
               fill
-              className="object-cover sm:rounded-t-md md:rounded-l-md md:rounded-r-none 
-            "
+              className="object-cover sm:rounded-t-md md:rounded-l-md md:rounded-r-none"
             />
           </div>
           {/* form */}

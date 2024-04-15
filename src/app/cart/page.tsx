@@ -12,7 +12,6 @@ import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 const CartPage = () => {
   const session = useSession();
   const router = useRouter();
-  // zustand store
   const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
 
   useEffect(() => {
@@ -43,9 +42,7 @@ const CartPage = () => {
   };
 
   return (
-    <div className="">
-      {/* products */}
-
+    <div>
       {products.length === 0 ? (
         <div className="flex flex-col h-[100vh] justify-center items-center gap-10 ">
           <h1 className="text-xl text-red-500">Cart is Empty</h1>

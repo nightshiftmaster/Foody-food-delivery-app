@@ -3,7 +3,6 @@ import { GoChecklist } from "react-icons/go";
 import { PiCookingPot } from "react-icons/pi";
 import { GrDeliver } from "react-icons/gr";
 import { TbHomeCheck } from "react-icons/tb";
-import { FaCheck } from "react-icons/fa";
 import styles from "../page.module.css";
 
 const Stepper = ({ step }: { step: number }) => {

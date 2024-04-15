@@ -2,7 +2,7 @@
 import { BASE_API_URL } from "@/utils/constants";
 import { useCartStore } from "@/utils/store";
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCircleCheck } from "react-icons/fa6";
 import { PiSmileyXEyesLight } from "react-icons/pi";
 

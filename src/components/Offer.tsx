@@ -1,11 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import Button from "./Button";
-import CountDown from "./CountDown";
-
-const CountDownNoSSR = dynamic(() => import("./CountDown"), { ssr: false });
 
 const Offer = () => {
   return (
@@ -31,8 +27,6 @@ const Offer = () => {
           of empowerment. Quickly pontificate parallel.
         </p>
 
-        {/* <CountDownNoSSR /> */}
-        {/* <CountDown /> */}
         <div className="w-1/2">
           <Button name={"Find out more here!"} path="/menu/burgers" />
         </div>

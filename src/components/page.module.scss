@@ -1,10 +1,8 @@
-// Определение переменных
 $number: 12;
 $cheese: #ffdc73;
 $crust: #bbb083;
 $roni: #cc333f;
 
-// Миксин для задания размера
 @mixin size($h: 100%, $w: 100%) {
   height: $h;
   width: $w;
@@ -15,7 +13,7 @@ $roni: #cc333f;
   align-items: center;
   background: none;
   position: relative;
-  animation: rotate 13s linear infinite; // Анимация вращения
+  animation: rotate 13s linear infinite;
   @keyframes rotate {
     to {
       transform: rotate(360deg);
@@ -35,7 +33,7 @@ $roni: #cc333f;
     top: 0;
     transform-origin: 50% 100%;
     transform: rotate(0deg);
-    animation: loading 1.8125s ease-in-out infinite; // Анимация изменения видимости
+    animation: loading 1.8125s ease-in-out infinite;
     @keyframes loading {
       0% {
         opacity: 1;
@@ -73,7 +71,6 @@ $roni: #cc333f;
       }
     }
 
-    // Добавление корки и пепперони
     &:before {
       content: "";
       position: absolute;
