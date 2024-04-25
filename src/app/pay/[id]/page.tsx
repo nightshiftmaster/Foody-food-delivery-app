@@ -1,12 +1,12 @@
 "use client";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/CheckoutForm";
 import { BASE_API_URL } from "@/utils/constants";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Loader from "@/components/Loader";
+import Loader from "rsuite/esm/Loader";
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );

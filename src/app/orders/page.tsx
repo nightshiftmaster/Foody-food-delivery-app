@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { OrderType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
-import Loader from "@/components/Loader";
+import Loader from "rsuite/esm/Loader";
 
 const OrdersPage = () => {
   const session = useSession();

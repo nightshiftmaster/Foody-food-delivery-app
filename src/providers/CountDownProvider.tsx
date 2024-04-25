@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useEffect, useLayoutEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export type ActiveOrderType = { paymentId: string; createAt: string };
 
@@ -21,7 +21,10 @@ export const CountDownContext = createContext<ContextType>({
 });
 
 const CountDownProvider = ({ children }: { children: React.ReactNode }) => {
-  const localStorageData = localStorage.getItem("activeOrders");
+  const localStorageData =
+    typeof localStorage !== "undefined"
+      ? localStorage.getItem("activeOrders")
+      : null;
   const activeOrders = localStorageData ? JSON.parse(localStorageData) : null;
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [timers, setTimers] = useState<TimeInterval[]>([]);
