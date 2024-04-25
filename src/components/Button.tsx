@@ -7,7 +7,7 @@ const Button = React.memo(
     const router = useRouter();
     return (
       <button
-        className="bg-red-500 whitespace-nowrap ring-slate-200 ring-1 teko-regular text-white text-sm md:text-base xl:text-xl 2xl:text-2xl md:py-3 md:px-8 py-2 px-7 rounded-3xl hover:scale-110 transition-all duration-500 w-full"
+        className="bg-red-500 whitespace-nowrap flex justify-center ring-slate-200 ring-1 teko-regular text-white text-sm md:text-base xl:text-xl 2xl:text-2xl md:py-3 md:px-8 py-2 px-7 rounded-3xl hover:scale-110 transition-all duration-500 w-full"
         onClick={() => {
           router.push(path);
         }}

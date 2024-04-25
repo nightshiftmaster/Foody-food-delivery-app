@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { OrderType } from "@/types/types";
@@ -12,60 +12,20 @@ const OrdersPage = () => {
   const router = useRouter();
 
   const { isPending, error, data } = useQuery({
-    // unique key
     queryKey: ["orders"],
     queryFn: () =>
       fetch(`${BASE_API_URL}/api/orders`).then((res) => res.json()),
   });
-
-  // update / edit status of order being andmin (user.isAdmin: true)!
-
-  const queryClient = useQueryClient();
-
-  ///refresh list without reload page - mutation
-
-  // renew data on server
-  const mutation = useMutation({
-    mutationFn: ({ id, status }: { id: number; status: string }) => {
-      return fetch(`${BASE_API_URL}/api/orders/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(status),
-      });
-    },
-
-    // when suceess renew data on page from cash with updated data from server
-    onSuccess() {
-      queryClient.invalidateQueries({ queryKey: ["orders"] });
-    },
-  });
-
-  // update / edit status of order being andmin (user.isAdmin: true)!
-  // const handleUpdate = (e: React.FormEvent<HTMLFormElement>, id: number) => {
-  //   e.preventDefault();
-  //   const form = e.target as HTMLFormElement;
-  //   const input = form[0] as HTMLInputElement;
-  //   const status = input.value;
-  //   mutation.mutate({ id, status });
-  //   toast.success("The order status has been changed");
-  // };
-
-  const handleTrackOrder = (payment_intent: string) => {
-    router.push(`/tracking/${payment_intent}`);
-  };
 
   if (session.status === "unauthenticated") {
     return router.push("/");
   }
 
   if (isPending || session.status === "loading") return <Loader />;
-
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <div className="h-[100vh] p-4 lg:px-20 xl:px-40">
+    <div className="h-full p-4 lg:px-20 xl:px-40">
       <table className="w-full border-separate border-spacing-3">
         <thead className="">
           <tr className="text-left">

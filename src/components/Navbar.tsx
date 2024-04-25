@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Menu from "./Menu";
 import Link from "next/link";
@@ -5,9 +6,9 @@ import Image from "next/image";
 import CartIcon from "./CartIcon";
 import UserLinks from "./UserLinks";
 import { IoHomeOutline } from "react-icons/io5";
+import OrderStatusUpdater from "./OrderStatusUpdater";
 
 const Navbar = () => {
-  const user = false;
   return (
     <div className="h-12 bg-white text-red-500 px-4 flex justify-between border-b items-center text-center border-b-slate-200 bebas-neue-regular 2xl:text-2xl md:text-xl text-base cursor-pointer md:h-20  xl:px-36">
       {/* left links */}
@@ -41,6 +42,7 @@ const Navbar = () => {
           <span className="">1700 700 700</span>
         </div>
         <UserLinks />
+        <OrderStatusUpdater />
         <CartIcon />
       </div>
     </div>

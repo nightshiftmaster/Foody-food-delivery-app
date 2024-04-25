@@ -27,7 +27,7 @@ const Stepper = ({ step }: { step: number }) => {
               >
                 {step >= i ? (
                   <div className="relative  left-2 top-1 md:top-0 md:text-lg text-xs text-white">
-                    <span>✔</span>
+                    <span className="text-white">✔</span>
                   </div>
                 ) : (
                   ""
@@ -49,7 +49,7 @@ const Stepper = ({ step }: { step: number }) => {
           >
             {step === 3 ? (
               <div className="relative  left-2 top-1 md:top-0 md:text-lg text-xs text-white">
-                <span>✔</span>
+                <span className="text-white">✔</span>
               </div>
             ) : (
               ""

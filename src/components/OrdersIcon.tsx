@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 const OrdersIcon = () => {
   const [activeOrderNotification, setActiveOrderNotification] =
     useState<boolean>(false);
+
   const { isPending, error, data } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
@@ -16,9 +17,9 @@ const OrdersIcon = () => {
 
   useEffect(() => {
     try {
-      const hasDeliveredOrder = data?.some(
-        (element: OrderType) => element.status !== "delivered"
-      );
+      const hasDeliveredOrder =
+        !data?.message &&
+        data?.some((element: OrderType) => element.status !== "delivered");
       setActiveOrderNotification(hasDeliveredOrder);
     } catch (e) {
       console.log(e);

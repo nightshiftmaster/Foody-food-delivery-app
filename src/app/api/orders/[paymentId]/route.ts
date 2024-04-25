@@ -1,19 +1,19 @@
-import prisma from "@/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/utils/connect";
 
 export const PUT = async (
   req: NextRequest,
   { params }: { params: { paymentId: string } }
 ) => {
   const { paymentId } = params;
-  const body = await req.json();
 
   try {
+    const body = await req.json();
     await prisma?.order.update({
       where: {
         intent_id: paymentId,
       },
-      data: body,
+      data: { status: body },
     });
     return new NextResponse(
       JSON.stringify({ message: "Order has been updated" }),
@@ -25,23 +25,5 @@ export const PUT = async (
       JSON.stringify({ message: "Something goes wrong" }),
       { status: 500 }
     );
-  }
-};
-
-export const GET = async (
-  req: NextRequest,
-  { params }: { params: { paymentId: string } }
-) => {
-  const { paymentId } = params;
-  try {
-    const product = await prisma.order.findUnique({
-      where: {
-        intent_id: paymentId,
-      },
-    });
-
-    return new NextResponse(JSON.stringify(product), { status: 200 });
-  } catch (error) {
-    return new NextResponse("Database error", { status: 500 });
   }
 };
