@@ -1,0 +1,1 @@
+{"price":"24.90","products":[{"id":1,"title":"Sicilian","price":24.9,"img":"/temporary/p1.png","quantity":1,"optionTitle":"Small"}],"status":"delivered","userEmail":"admin","id":"7ba84","createAt":"2024-05-03 21:47:55.751","intent_id":"pi_3PCR9KBrmXYcd23g28klulwA"}

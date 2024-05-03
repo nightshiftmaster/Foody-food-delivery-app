@@ -13,9 +13,6 @@ import { BASE_API_URL } from "@/utils/constants";
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-  const appearance = {
-    theme: "flat",
-  };
 
   const [message, setMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);

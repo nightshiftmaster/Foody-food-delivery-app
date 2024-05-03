@@ -6,7 +6,7 @@ import React, { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 
 const OrderStatusUpdater = () => {
-  const { timers } = useContext(CountDownContext);
+  const { timers, setStart } = useContext(CountDownContext);
 
   const queryClient = useQueryClient();
   // renew data on server
@@ -38,26 +38,31 @@ const OrderStatusUpdater = () => {
   };
 
   useEffect(() => {
-    return timers.forEach((timer) => {
-      const minutes = timer.remainTime[0];
-      const seconds = timer.remainTime[1];
-      switch (true) {
-        case minutes! === 0 && seconds! > 1:
-          handleUpdate(timer.id, "order placed");
-          break;
-        case minutes! >= 3 && minutes! <= 5:
-          handleUpdate(timer.id, "preparing");
-          break;
-        case minutes! > 5 && minutes! < 10:
-          handleUpdate(timer.id, "on the way");
-          break;
-        case minutes! >= 10:
-          handleUpdate(timer.id, "delivered");
-          break;
-        default:
-          break;
-      }
-    });
+    if (!timers) {
+      return;
+    } else {
+      return timers.forEach((timer) => {
+        const minutes = timer.remainTime[0];
+        const seconds = timer.remainTime[1];
+        switch (true) {
+          case minutes! === 0 && seconds! > 1:
+            handleUpdate(timer.id, "order placed");
+            break;
+          case minutes! >= 3 && minutes! <= 5:
+            handleUpdate(timer.id, "preparing");
+            break;
+          case minutes! > 5 && minutes! < 10:
+            handleUpdate(timer.id, "on the way");
+            break;
+          case minutes! >= 10:
+            handleUpdate(timer.id, "delivered");
+            setStart(false);
+            break;
+          default:
+            break;
+        }
+      });
+    }
   }, [timers[0]?.remainTime[0]]);
 
   return <div></div>;

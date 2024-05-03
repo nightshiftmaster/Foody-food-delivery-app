@@ -9,34 +9,34 @@ interface TimeInterval {
 }
 
 export type ContextType = {
-  currentTime: number;
-  setCurrentTime: (arg: number) => void;
+  setStart: (a: boolean) => void;
   timers: TimeInterval[];
 };
 
 export const CountDownContext = createContext<ContextType>({
-  currentTime: 0,
-  setCurrentTime: () => {},
+  setStart: () => false,
   timers: [],
 });
 
 const CountDownProvider = ({ children }: { children: React.ReactNode }) => {
   const localStorageData =
-    typeof localStorage !== "undefined"
+    typeof window !== "undefined" && localStorage.activeOrders !== "undefined"
       ? localStorage.getItem("activeOrders")
       : null;
+
   const activeOrders = localStorageData ? JSON.parse(localStorageData) : null;
-  const [currentTime, setCurrentTime] = useState(Date.now());
+  // const [currentTime, setCurrentTime] = useState(Date.now());
+  const [start, setStart] = useState(false);
   const [timers, setTimers] = useState<TimeInterval[]>([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      return activeOrders.forEach(
+      return activeOrders?.forEach(
         (order: { paymentId: string; createAt: string }) => {
           const remainTime = getReturnValues(
             new Date().getTime() - new Date(order?.createAt).getTime()
           );
-          if (remainTime[0] > 10) {
+          if (remainTime[0] > 10 && remainTime[1] === 1) {
             return;
           }
           const id = order?.paymentId;
@@ -59,7 +59,7 @@ const CountDownProvider = ({ children }: { children: React.ReactNode }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [activeOrders]);
+  }, [start, activeOrders, localStorageData]);
 
   const getReturnValues = (countDown: number) => {
     const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60));
@@ -69,7 +69,7 @@ const CountDownProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <CountDownContext.Provider value={{ currentTime, setCurrentTime, timers }}>
+    <CountDownContext.Provider value={{ timers, setStart }}>
       {children}
     </CountDownContext.Provider>
   );

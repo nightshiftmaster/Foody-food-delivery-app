@@ -34,6 +34,7 @@ const Menu = () => {
     signOut({ callbackUrl: "/login" });
     removeAllFromCart();
   };
+
   return (
     <div onClick={() => setOpen(!open)}>
       {!open ? (

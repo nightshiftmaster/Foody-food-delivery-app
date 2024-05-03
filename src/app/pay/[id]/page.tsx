@@ -6,7 +6,7 @@ import CheckoutForm from "@/components/CheckoutForm";
 import { BASE_API_URL } from "@/utils/constants";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Loader from "rsuite/esm/Loader";
+import PizzaLoader from "./loading";
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
@@ -44,7 +44,7 @@ const PayPage = ({ params }: { params: { id: string } }) => {
   };
 
   if (session.status === "loading" || isLoading) {
-    return <Loader />;
+    return <PizzaLoader />;
   }
 
   if (session.status === "unauthenticated") {

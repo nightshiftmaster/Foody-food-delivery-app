@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
@@ -7,26 +7,57 @@ import { useRouter } from "next/navigation";
 import { useCartStore } from "@/utils/store";
 import PizzaLoader from "../loading";
 
+type UserData = {
+  name: string;
+  email: string;
+  image: string | null;
+};
+
+type SessionData = {
+  user: UserData | null;
+  expires: string;
+};
+
+type SessionResponse = {
+  data: SessionData | null;
+  status: string;
+};
+
 const LogingPage = () => {
+  const session = useSession();
   const { status } = useSession();
+  const { update } = useSession();
   const router = useRouter();
   const { totalItems } = useCartStore();
+  const [trigger, setTrigger] = useState(false);
+
+  const fakeSignInWithSocials = async (session: SessionResponse) => {
+    if (session) {
+      const data = {
+        user: { email: "admin", image: null, name: "admin" },
+        expires: "2024-06-01T12:01:09.332Z",
+      };
+      session.data = data;
+      session.status = "authenticated";
+      await update({ ...session });
+    }
+  };
 
   useEffect(() => {
-    if (status === "authenticated") {
+    if (session.status === "authenticated") {
       if (totalItems !== 0) {
         router.push("/cart");
       } else {
         router.push("/");
       }
     }
-  }, [status]);
+  }, [session, trigger]);
 
-  if (status === "loading") {
+  if (session.status === "loading") {
     return <PizzaLoader />;
   }
 
-  if (status === "unauthenticated") {
+  if (session.status === "unauthenticated") {
     return (
       <div className="p-4 flex items-center justify-center h-[calc(100vh-6rem)] md:h-[calc(100vh-8rem)]">
         {/* box */}
@@ -48,7 +79,15 @@ const LogingPage = () => {
             </p>
             <button
               className="flex gap-4 md:p-5 p-3 w-[90%] ring-1 ring-gray-200 items-center justify-center rounded-lg"
-              onClick={() => signIn("google")}
+              onClick={() => {
+                console.log(process.env.NODE_ENV);
+                if (process.env.NODE_ENV !== "production") {
+                  setTrigger(!trigger);
+                  fakeSignInWithSocials(session);
+                } else {
+                  signIn("google");
+                }
+              }}
             >
               <Image
                 src="/google.png"
@@ -61,7 +100,14 @@ const LogingPage = () => {
             </button>
             <button
               className="flex gap-4 md:p-5 w-[90%] p-3 items-center ring-1 justify-center ring-gray-200 rounded-lg"
-              onClick={() => signIn("facebook")}
+              onClick={() => {
+                if (process.env.NODE_ENV !== "production") {
+                  setTrigger(!trigger);
+                  fakeSignInWithSocials(session);
+                } else {
+                  signIn("facebook");
+                }
+              }}
             >
               <Image
                 src="/facebook.png"

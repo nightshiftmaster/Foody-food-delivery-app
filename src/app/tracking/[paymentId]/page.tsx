@@ -13,12 +13,12 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
   const { paymentId } = params;
   const [step, setStep] = useState(0);
   const [success, setSuccess] = useState("");
-  const { timers } = useContext(CountDownContext);
+  const { timers, setStart } = useContext(CountDownContext);
   const clock = timers?.find((timer) => timer.id === paymentId)?.remainTime;
-  const minutes = clock ? clock![0] : null;
-  const seconds = clock ? clock![1] : null;
+  const minutes = clock ? clock![0] : 0o0;
+  const seconds = clock ? clock![1] : 0o0;
 
-  const { isPending, error, data } = useQuery({
+  const { isPending, data } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
       fetch(`${BASE_API_URL}/api/orders`).then((res) => res.json()),
@@ -35,6 +35,7 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
   useEffect(() => {
     if (activeOrders) {
       localStorage.setItem("activeOrders", orders);
+      setStart(true);
     }
   }, [activeOrders]);
 
@@ -92,13 +93,11 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
               <h1 className="uppercase assistant-regular text-lg md:text-2xl text-red-500 text-center">
                 Your order will be delivered soon{" "}
               </h1>
-              {clock ? (
-                <h1 className="teko-bold md:text-6xl text-xl xl:text-5xl text-gray-500">{`${minutes
-                  ?.toString()
-                  .padStart(2, "0")}:${seconds
-                  ?.toString()
-                  .padStart(2, "0")}`}</h1>
-              ) : null}
+              <h1 className="teko-bold md:text-6xl text-xl xl:text-5xl text-gray-500">{`${minutes
+                ?.toString()
+                .padStart(2, "0")}:${seconds
+                ?.toString()
+                .padStart(2, "0")}`}</h1>
 
               <Link
                 href={`/menu`}

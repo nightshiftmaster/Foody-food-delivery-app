@@ -13,7 +13,6 @@ const CartPage = () => {
   const session = useSession();
   const router = useRouter();
   const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
-
   useEffect(() => {
     useCartStore.persist.rehydrate();
   }, []);
@@ -30,7 +29,7 @@ const CartPage = () => {
             price: totalPrice.toFixed(2),
             products,
             status: "Not Paid",
-            userEmail: session?.data?.user.email,
+            userEmail: session?.data?.user?.email,
           }),
         });
         const data = await res.json();
