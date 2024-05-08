@@ -1,5 +1,4 @@
-"use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import { ProductType } from "@/types/types";
 import Link from "next/link";
@@ -9,7 +8,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useCartStore } from "@/utils/store";
 
 const getData = async () => {
   const res = await fetch(`${BASE_API_URL}/api/products`, {
@@ -23,13 +21,13 @@ const getData = async () => {
 };
 
 const Featured = async () => {
-  useEffect(() => {
-    useCartStore.persist.rehydrate();
-  }, []);
   const featuredProducts: ProductType[] = await getData();
 
   return (
-    <div className="w-screen overflow-x-scroll text-red-500">
+    <div
+      className="w-screen overflow-x-scroll text-red-500"
+      data-testid="featured"
+    >
       {/* wrapper */}
       <div className="">
         <Swiper

@@ -17,6 +17,7 @@ const AddressForm = () => {
         onChange={(e) => {
           if (e.complete) {
             const address = e.value.address;
+            localStorage.setItem("address", JSON.stringify(address));
           }
         }}
       />

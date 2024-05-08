@@ -6,42 +6,13 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/utils/store";
 import PizzaLoader from "../loading";
-
-type UserData = {
-  name: string;
-  email: string;
-  image: string | null;
-};
-
-type SessionData = {
-  user: UserData | null;
-  expires: string;
-};
-
-type SessionResponse = {
-  data: SessionData | null;
-  status: string;
-};
+import { fakeSignInWithSocials } from "@/utils/fakeLogin";
 
 const LogingPage = () => {
   const session = useSession();
-  const { status } = useSession();
-  const { update } = useSession();
   const router = useRouter();
   const { totalItems } = useCartStore();
   const [trigger, setTrigger] = useState(false);
-
-  const fakeSignInWithSocials = async (session: SessionResponse) => {
-    if (session) {
-      const data = {
-        user: { email: "admin", image: null, name: "admin" },
-        expires: "2024-06-01T12:01:09.332Z",
-      };
-      session.data = data;
-      session.status = "authenticated";
-      await update({ ...session });
-    }
-  };
 
   useEffect(() => {
     if (session.status === "authenticated") {

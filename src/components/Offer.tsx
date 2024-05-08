@@ -5,7 +5,10 @@ import Button from "./Button";
 
 const Offer = () => {
   return (
-    <div className="bg-black relative h-[57vh] flex flex-col md:flex-row  md:justify-between  md:h-[70vh]">
+    <div
+      className="bg-black relative h-[57vh] flex flex-col md:flex-row  md:justify-between  md:h-[70vh]"
+      data-testid="offer"
+    >
       {/* video bg */}
       <video
         className="h-full w-full absolute object-cover opacity-50 z-0"

@@ -6,7 +6,6 @@ import OrdersIcon from "./OrdersIcon";
 
 const UserLinks = () => {
   const { status } = useSession();
-  const session = useSession();
 
   const { removeAllFromCart } = useCartStore();
 

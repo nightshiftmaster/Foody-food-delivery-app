@@ -8,6 +8,7 @@ import { CountDownContext } from "@/providers/CountDownProvider";
 import { useQuery } from "@tanstack/react-query";
 import { OrderType } from "@/types/types";
 import PizzaLoader from "@/components/PizzaLoader";
+import Maps from "@/components/Maps";
 
 const Tracking = ({ params }: { params: { paymentId: string } }) => {
   const { paymentId } = params;
@@ -57,55 +58,52 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
       default:
         break;
     }
-  }, [seconds, minutes, paymentId]);
+  }, [minutes, paymentId]);
 
   if (isPending) {
     return <PizzaLoader />;
   }
 
   return (
-    <div className="h-[100vh] w-full">
-      {/* container */}
-      <div className="h-full w-full">
-        <div className="bg-red-500 md:h-1/3 h-1/5 flex justify-center items-center">
-          <h1 className="text-white text-2xl md:text-6xl bebas-neue-regular font-medium">
-            Order Tracker
-          </h1>
-        </div>
+    <div className="h-full w-full">
+      <div className="bg-red-500 md:h-1/3 h-1/5 flex justify-center items-center">
+        <h1 className="text-white text-2xl md:text-6xl p-10 bebas-neue-regular font-medium">
+          Order Tracker
+        </h1>
+      </div>
 
-        <div>
-          <div className="h-1/3 p-3">
-            <Stepper step={step} />
+      <div>
+        <div className="h-1/3 p-3">
+          <Stepper step={step} />
+        </div>
+        {success ? (
+          <div className="flex flex-col gap-10 justify-center items-center text-gray-600">
+            <CiFaceSmile size={50} />
+            <div className="md:text-5xl bebas-neue-regular  text-2xl text-center">
+              {success}
+            </div>
+            <Link
+              href={`/menu`}
+              className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
+            >{`<<Back to menu`}</Link>
           </div>
-          {success ? (
-            <div className="flex flex-col gap-10 justify-center items-center text-gray-600">
-              <CiFaceSmile size={50} />
-              <div className="md:text-5xl bebas-neue-regular  text-2xl text-center">
-                {success}
-              </div>
-              <Link
-                href={`/menu`}
-                className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
-              >{`<<Back to menu`}</Link>
-            </div>
-          ) : (
-            <div className="flex flex-col  justify-center items-center gap-3 md:gap-10">
-              <h1 className="uppercase assistant-regular text-lg md:text-2xl text-red-500 text-center">
-                Your order will be delivered soon{" "}
-              </h1>
-              <h1 className="teko-bold md:text-6xl text-xl xl:text-5xl text-gray-500">{`${minutes
-                ?.toString()
-                .padStart(2, "0")}:${seconds
-                ?.toString()
-                .padStart(2, "0")}`}</h1>
+        ) : (
+          <div className="flex  flex-col  justify-center items-center gap-3 md:gap-10">
+            <h1 className="uppercase assistant-regular text-lg md:text-2xl text-red-500 text-center">
+              Your order will be delivered soon{" "}
+            </h1>
 
-              <Link
-                href={`/menu`}
-                className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
-              >{`<<Back to menu`}</Link>
-            </div>
-          )}
-        </div>
+            <h1 className="teko-bold md:text-6xl text-xl xl:text-5xl text-gray-500">{`${minutes
+              ?.toString()
+              .padStart(2, "0")}:${seconds?.toString().padStart(2, "0")}`}</h1>
+            <Maps />
+
+            <Link
+              href={`/menu`}
+              className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
+            >{`<<Back to menu`}</Link>
+          </div>
+        )}
       </div>
     </div>
   );

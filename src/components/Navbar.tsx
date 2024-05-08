@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Menu from "./Menu";
 import Link from "next/link";
@@ -10,7 +9,10 @@ import OrderStatusUpdater from "./OrderStatusUpdater";
 
 const Navbar = () => {
   return (
-    <div className="h-12 bg-white text-red-500 px-4 flex justify-between border-b items-center text-center border-b-slate-200 bebas-neue-regular 2xl:text-2xl md:text-xl text-base cursor-pointer md:h-20  xl:px-36">
+    <div
+      className="h-12 bg-white text-red-500 px-4 flex justify-between border-b items-center text-center border-b-slate-200 bebas-neue-regular 2xl:text-2xl md:text-xl text-base cursor-pointer md:h-20  xl:px-36"
+      data-testid="navbar"
+    >
       {/* left links */}
       <div className="hidden md:flex gap-4 flex-1 items-center ">
         <Link className="hover:text-gray-300" href="/">

@@ -25,7 +25,10 @@ const getData = async (category: string) => {
 const CategoryPage = async ({ params }: Props) => {
   const products: ProductType[] = await getData(params.category);
   return (
-    <div className="flex lg:h-screen flex-col gap-10">
+    <div
+      className="flex lg:h-screen flex-col gap-10"
+      data-testid={`menu-${params.category}`}
+    >
       <div className="flex  flex-wrap text-red-500">
         {products?.map((item) => {
           return (

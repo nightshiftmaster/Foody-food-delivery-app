@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/utils/connect";
-import { menu } from "@/utils/data";
+import { menu } from "@/utils/fakeData";
 
 export const GET = async () => {
   if (process.env.NODE_ENV !== "production") {
