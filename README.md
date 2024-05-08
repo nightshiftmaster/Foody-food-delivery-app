@@ -1,3 +1,5 @@
+[![Playwright Tests](https://github.com/nightshiftmaster/Foody-food-delivery-app/actions/workflows/playwright.yml/badge.svg)](https://github.com/nightshiftmaster/Foody-food-delivery-app/actions/workflows/playwright.yml)
+
 # Foody
 
 Foody is a web application for ordering and delivering food, specializing in pizza, pasta, and hamburgers. The application provides users with a wide selection of dishes and a convenient interface for ordering food for delivery.
