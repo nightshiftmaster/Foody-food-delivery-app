@@ -29,8 +29,9 @@ const Navbar = () => {
       <Link href="/" className="md:hidden">
         <IoHomeOutline size={22} />
       </Link>
-
-      <h1 className="anton-regular md:text-3xl text-2xl">Foody</h1>
+      <Link href="/">
+        <h1 className="anton-regular md:text-3xl text-2xl">Foody</h1>
+      </Link>
       <div className="md:hidden flex items-center gap-3 justify-center">
         {/* <PiClockCountdownLight size={23} /> */}
         <CartIcon />

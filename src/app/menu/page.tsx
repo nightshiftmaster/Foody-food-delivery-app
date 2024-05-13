@@ -23,6 +23,7 @@ const MenuPage = async () => {
     >
       {menu?.reverse().map((category) => (
         <Link
+          data-testid={`${category.slug}`}
           href={`/menu/${category.slug}`}
           key={category.id}
           className="flex hover:shadow-2xl  w-full items-center md:justify-center md:text-center h-1/3 bg-cover p-7 md:h-1/2"

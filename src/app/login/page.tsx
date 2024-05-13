@@ -30,11 +30,17 @@ const LogingPage = () => {
 
   if (session.status === "unauthenticated") {
     return (
-      <div className="p-4 flex items-center justify-center h-[calc(100vh-6rem)] md:h-[calc(100vh-8rem)]">
+      <div
+        className="p-4 flex items-center justify-center h-[calc(100vh-6rem)] md:h-[calc(100vh-8rem)]"
+        data-testid="login"
+      >
         {/* box */}
         <div className="h-[90%]  shadow-2xl rounded-md flex flex-col md:flex-row w-[80%] md:h-[70%]  lg:w-[70%] 2xl:w-1/2">
           {/* image */}
-          <div className="relative h-1/3 w-full md:h-full md:w-1/2 ">
+          <div
+            className="relative h-1/3 w-full md:h-full md:w-1/2 "
+            data-testid="login-image"
+          >
             <Image
               src="/loginBg.png"
               alt="login image"
@@ -43,7 +49,10 @@ const LogingPage = () => {
             />
           </div>
           {/* form */}
-          <div className="p-12 flex flex-col md:gap-8 gap-5 justify-center items-center text-center md:w-1/2 md:text-sm text-xs">
+          <div
+            className="p-12 flex flex-col md:gap-8 gap-5 justify-center items-center text-center md:w-1/2 md:text-sm text-xs"
+            data-testid="login-form"
+          >
             <h1 className="teko-regular  text-3xl xl:text-5xl">Welcome</h1>
             <p className="teko-regular text-lg">
               Please login to purchase products

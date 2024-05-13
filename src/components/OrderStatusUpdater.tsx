@@ -1,7 +1,7 @@
 "use client";
 import { CountDownContext } from "@/providers/CountDownProvider";
 import { BASE_API_URL } from "@/utils/constants";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useContext, useEffect } from "react";
 import { toast } from "react-toastify";
 

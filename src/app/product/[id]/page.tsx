@@ -26,6 +26,7 @@ const SingleProductPage = async ({ params }: { params: ProductType }) => {
   return (
     <div
       className={`p-5 flex flex-col ${styles.swingIn} lg:px-20 xl:px-40 h-screen gap-4 text-red-500 justify-around md:flex-row md:gap-9 md:items-center`}
+      data-testid={`product-${singleProduct.title}`}
     >
       {/* image */}
       {singleProduct?.img && (
@@ -35,11 +36,15 @@ const SingleProductPage = async ({ params }: { params: ProductType }) => {
             alt="singleProduct image"
             fill
             className="object-contain"
+            data-testid="product-image"
           />
         </div>
       )}
       {/* text */}
-      <div className="flex flex-col gap-4  md:h-[70%] md:justify-center md:gap-6 xl:gap-8">
+      <div
+        className="flex flex-col gap-4  md:h-[70%] md:justify-center md:gap-6 xl:gap-8"
+        data-testid="product-body"
+      >
         <h1 className="text-xl md:text-3xl heebo-regular xl:text-5xl">
           {singleProduct.title}
         </h1>

@@ -1,11 +1,13 @@
 "use client";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import { useCartStore } from "@/utils/store";
 import OrdersIcon from "./OrdersIcon";
 
 const UserLinks = () => {
   const { status } = useSession();
+  const router = useRouter();
+  const user = false;
 
   const { removeAllFromCart } = useCartStore();
 
@@ -13,12 +15,16 @@ const UserLinks = () => {
     signOut({ callbackUrl: "/login" });
     removeAllFromCart();
   };
+
   return (
     <div>
       {status !== "authenticated" ? (
-        <Link className="hover:text-gray-300" href="/login">
+        <span
+          className="hover:text-gray-300"
+          onClick={() => router.push("/login")}
+        >
           Login
-        </Link>
+        </span>
       ) : (
         <div className="cursor-pointer">
           <OrdersIcon />

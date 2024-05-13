@@ -29,6 +29,7 @@ export default function RootLayout({
           <CountDownProvider>
             <QueryProvider>
               <Notification />
+
               <Navbar />
               {children}
               <Footer />
