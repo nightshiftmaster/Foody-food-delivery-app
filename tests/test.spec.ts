@@ -22,6 +22,7 @@ test.describe("testing application", () => {
     ]);
 
     await page.waitForTimeout(5000);
+    await expect(page).toHaveScreenshot();
     expect(await page.screenshot()).toMatchSnapshot();
 
     await Promise.all([
