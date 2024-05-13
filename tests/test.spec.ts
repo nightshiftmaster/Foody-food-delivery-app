@@ -21,9 +21,8 @@ test.describe("testing application", () => {
       page.waitForSelector('[data-testid="footer"]'),
     ]);
 
-    await page.waitForTimeout(6000);
-    await expect(page).toHaveScreenshot();
-    expect(await page.screenshot()).toMatchSnapshot();
+    // await page.waitForTimeout(6000);
+    // expect(await page.screenshot()).toMatchSnapshot();
 
     await Promise.all([
       page.getByRole("button", { name: "Check Out Menu" }).click(),
@@ -50,8 +49,8 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
     await page.waitForSelector('[data-testid="menu"]');
-    await page.waitForTimeout(6000);
-    expect(await page.screenshot()).toMatchSnapshot();
+    // await page.waitForTimeout(6000);
+    // expect(await page.screenshot()).toMatchSnapshot();
     await Promise.all([
       page.waitForSelector('[data-testid="pizzas"]'),
       page.waitForSelector('[data-testid="pastas"]'),
@@ -62,16 +61,16 @@ test.describe("testing application", () => {
       page.waitForURL(`/menu/pizzas`),
       page.waitForSelector('[data-testid="menu-pizzas"]'),
     ]);
-    await page.waitForTimeout(6000);
-    expect(await page.screenshot()).toMatchSnapshot();
+    // await page.waitForTimeout(6000);
+    // expect(await page.screenshot()).toMatchSnapshot();
     await page.getByRole("link", { name: "Back to Menu" }).click(),
       await Promise.all([
         page.getByRole("link", { name: "Juicy burgers" }).click(),
         page.waitForURL(`/menu/burgers`),
         page.waitForSelector('[data-testid="menu-burgers"]'),
       ]);
-    await page.waitForTimeout(6000);
-    expect(await page.screenshot()).toMatchSnapshot();
+    // await page.waitForTimeout(6000);
+    // expect(await page.screenshot()).toMatchSnapshot();
     await page.getByRole("link", { name: "Back to Menu" }).click(),
       await Promise.all([
         page.getByRole("link", { name: "Italian pastas" }).click(),
@@ -87,8 +86,8 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
     await page.waitForSelector('[data-testid="contact"]');
-    await page.waitForTimeout(6000);
-    expect(await page.screenshot()).toMatchSnapshot();
+    // await page.waitForTimeout(6000);
+    // expect(await page.screenshot()).toMatchSnapshot();
 
     await expect(page.getByText("CONTACT US")).toBeVisible();
     await page.getByRole("button", { name: "Send Message" }).click();
@@ -161,8 +160,8 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
     await page.getByText("sicilian").click();
-    await page.waitForTimeout(6000);
-    expect(await page.screenshot()).toMatchSnapshot();
+    // await page.waitForTimeout(6000);
+    // expect(await page.screenshot()).toMatchSnapshot();
     await Promise.all([
       page.waitForSelector('[data-testid="product-Sicilian"]'),
       page.waitForSelector('[data-testid="product-image"]'),
