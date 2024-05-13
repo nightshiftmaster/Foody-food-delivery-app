@@ -31,5 +31,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-screenshots
-          path: playwright-report/screenshots/
+          path: /home/runner/work/Foody-food-delivery-app/Foody-food-delivery-app/tests/test.spec.ts-snapshots
           retention-days: 30
