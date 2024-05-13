@@ -21,7 +21,7 @@ test.describe("testing application", () => {
       page.waitForSelector('[data-testid="footer"]'),
     ]);
 
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(6000);
     await expect(page).toHaveScreenshot();
     expect(await page.screenshot()).toMatchSnapshot();
 
@@ -50,7 +50,7 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
     await page.waitForSelector('[data-testid="menu"]');
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(6000);
     expect(await page.screenshot()).toMatchSnapshot();
     await Promise.all([
       page.waitForSelector('[data-testid="pizzas"]'),
@@ -62,7 +62,7 @@ test.describe("testing application", () => {
       page.waitForURL(`/menu/pizzas`),
       page.waitForSelector('[data-testid="menu-pizzas"]'),
     ]);
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(6000);
     expect(await page.screenshot()).toMatchSnapshot();
     await page.getByRole("link", { name: "Back to Menu" }).click(),
       await Promise.all([
@@ -70,7 +70,7 @@ test.describe("testing application", () => {
         page.waitForURL(`/menu/burgers`),
         page.waitForSelector('[data-testid="menu-burgers"]'),
       ]);
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(6000);
     expect(await page.screenshot()).toMatchSnapshot();
     await page.getByRole("link", { name: "Back to Menu" }).click(),
       await Promise.all([
@@ -78,7 +78,7 @@ test.describe("testing application", () => {
         page.waitForURL(`/menu/pastas`),
         page.waitForSelector('[data-testid="menu-pastas"]'),
       ]);
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(6000);
     expect(await page.screenshot()).toMatchSnapshot();
   });
   test("testing contact page", async ({ page }: { page: any }) => {
@@ -87,7 +87,7 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
     await page.waitForSelector('[data-testid="contact"]');
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(6000);
     expect(await page.screenshot()).toMatchSnapshot();
 
     await expect(page.getByText("CONTACT US")).toBeVisible();
@@ -161,7 +161,7 @@ test.describe("testing application", () => {
       waitUntil: "networkidle",
     });
     await page.getByText("sicilian").click();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(6000);
     expect(await page.screenshot()).toMatchSnapshot();
     await Promise.all([
       page.waitForSelector('[data-testid="product-Sicilian"]'),
