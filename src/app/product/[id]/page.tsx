@@ -19,13 +19,7 @@ const getData = async (id: string) => {
 };
 
 const SingleProductPage = async ({ params }: { params: ProductType }) => {
-  if (!BASE_API_URL) {
-    return null;
-  }
   const singleProduct: ProductType = await getData(params.id);
-  if (!BASE_API_URL) {
-    return null;
-  }
   return (
     <div
       className={`p-5 flex flex-col ${styles.swingIn} lg:px-20 xl:px-40 h-screen gap-4 text-red-500 justify-around md:flex-row md:gap-9 md:items-center`}
