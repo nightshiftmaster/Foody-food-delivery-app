@@ -170,5 +170,9 @@ test.describe("testing application", () => {
       page.waitForSelector('[data-testid="product-options"]'),
       page.waitForSelector('[data-testid="product-quantity"]'),
     ]);
+    //testing counter//
+    await expect(page.getByTestId("quantity-count")).toHaveText("1");
+    await page.getByText(">").click();
+    await expect(page.getByTestId("quantity-count")).toHaveText("2");
   });
 });

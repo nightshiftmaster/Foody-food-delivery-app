@@ -15,6 +15,9 @@ const getData = async () => {
 };
 
 const MenuPage = async () => {
+  if (!BASE_API_URL) {
+    return null;
+  }
   const menu: MenuType = await getData();
   return (
     <div

@@ -21,6 +21,9 @@ const getData = async () => {
 };
 
 const Featured = async () => {
+  if (!BASE_API_URL) {
+    return null;
+  }
   const featuredProducts: ProductType[] = await getData();
 
   return (

@@ -19,6 +19,9 @@ const getData = async (id: string) => {
 };
 
 const SingleProductPage = async ({ params }: { params: ProductType }) => {
+  if (!BASE_API_URL) {
+    return null;
+  }
   const singleProduct: ProductType = await getData(params.id);
   if (!BASE_API_URL) {
     return null;

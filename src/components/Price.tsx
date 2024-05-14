@@ -68,7 +68,7 @@ const Price = ({ product }: { product: ProductType }) => {
             >
               {"<"}
             </button>
-            <span>{quantity}</span>
+            <span data-testid="quantity-count">{quantity}</span>
             <button
               onClick={() => setQuantity((curr) => (curr >= 9 ? 9 : curr + 1))}
             >
