@@ -42,6 +42,48 @@ test.describe("testing application", () => {
     ]);
   });
 
+  test("testing navbar", async ({ page }: { page: Page }) => {
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.goto("/", {
+      waitUntil: "networkidle",
+    });
+
+    await Promise.all([
+      page.getByRole("link", { name: "Homepage" }).click(),
+      page.waitForURL(`/`),
+      page.waitForSelector('[data-testid="home"]'),
+    ]);
+
+    await Promise.all([
+      page.getByRole("link", { name: "Menu" }).click(),
+      page.waitForURL(`/menu`),
+      page.waitForSelector('[data-testid="menu"]'),
+    ]);
+
+    await Promise.all([
+      page.getByRole("link", { name: "Contact" }).click(),
+      page.waitForURL(`/contact`),
+      page.waitForSelector('[data-testid="contact"]'),
+    ]);
+
+    await Promise.all([
+      page.locator('h1:has-text("Foody")').click(),
+      page.waitForURL(`/`),
+      page.waitForSelector('[data-testid="home"]'),
+    ]);
+
+    await Promise.all([
+      page.getByRole("link", { name: "Login" }).click(),
+      page.waitForURL(`/login`),
+      page.waitForSelector('[data-testid="login"]'),
+    ]);
+    await Promise.all([
+      page.getByTestId("cartIcon").last().click(),
+      page.waitForURL(`/cart`),
+      page.waitForSelector('[data-testid="cart"]'),
+    ]);
+  });
+
   test("testing menu page", async ({ page }: { page: any }) => {
     test.setTimeout(60000);
     await page.setViewportSize({ width: 1920, height: 1080 });
@@ -174,5 +216,6 @@ test.describe("testing application", () => {
     await expect(page.getByTestId("quantity-count")).toHaveText("1");
     await page.getByText(">").click();
     await expect(page.getByTestId("quantity-count")).toHaveText("2");
+    await page.getByRole("button", { name: "Add to cart" }).click();
   });
 });

@@ -18,8 +18,6 @@ Foody is a web application for ordering and delivering food, specializing in piz
   - React
   - TypeScript
   - Tailwind CSS
-- **Backend:**
-  - Node.js
 - **Database:**
   - PostgreSQL
   - Prisma
@@ -64,3 +62,23 @@ Foody is a web application for ordering and delivering food, specializing in piz
    ```bash
    npm run dev
    ```
+
+## Important !
+
+For full functionality, when running the application locally, it is recommended to store configuration settings, environment variables, api keys and other sensitive information in .env file.
+Fake requests to a fake database are simulated in API routes. And the fake database is located in the utils folder. When using real ones, they should be removed or replaced.
+Here is the complete list of required environment variables.
+
+- NEXTAUTH_URL
+- NEXT_PUBLIC_BASE_API_URL
+- NEXTAUTH_SECRET
+- GOOGLE_SECRET
+- GOOGLE_ID
+- NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+- NEXT_PUBLIC_MAP_ID
+- FACEBOOK_CLIENT_ID
+- FACEBOOK_CLIENT_SECRET
+- NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+- STRIPE_SECRET_KEY
+- DATABASE_URL
+- DIRECT_URL

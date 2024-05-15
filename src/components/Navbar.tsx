@@ -39,7 +39,7 @@ const Navbar = () => {
       </div>
 
       {/* right links */}
-      <div className="hidden  md:flex flex-1 gap-4 items-center justify-end">
+      <div className="hidden md:flex flex-1 gap-4 items-center justify-end">
         <div className=" lg:static flex gap-2 items-center bg-orange-300 px-1 cursor-pointer rounded-md ">
           <Image src="/phone.png" alt="" width={20} height={20} />
           <span className="">1700 700 700</span>
