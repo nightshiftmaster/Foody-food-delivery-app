@@ -19,7 +19,9 @@ const CartIcon = () => {
         </div>
         {totalItems === 0 || (
           <div className="absolute bg-green-400 w-4 h-4 md:p-2 left-3 md:left-5 bottom-3 flex rounded-full justify-center text-white items-center text-xs md:text-xs">
-            <span className="assistant-regular">{totalItems}</span>
+            <span className="assistant-regular" data-testid="cart-counter">
+              {totalItems}
+            </span>
           </div>
         )}
       </Link>
