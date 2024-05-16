@@ -46,6 +46,12 @@ const CartPage = () => {
         <div className="flex flex-col h-[100vh] justify-center items-center gap-10 ">
           <h1 className="text-xl text-red-500">Cart is Empty</h1>
           <MdOutlineRemoveShoppingCart size={100} color="red" />
+          <Link
+            href="/menu"
+            className={`cursor-pointer text-base md:text-xl my-10 xl:text-2xl m-auto ${
+              products?.length < 4 ? "md:my-36" : "md:my-24 "
+            } bebas-neue-regular text-red-500`}
+          >{`<<Back to Menu`}</Link>
         </div>
       ) : (
         <div className="h-h-[calc(100vh-6rem)] text-sm md:text-base md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row">
