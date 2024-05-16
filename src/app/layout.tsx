@@ -29,11 +29,9 @@ export default function RootLayout({
           <CountDownProvider>
             <QueryProvider>
               <Notification />
-
               <Navbar />
               {children}
               <Footer />
-
               <ToastContainer
                 position="bottom-right"
                 theme="dark"

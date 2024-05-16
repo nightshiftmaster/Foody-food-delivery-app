@@ -25,11 +25,12 @@ const getData = async (category: string) => {
 const CategoryPage = async ({ params }: Props) => {
   const products: ProductType[] = await getData(params.category);
   return (
-    <div
-      className="flex lg:h-[100vh]  h-full  flex-col gap-10"
-      data-testid={`menu-${params.category}`}
-    >
-      <div className="flex  flex-wrap text-red-500">
+    <div className="flex  flex-col " data-testid={`menu-${params.category}`}>
+      <div
+        className={`flex flex-wrap h-full  text-red-500 md:${
+          products?.length < 4 ? "h-[20vh]" : ""
+        }`}
+      >
         {products?.map((item) => {
           return (
             <Link
@@ -71,7 +72,9 @@ const CategoryPage = async ({ params }: Props) => {
       </div>
       <Link
         href="/menu"
-        className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
+        className={`cursor-pointer text-base md:text-xl my-10 xl:text-2xl m-auto ${
+          products?.length < 4 ? "md:my-36" : "md:my-24 "
+        } bebas-neue-regular text-red-500`}
       >{`<<Back to Menu`}</Link>
     </div>
   );
