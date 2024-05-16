@@ -58,7 +58,7 @@ const LogingPage = () => {
               Please login to purchase products
             </p>
             <button
-              className="flex gap-4 md:p-5 p-3 w-[90%] ring-1 ring-gray-200 items-center justify-center rounded-lg"
+              className="flex gap-4 md:p-5 p-3 w-[90%] ring-1 ring-gray-200 items-center justify-center rounded-lg hover:scale-110 transition-all duration-500"
               onClick={() => {
                 console.log(process.env.NODE_ENV);
                 if (process.env.NODE_ENV !== "production") {
@@ -79,7 +79,7 @@ const LogingPage = () => {
               <span className="assistant-regular">Sign in with Google</span>
             </button>
             <button
-              className="flex gap-4 md:p-5 w-[90%] p-3 items-center ring-1 justify-center ring-gray-200 rounded-lg"
+              className="flex gap-4 md:p-5 w-[90%] p-3 items-center ring-1 justify-center ring-gray-200 rounded-lg hover:scale-110 transition-all duration-500"
               onClick={() => {
                 if (process.env.NODE_ENV !== "production") {
                   setTrigger(!trigger);

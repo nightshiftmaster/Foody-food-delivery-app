@@ -100,7 +100,7 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
 
             <Link
               href={`/menu`}
-              className="cursor-pointer text-sm md:text-base xl:text-lg m-auto bebas-neue-regular text-red-500 "
+              className="cursor-pointer text-base md:text-xl my-10 xl:text-2xl bebas-neue-regular text-red-500 "
             >{`<<Back to menu`}</Link>
           </div>
         )}
