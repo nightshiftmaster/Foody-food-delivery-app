@@ -37,6 +37,8 @@ Foody is a web application for ordering and delivering food, specializing in piz
 
 [Open Demo](https://foody-app-gray.vercel.app)
 
+![image](./public/demo.gif)
+
 ## Installation
 
 1. Clone the repository:
