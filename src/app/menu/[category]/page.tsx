@@ -45,7 +45,7 @@ const CategoryPage = ({ params }: Props) => {
           products?.length < 4 ? "h-[20vh]" : ""
         }`}
       >
-        {products?.map((item) => {
+        {products?.map((item: ProductType) => {
           return (
             <Link
               className={`transition-all gap-2 duration-500 w-full p-7 md:p-10 h-[60vh] flex flex-col ${styles.choice} hover:bg-fuchsia-50 hover:shadow-2xl justify-between items-center sm:w-1/2 lg:w-1/3 border-b group `}
