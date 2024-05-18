@@ -34,10 +34,7 @@ const Banner = () => {
         muted
         playsInline
       >
-        <source
-          src="https://videos.pexels.com/video-files/3120784/3120784-uhd_3840_2160_25fps.mp4"
-          type="video/mp4"
-        />
+        <source src="/banner.mp4" type="video/mp4" />
       </video>
 
       <div className="flex bg-local items-center justify-center flex-col gap-8 font-extrabold text-white  lg:h-full flex-1 bg-fuchsia-50">

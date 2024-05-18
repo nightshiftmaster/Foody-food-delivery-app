@@ -218,5 +218,8 @@ test.describe("testing application", () => {
     await expect(page.getByTestId("quantity-count")).toHaveText("2");
     await page.getByRole("button", { name: "Add to cart" }).click();
     await expect(page.getByTestId("cart-counter").first()).toHaveText("2");
+    await page.getByRole("button", { name: "Go to cart" }).click();
+    await page.waitForURL(`/cart`);
+    await page.waitForSelector('[data-testid="cart"]');
   });
 });

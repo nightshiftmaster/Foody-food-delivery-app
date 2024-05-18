@@ -60,7 +60,6 @@ const LogingPage = () => {
             <button
               className="flex gap-4 md:p-5 p-3 w-[90%] ring-1 ring-gray-200 items-center justify-center rounded-lg hover:scale-110 transition-all duration-500"
               onClick={() => {
-                console.log(process.env.NODE_ENV);
                 if (process.env.NODE_ENV !== "production") {
                   setTrigger(!trigger);
                   fakeSignInWithSocials(session);

@@ -8,20 +8,27 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { useQuery } from "@tanstack/react-query";
+import PizzaLoader from "./PizzaLoader";
 
-const getData = async () => {
-  const res = await fetch(`${BASE_API_URL}/api/products`, {
-    cache: "no-store",
+const Featured = () => {
+  const {
+    isPending,
+    error,
+    data: featuredProducts,
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: () =>
+      fetch(`${BASE_API_URL}/api/products`).then((res) => res.json()),
   });
 
-  if (!res) {
-    throw new Error("failed to fetch data");
+  if (error) {
+    return <h1>Something went wrong...</h1>;
   }
-  return res.json();
-};
 
-const Featured = async () => {
-  const featuredProducts: ProductType[] = await getData();
+  if (isPending) {
+    return <PizzaLoader />;
+  }
 
   return (
     <div
@@ -39,7 +46,7 @@ const Featured = async () => {
           }}
         >
           {/* single element */}
-          {featuredProducts?.map((product) => (
+          {featuredProducts?.map((product: ProductType) => (
             <SwiperSlide key={product.id}>
               <Link
                 className={`transition-all duration-500 py-10 h-[53vh] md:h-[60vh] flex flex-col  hover:bg-fuchsia-50 hover:shadow-2xl w-full shadow-xl group `}
