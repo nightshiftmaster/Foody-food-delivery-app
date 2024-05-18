@@ -6,13 +6,14 @@ import styles from "./page.module.css";
 import { ProductType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
 import Button from "@/components/Button";
+import { useQuery } from "@tanstack/react-query";
 
 type Props = {
   params: { category: string };
 };
 
 const getData = async (category: string) => {
-  const res = await fetch(`/api/products?cat=${category}`, {
+  const res = await fetch(`${BASE_API_URL}/api/products?cat=${category}`, {
     cache: "no-store",
   });
 
@@ -22,8 +23,20 @@ const getData = async (category: string) => {
   return res.json();
 };
 
-const CategoryPage = async ({ params }: Props) => {
-  const products: ProductType[] = await getData(params.category);
+const CategoryPage = ({ params }: Props) => {
+  // const products: ProductType[] = await getData(params.category);
+
+  const {
+    isPending,
+    error,
+    data: products,
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: () =>
+      fetch(`${BASE_API_URL}/api/products?cat=${params.category}`).then((res) =>
+        res.json()
+      ),
+  });
 
   return (
     <div className="flex  flex-col " data-testid={`menu-${params.category}`}>
