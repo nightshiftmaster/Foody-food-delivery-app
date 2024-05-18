@@ -13,7 +13,8 @@ const OrdersPage = () => {
 
   const { isPending, error, data } = useQuery({
     queryKey: ["orders"],
-    queryFn: () => fetch(`/api/orders`).then((res) => res.json()),
+    queryFn: () =>
+      fetch(`${BASE_API_URL}/api/orders`).then((res) => res.json()),
   });
 
   if (session.status === "unauthenticated") {
