@@ -7,36 +7,32 @@ import { ProductType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
 import Button from "@/components/Button";
 import { useQuery } from "@tanstack/react-query";
+import PizzaLoader from "@/components/PizzaLoader";
 
 type Props = {
   params: { category: string };
 };
 
-const getData = async (category: string) => {
-  const res = await fetch(`${BASE_API_URL}/api/products?cat=${category}`, {
-    cache: "no-store",
-  });
-
-  if (!res) {
-    throw new Error("failed to fetch data");
-  }
-  return res.json();
-};
-
 const CategoryPage = ({ params }: Props) => {
-  // const products: ProductType[] = await getData(params.category);
-
   const {
     isPending,
     error,
     data: products,
   } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", , params.category],
     queryFn: () =>
       fetch(`${BASE_API_URL}/api/products?cat=${params.category}`).then((res) =>
         res.json()
       ),
   });
+
+  if (isPending) {
+    return <PizzaLoader />;
+  }
+
+  if (error) {
+    return <h1>Something went wrong...</h1>;
+  }
 
   return (
     <div className="flex  flex-col " data-testid={`menu-${params.category}`}>
