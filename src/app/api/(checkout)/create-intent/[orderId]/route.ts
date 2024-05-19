@@ -20,29 +20,29 @@ export const POST = async (
   }
 
   paramsProcessed = true;
-  // if (process.env.NODE_ENV !== "production") {
-  //   if (order) {
-  //     const paymentIntent = await stripe.paymentIntents.create({
-  //       // cents by default
-  //       amount: 100 * 100,
-  //       currency: "usd",
-  //       automatic_payment_methods: {
-  //         enabled: true,
-  //       },
-  //     });
-  //     const currOrder = {
-  //       ...order,
-  //       intent_id: paymentIntent.id,
-  //     };
+  if (process.env.NODE_ENV !== "production") {
+    if (order) {
+      const paymentIntent = await stripe.paymentIntents.create({
+        // cents by default
+        amount: 100 * 100,
+        currency: "usd",
+        automatic_payment_methods: {
+          enabled: true,
+        },
+      });
+      const currOrder = {
+        ...order,
+        intent_id: paymentIntent.id,
+      };
 
-  //     const file = path.join(process.cwd(), "public");
-  //     fs.writeFileSync(`${file}/orders.txt`, JSON.stringify(currOrder));
-  //     return new NextResponse(
-  //       JSON.stringify({ clientSecret: paymentIntent.client_secret }),
-  //       { status: 200 }
-  //     );
-  //   }
-  // }
+      const file = path.join(process.cwd(), "public");
+      fs.writeFileSync(`${file}/orders.txt`, JSON.stringify(currOrder));
+      return new NextResponse(
+        JSON.stringify({ clientSecret: paymentIntent.client_secret }),
+        { status: 200 }
+      );
+    }
+  }
 
   try {
     const order = await prisma?.order.findUnique({

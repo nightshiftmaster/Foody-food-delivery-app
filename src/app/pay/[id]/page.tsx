@@ -43,9 +43,9 @@ const PayPage = ({ params }: { params: { id: string } }) => {
     },
   };
 
-  // if (session.status === "loading" || isLoading) {
-  //   return <PizzaLoader />;
-  // }
+  if (session.status === "loading" || isLoading) {
+    return <PizzaLoader />;
+  }
 
   if (session.status === "unauthenticated") {
     router.push("/login");

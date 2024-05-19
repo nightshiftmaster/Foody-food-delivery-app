@@ -9,7 +9,7 @@ export const PUT = async (
 ) => {
   const { intentId } = params;
 
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV !== "production") {
     const file = path.join(process.cwd(), "public");
     const order = JSON.parse(fs.readFileSync(`${file}/orders.txt`, "utf8"));
     const currOrder = {
