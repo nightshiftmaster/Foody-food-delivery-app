@@ -16,10 +16,10 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
   const [success, setSuccess] = useState("");
   const { timers, setStart } = useContext(CountDownContext);
   const clock = timers?.find((timer) => timer.id === paymentId)?.remainTime;
-  const minutes = clock ? clock![0] : 0o0;
-  const seconds = clock ? clock![1] : 0o0;
+  const minutes = clock ? clock![0] : null;
+  const seconds = clock ? clock![1] : null;
 
-  const { isPending, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
       fetch(`${BASE_API_URL}/api/orders`).then((res) => res.json()),
@@ -42,25 +42,25 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
 
   useEffect(() => {
     switch (true) {
-      case minutes! === 0 && seconds! > 1:
+      case minutes! < 10 && minutes! >= 7:
         setStep(0);
         break;
-      case minutes! >= 3 && minutes! <= 5:
+      case minutes! < 7 && minutes! >= 5:
         setStep(1);
         break;
-      case minutes! > 5 && minutes! < 10:
+      case minutes! < 5 && minutes! >= 0:
         setStep(2);
         break;
-      case minutes! >= 10:
+      case minutes! < 0:
         setStep(3);
         setSuccess("Thank you for ordering");
         break;
       default:
         break;
     }
-  }, [minutes, paymentId]);
+  }, [minutes, seconds, paymentId]);
 
-  if (isPending) {
+  if (isLoading || !clock) {
     return <PizzaLoader />;
   }
 
@@ -93,9 +93,12 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
               Your order will be delivered soon{" "}
             </h1>
 
-            <h1 className="teko-bold md:text-6xl text-xl xl:text-5xl text-gray-500">{`${minutes
+            <h1
+              id="counter"
+              className="teko-bold md:text-6xl text-xl xl:text-5xl text-gray-500"
+            >{`${minutes?.toString().padStart(2, "0")}:${seconds
               ?.toString()
-              .padStart(2, "0")}:${seconds?.toString().padStart(2, "0")}`}</h1>
+              .padStart(2, "0")}`}</h1>
             <Maps />
 
             <Link

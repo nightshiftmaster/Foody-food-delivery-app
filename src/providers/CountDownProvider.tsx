@@ -25,7 +25,6 @@ const CountDownProvider = ({ children }: { children: React.ReactNode }) => {
       : null;
 
   const activeOrders = localStorageData ? JSON.parse(localStorageData) : null;
-  // const [currentTime, setCurrentTime] = useState(Date.now());
   const [start, setStart] = useState(false);
   const [timers, setTimers] = useState<TimeInterval[]>([]);
 
@@ -33,10 +32,11 @@ const CountDownProvider = ({ children }: { children: React.ReactNode }) => {
     const interval = setInterval(() => {
       return activeOrders?.forEach(
         (order: { paymentId: string; createAt: string }) => {
-          const remainTime = getReturnValues(
-            new Date().getTime() - new Date(order?.createAt).getTime()
-          );
-          if (remainTime[0] > 10 && remainTime[1] === 1) {
+          const time =
+            600000 -
+            (new Date().getTime() - new Date(order?.createAt).getTime());
+          const remainTime = getReturnValues(time);
+          if (remainTime[0] < -1) {
             return;
           }
           const id = order?.paymentId;

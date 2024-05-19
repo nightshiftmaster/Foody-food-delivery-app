@@ -43,18 +43,17 @@ const OrderStatusUpdater = () => {
     } else {
       return timers.forEach((timer) => {
         const minutes = timer.remainTime[0];
-        const seconds = timer.remainTime[1];
         switch (true) {
-          case minutes! === 0 && seconds! > 1:
+          case minutes! < 10 && minutes >= 7:
             handleUpdate(timer.id, "order placed");
             break;
-          case minutes! >= 3 && minutes! <= 5:
+          case minutes! < 7 && minutes! >= 5:
             handleUpdate(timer.id, "preparing");
             break;
-          case minutes! > 5 && minutes! < 10:
+          case minutes! < 5 && minutes! >= 0:
             handleUpdate(timer.id, "on the way");
             break;
-          case minutes! >= 10:
+          case minutes! < 0:
             handleUpdate(timer.id, "delivered");
             setStart(false);
             break;

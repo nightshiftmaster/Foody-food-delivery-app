@@ -1,27 +1,37 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import { MenuType } from "@/types/types";
 import { BASE_API_URL } from "@/utils/constants";
+import { useQuery } from "@tanstack/react-query";
+import PizzaLoader from "../pay/[id]/loading";
+import ErrorAlert from "@/components/ErrorAlert";
 
-const getData = async () => {
-  const res = await fetch(`${BASE_API_URL}/api/categories`, {
-    cache: "no-store",
+const MenuPage = () => {
+  const {
+    isPending,
+    error,
+    data: menu,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () =>
+      fetch(`${BASE_API_URL}/api/categories`).then((res) => res.json()),
   });
 
-  if (!res) {
-    throw new Error("failed to fetch data");
+  if (isPending) {
+    return <PizzaLoader />;
   }
-  return res.json();
-};
 
-const MenuPage = async () => {
-  const menu: MenuType = await getData();
+  if (error) {
+    return <ErrorAlert />;
+  }
+
   return (
     <div
       className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] md:h-[calc(100vh-9rem)] flex flex-col md:flex-row items-center"
       data-testid="menu"
     >
-      {menu?.reverse().map((category) => (
+      {menu?.reverse().map((category: MenuType) => (
         <Link
           data-testid={`${category.slug}`}
           href={`/menu/${category.slug}`}
