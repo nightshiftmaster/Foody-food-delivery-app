@@ -234,6 +234,10 @@ test.describe("testing application", () => {
     await expect(page.getByTestId("cart-items-container")).toBeVisible();
     await expect(page.getByTestId("cart-totals-container")).toBeVisible();
     await page.getByRole("button", { name: "CHECKOUT" }).click();
-    // expect(await page.url()).toContain("pay");
+    await page.waitForURL(`/login`);
+    await page.getByRole("button", { name: "Sign in with Facebook" }).click();
+    await page.waitForURL(`/cart`);
+    await page.getByRole("button", { name: "CHECKOUT" }).click();
+    await page.waitForURL(`/pay`);
   });
 });
