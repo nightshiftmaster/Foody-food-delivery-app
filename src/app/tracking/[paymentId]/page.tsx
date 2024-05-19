@@ -60,7 +60,7 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
     }
   }, [minutes, seconds, paymentId]);
 
-  if (isLoading || !clock) {
+  if (isLoading) {
     return <PizzaLoader />;
   }
 
