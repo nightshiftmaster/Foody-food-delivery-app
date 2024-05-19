@@ -8,6 +8,7 @@ import { BASE_API_URL } from "@/utils/constants";
 import Button from "@/components/Button";
 import { useQuery } from "@tanstack/react-query";
 import PizzaLoader from "@/components/PizzaLoader";
+import ErrorAlert from "@/components/ErrorAlert";
 
 type Props = {
   params: { category: string };
@@ -31,7 +32,7 @@ const CategoryPage = ({ params }: Props) => {
   }
 
   if (error) {
-    return <h1>Something went wrong...</h1>;
+    return <ErrorAlert />;
   }
 
   return (

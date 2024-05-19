@@ -55,12 +55,16 @@ const CartPage = () => {
         </div>
       ) : (
         <div className="h-h-[calc(100vh-6rem)] text-sm md:text-base md:h-[calc(100vh-9rem)] flex flex-col text-red-500 lg:flex-row">
-          <div className="h-1/2 p-6 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-20">
+          <div
+            className="h-1/2 p-6 flex flex-col justify-center overflow-scroll lg:h-full lg:w-2/3 2xl:w-1/2 lg:px-20 xl:px-20"
+            data-testid="cart-items-container"
+          >
             {/* single item */}
             {products.map((item: CartItemType, i) => {
               return (
                 <div
                   className="flex items-center gap-5  justify-between mb-4"
+                  data-testid="cart-item"
                   key={i}
                 >
                   {item.img && (
@@ -94,7 +98,10 @@ const CartPage = () => {
             })}
           </div>
           {/* payment */}
-          <div className="flex h-1/2 p-14 flex-col justify-center bg-fuchsia-50 lg:h-full lg:w-1/3 2xl:w-1/2 lg:px-20 xl:px-20 2xl:text-xl text-base 2xl:gap-6 bebas-neue-regular">
+          <div
+            className="flex h-1/2 p-14 flex-col justify-center bg-fuchsia-50 lg:h-full lg:w-1/3 2xl:w-1/2 lg:px-20 xl:px-20 2xl:text-xl text-base 2xl:gap-6 bebas-neue-regular"
+            data-testid="cart-totals-container"
+          >
             <div className="flex justify-between mb-5">
               <span className="">Subtotal {totalItems} items</span>
               <span className="">${totalPrice.toFixed(2)}</span>

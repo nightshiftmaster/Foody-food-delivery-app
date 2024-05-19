@@ -201,6 +201,14 @@ test.describe("testing application", () => {
     await page.goto("/", {
       waitUntil: "networkidle",
     });
+
+    await page.getByTestId("cartIcon").last().click(),
+      await expect(page.getByText("Cart is Empty")).toBeVisible();
+    await page.getByRole("link", { name: "<<Back to menu" }).click();
+    await page.waitForURL(`/menu`);
+    await page.goto("/", {
+      waitUntil: "networkidle",
+    });
     await page.getByText("sicilian").click();
     // await page.waitForTimeout(6000);
     // expect(await page.screenshot()).toMatchSnapshot();
@@ -218,8 +226,14 @@ test.describe("testing application", () => {
     await expect(page.getByTestId("quantity-count")).toHaveText("2");
     await page.getByRole("button", { name: "Add to cart" }).click();
     await expect(page.getByTestId("cart-counter").first()).toHaveText("2");
+    //testing cart //
     await page.getByRole("button", { name: "Go to cart" }).click();
     await page.waitForURL(`/cart`);
     await page.waitForSelector('[data-testid="cart"]');
+    await expect(page.getByTestId("cart-item")).toBeVisible();
+    await expect(page.getByTestId("cart-items-container")).toBeVisible();
+    await expect(page.getByTestId("cart-totals-container")).toBeVisible();
+    await page.getByRole("button", { name: "CHECKOUT" }).click();
+    // expect(await page.url()).toContain("pay");
   });
 });

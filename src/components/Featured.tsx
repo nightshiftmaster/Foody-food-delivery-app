@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useQuery } from "@tanstack/react-query";
 import PizzaLoader from "./PizzaLoader";
+import ErrorAlert from "./ErrorAlert";
 
 const Featured = () => {
   const {
@@ -23,7 +24,7 @@ const Featured = () => {
   });
 
   if (error) {
-    return <h1>Something went wrong...</h1>;
+    return <ErrorAlert />;
   }
 
   if (isPending) {
