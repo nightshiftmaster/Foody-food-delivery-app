@@ -125,8 +125,8 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
 
   return (
     <div className="h-full w-full">
-      <div className="bg-red-500 md:h-1/3 h-1/5 flex justify-center items-center">
-        <h1 className="text-white text-2xl md:text-6xl p-10 bebas-neue-regular font-medium">
+      <div className="bg-red-500  flex justify-center items-center">
+        <h1 className="text-white text-xl md:text-5xl p-8 bebas-neue-regular font-medium">
           Order Tracker
         </h1>
       </div>
@@ -138,10 +138,10 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
 
       {cancel ? (
         <div className="flex flex-col h-screen  text-gray-600">
-          <div className="md:text-5xl bebas-neue-regular gap-10 md:gap-20 m-auto flex flex-col justify-center items-center text-2xl ">
+          <div className="md:text-5xl bebas-neue-regular gap-10 md:gap-16 m-auto flex flex-col justify-center items-center text-2xl ">
             <MdCancel size={80} />
             {cancel}
-            <h1 className="teko-regular text-sm">
+            <h1 className="teko-regular text-sm md:text-base xl:text-xl">
               Your payment will be refunded within 24 hours
             </h1>
             <Link
