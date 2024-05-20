@@ -83,7 +83,7 @@ const CategoryPage = ({ params }: Props) => {
       </div>
       <Link
         href="/menu"
-        className={`cursor-pointer text-base md:text-xl my-10 xl:text-2xl m-auto ${
+        className={`cursor-pointer my-10 text-base md:text-xl xl:text-2xl m-auto ${
           products?.length < 4 ? "md:my-36" : "md:my-24 "
         } bebas-neue-regular text-red-500`}
       >{`<<Back to Menu`}</Link>

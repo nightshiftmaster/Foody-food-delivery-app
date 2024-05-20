@@ -9,7 +9,7 @@ const OrdersIcon = () => {
   const [activeOrderNotification, setActiveOrderNotification] =
     useState<boolean>(false);
 
-  const { isPending, error, data } = useQuery({
+  const { error, data } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
       fetch(`${BASE_API_URL}/api/orders`).then((res) => res.json()),
@@ -17,9 +17,9 @@ const OrdersIcon = () => {
 
   useEffect(() => {
     try {
-      const hasDeliveredOrder =
-        !data?.message &&
-        data?.some((element: OrderType) => element.status !== "delivered");
+      const hasDeliveredOrder = data
+        ?.filter((order: OrderType) => order.status !== "cancelled")
+        .some((element: OrderType) => element.status !== "delivered");
       setActiveOrderNotification(hasDeliveredOrder);
     } catch (e) {
       console.log(e);

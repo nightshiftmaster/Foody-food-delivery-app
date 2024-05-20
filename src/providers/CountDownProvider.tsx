@@ -36,9 +36,12 @@ const CountDownProvider = ({ children }: { children: React.ReactNode }) => {
             600000 -
             (new Date().getTime() - new Date(order?.createAt).getTime());
           const remainTime = getReturnValues(time);
-          if (remainTime[0] < -1) {
-            return;
-          }
+
+          // console.log(remainTime);
+
+          // if (remainTime[0] < -1) {
+          //   return [0, 0];
+          // }
           const id = order?.paymentId;
           const timeObj = { id, remainTime };
           return setTimers((prev) => {

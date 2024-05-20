@@ -61,7 +61,9 @@ const OrdersPage = () => {
                 <td>
                   <button
                     className="bg-red-500 px-3 py-2  text-white rounded-2xl disabled:bg-red-300"
-                    disabled={item.status === "delivered"}
+                    disabled={
+                      item.status === "delivered" || item.status === "cancelled"
+                    }
                     onClick={() => {
                       router.push(`/tracking/${item.intent_id}`);
                     }}
