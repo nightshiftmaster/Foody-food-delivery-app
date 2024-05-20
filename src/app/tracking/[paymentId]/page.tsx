@@ -67,6 +67,8 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
     },
   });
 
+  const { isPending } = mutation;
+
   const handleCancelOrder = () => {
     mutation.mutate({ paymentId, status: "cancelled" });
     toast.error("The order was cancelled", {
@@ -113,6 +115,7 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
 
   if (
     isLoading ||
+    isPending ||
     (!clock &&
       currOrder?.status !== "delivered" &&
       currOrder?.status !== "cancelled")
@@ -135,9 +138,12 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
 
       {cancel ? (
         <div className="flex flex-col h-screen  text-gray-600">
-          <div className="md:text-5xl bebas-neue-regular gap-20 m-auto flex flex-col justify-center items-center text-2xl ">
-            <MdCancel size={100} />
+          <div className="md:text-5xl bebas-neue-regular gap-10 md:gap-20 m-auto flex flex-col justify-center items-center text-2xl ">
+            <MdCancel size={80} />
             {cancel}
+            <h1 className="teko-regular text-sm">
+              Your payment will be refunded within 24 hours
+            </h1>
             <Link
               href={`/menu`}
               className="cursor-pointer text-base md:text-xl xl:text-2xl m-auto bebas-neue-regular text-red-500 "
@@ -176,7 +182,7 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
 
               <Maps />
               <button
-                className="bg-red-500 teko-regular hover:bg-red-400 uppercase text-white px-4 py-3 w-1/6 rounded-xl cursor-pointer"
+                className="bg-red-500 teko-regular text-sm mt-5 md:text-base xl:text-xl whitespace-nowrap hover:bg-red-400  text-white px-4 py-3 w-fit rounded-xl cursor-pointer"
                 onClick={() => setOpen(true)}
               >
                 Cancel Order
