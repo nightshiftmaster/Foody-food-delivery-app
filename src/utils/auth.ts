@@ -34,6 +34,30 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    async signIn({ user }) {
+      if (!user.email) {
+        return false;
+      }
+      const existingUser = await prisma.user.findUnique({
+        where: {
+          email: user.email,
+        },
+      });
+
+      if (existingUser) {
+        await prisma.user.update({
+          where: { email: user.email },
+          data: {
+            name: user.name || existingUser.name,
+            image: user.image || existingUser.image,
+          },
+        });
+        user.id = existingUser.id;
+      }
+
+      return true;
+    },
+
     async session({ token, session }) {
       if (token) {
         session.user.isAdmin = token.isAdmin;
@@ -41,13 +65,15 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
 
-    async jwt({ token }) {
-      const userInDb = await prisma.user.findUnique({
-        where: {
-          email: token.email!,
-        },
-      });
-      token.isAdmin = userInDb?.isAdmin!;
+    async jwt({ token, user }) {
+      if (user) {
+        const userInDb = await prisma.user.findUnique({
+          where: {
+            email: token.email!,
+          },
+        });
+        token.isAdmin = userInDb?.isAdmin!;
+      }
       return token;
     },
   },
