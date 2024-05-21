@@ -25,10 +25,10 @@ const OrdersPage = () => {
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <div className="h-screen p-4 lg:px-20 xl:px-40">
-      <table className="w-full  border-separate border-spacing-3">
+    <div className="h-full p-4 lg:px-20 xl:px-40">
+      <table className="w-full h-full border-separate">
         <thead className="">
-          <tr className="text-left">
+          <tr className="text-center">
             <th className="hidden md:block">Order Id</th>
             <th>Date</th>
             <th>Price</th>
@@ -43,7 +43,7 @@ const OrdersPage = () => {
             }
             return (
               <tr
-                className={`md:text-base text-xs ${
+                className={`md:text-base text-center text-xs ${
                   item.status !== "delivered" ? "bg-slate-100" : "bg-red-50"
                 } `}
                 key={item.id}
@@ -57,7 +57,17 @@ const OrdersPage = () => {
                 <td className="hidden md:block py-6 px-1">
                   {item.products[0].title}
                 </td>
-                <td>{item.status}</td>
+                <td
+                  className={`${
+                    item.status === "delivered"
+                      ? "text-green-500"
+                      : item.status === "cancelled"
+                      ? "text-red-500"
+                      : "text-gray-500"
+                  }`}
+                >
+                  {item.status}
+                </td>
                 <td>
                   <button
                     className="bg-red-500 px-3 py-2  text-white rounded-2xl disabled:bg-red-300"
