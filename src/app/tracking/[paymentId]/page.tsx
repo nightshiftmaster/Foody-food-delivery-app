@@ -61,7 +61,6 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
         body: JSON.stringify(status),
       });
     },
-    // when suceess renew data on page from cash with updated data from server
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["orders"] });
     },
@@ -75,6 +74,7 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
       theme: "colored",
       position: "top-right",
     });
+    setCancel("The order was canceled");
   };
 
   useEffect(() => {
