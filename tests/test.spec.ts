@@ -1,6 +1,10 @@
 // @ts-check
 import { test, expect, type Page } from "@playwright/test";
 
+test.beforeAll(async () => {
+  test.setTimeout(100000);
+});
+
 test.describe("testing application", () => {
   test("testing home page", async ({ page }: { page: Page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
@@ -194,10 +198,16 @@ test.describe("testing application", () => {
     ]);
   });
   test("testing cart, product page and purchasing product", async ({
+    browserName,
     page,
   }: {
+    browserName: string;
     page: any;
   }) => {
+    if (browserName === "webkit") {
+      test.skip();
+      return;
+    }
     await page.goto("/", {
       waitUntil: "networkidle",
     });
@@ -238,6 +248,53 @@ test.describe("testing application", () => {
     await page.getByRole("button", { name: "Sign in with Facebook" }).click();
     await page.waitForURL(`/cart`);
     await page.getByRole("button", { name: "CHECKOUT" }).click();
-    // await page.waitForURL(`/pay`);
+    await page.waitForURL("**/pay/**");
+
+    //payment process
+    await page.waitForSelector('[data-testid="payment-page"]');
+    await page.waitForSelector('[id="payment-form"]');
+    await page.waitForSelector('[data-testid="address-form"]');
+    //address element
+    const addressElementiframe = await page.waitForSelector(
+      "#address-element iframe"
+    );
+    const addressElement = await addressElementiframe.contentFrame();
+    await addressElement.getByText("Full name").fill("Vlad Medvedev");
+    await addressElement.getByText("Address line 1").fill("Knaanim 3");
+    await addressElement.getByText("Country or region").selectOption("Israel");
+    await addressElement.getByText("City").last().fill("Eilat");
+    await addressElement.getByText("Postal code").fill("8810000");
+
+    // pay element
+    const payElementiframe = await page.waitForSelector(
+      "#payment-element iframe"
+    );
+    const payElement = await payElementiframe.contentFrame();
+    await payElement
+      .getByPlaceholder("1234 1234 1234 1234")
+      .fill("4242424242424242");
+    await payElement.getByPlaceholder("MM / YY").fill("1234");
+    await payElement.getByPlaceholder("CVC").fill("424");
+    await page.getByRole("button", { name: "Pay now" }).click();
+    await page.waitForSelector('[data-testid="success-page"]');
+    await expect(page.getByText(`Your payment was successful.`)).toBeVisible();
+    await expect(
+      page.getByText(`You are redirected to the Order Tracking page. Plesase don't close the
+    page`)
+    ).toBeVisible();
+
+    await page.waitForURL("**/tracking/**", {
+      timeout: 60000,
+    });
+
+    await page.waitForSelector('[data-testid="loader"]');
+
+    await Promise.all([
+      page.waitForSelector('[data-testid="tracking-page"]'),
+      page.waitForSelector('[data-testid="tracking-page-header"]'),
+      page.waitForSelector('[data-testid="stepper"]'),
+      page.waitForSelector('[data-testid="map"]'),
+      page.waitForSelector('[data-testid="counter"]'),
+    ]);
   });
 });

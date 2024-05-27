@@ -39,7 +39,10 @@ const SuccesPage = () => {
       <h1 className="text-3xl">{error}</h1>
     </div>
   ) : (
-    <div className="h-[80vh] flex justify-center items-center flex-col gap-5">
+    <div
+      className="h-[80vh] flex justify-center items-center flex-col gap-5"
+      data-testid="success-page"
+    >
       <FaCircleCheck color="green" size={80} />
       <h1 className="text-center text-gray-600 font-semibold  text-xl md:text-2xl">
         Your payment was successful.

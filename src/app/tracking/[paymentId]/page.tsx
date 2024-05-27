@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Stepper from "../components/Stepper";
 import { BASE_API_URL } from "@/utils/constants";
 import { CiFaceSmile } from "react-icons/ci";
@@ -8,10 +8,10 @@ import { CountDownContext } from "@/providers/CountDownProvider";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { OrderType } from "@/types/types";
 import PizzaLoader from "@/components/PizzaLoader";
-import Maps from "@/components/Maps";
 import { toast } from "react-toastify";
 import { MdCancel } from "react-icons/md";
 import ModalWindow from "../components/ModalWindow";
+import Maps from "../components/Maps";
 
 const Tracking = ({ params }: { params: { paymentId: string } }) => {
   const { paymentId } = params;
@@ -124,9 +124,12 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
   }
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full" data-testid="tracking-page">
       <div className="bg-red-500  flex justify-center items-center">
-        <h1 className="text-white text-xl md:text-5xl p-8 bebas-neue-regular font-medium">
+        <h1
+          className="text-white text-xl md:text-5xl p-8 bebas-neue-regular font-medium"
+          data-testid="tracking-page-header"
+        >
           Order Tracker
         </h1>
       </div>
@@ -175,6 +178,7 @@ const Tracking = ({ params }: { params: { paymentId: string } }) => {
 
               <h1
                 id="counter"
+                data-testid="counter"
                 className="teko-bold md:text-6xl text-xl xl:text-5xl text-gray-500"
               >{`${minutes?.toString().padStart(2, "0")}:${seconds
                 ?.toString()

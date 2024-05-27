@@ -17,6 +17,7 @@ const ModalWindow = ({
       className={`h-full  w-full ${
         isOpen ? "flex" : "hidden"
       } justify-center inset-0  items-center  backdrop-blur-sm fixed z-20`}
+      data-testid="modal-window"
     >
       <div className="md:w-[50%] w-[90%] h-fit flex  md:gap-10 gap-5 justify-center flex-col items-center  shadow-2xl bg-white rounded-3xl border-slate-300 border">
         <span

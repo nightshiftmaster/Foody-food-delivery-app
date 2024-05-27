@@ -7,7 +7,7 @@ import styles from "../page.module.css";
 
 const Stepper = ({ step }: { step: number }) => {
   return (
-    <div className="w-full h-full flex justify-center ">
+    <div className="w-full h-full flex justify-center " data-testid="stepper">
       {/* container */}
       <div className="w-[90vh] h-[30vh] mt-20">
         <div className="flex justify-between mb-7">

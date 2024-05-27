@@ -3,7 +3,11 @@ import React from "react";
 
 const AddressForm = () => {
   return (
-    <form action="" className="flex flex-col gap-10 w-full">
+    <form
+      action=""
+      className="flex flex-col gap-10 w-full"
+      data-testid="address-form"
+    >
       <div className="h-32 md:h-60 w-full rounded-md">
         <img
           className="object-cover h-full w-screen rounded-md"
@@ -13,7 +17,10 @@ const AddressForm = () => {
       </div>
 
       <AddressElement
-        options={{ mode: "shipping" }}
+        id="address-element"
+        options={{
+          mode: "shipping",
+        }}
         onChange={(e) => {
           if (e.complete) {
             const address = e.value.address;

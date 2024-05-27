@@ -51,7 +51,10 @@ const GoogleMapComponent = () => {
 
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}>
-      <div className="h-[50vh] w-[50vh] border border-gray-400">
+      <div
+        className="h-[50vh] w-[50vh] border border-gray-400"
+        data-testid="map"
+      >
         {position ? (
           <Map
             zoom={14}

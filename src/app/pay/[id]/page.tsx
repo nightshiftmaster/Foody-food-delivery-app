@@ -2,7 +2,7 @@
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import React, { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "@/components/CheckoutForm";
+import CheckoutForm from "@/app/pay/components/CheckoutForm";
 import { BASE_API_URL } from "@/utils/constants";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -53,7 +53,10 @@ const PayPage = ({ params }: { params: { id: string } }) => {
 
   if (session.status === "authenticated") {
     return (
-      <div className="w-full h-full heebo-regular flex justify-center items-center ">
+      <div
+        className="w-full h-full heebo-regular flex justify-center items-center"
+        data-testid="payment-page"
+      >
         <div className="w-[80%] md:w-[60%] h-1/2 mt-20">
           {clientSecret && (
             <Elements options={options} stripe={stripePromise}>
