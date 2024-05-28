@@ -31,7 +31,11 @@ const OrdersIcon = () => {
   }
 
   return (
-    <Link className="mr-3 relative hover:text-gray-300" href="/orders">
+    <Link
+      className="mr-3 relative hover:text-gray-300"
+      href="/orders"
+      data-testid="ordersIcon"
+    >
       Orders
       {activeOrderNotification && (
         <div className=" absolute  bg-green-400 w-3 h-3  left-14 bottom-5  md:left-[45px] md:bottom-[15px] 2xl:left-[54px] 2xl:bottom-[18px] flex rounded-full justify-center text-white items-center text-xs md:text-xs"></div>

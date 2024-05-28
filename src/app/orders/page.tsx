@@ -25,9 +25,12 @@ const OrdersPage = () => {
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <div className="h-full p-4 lg:px-20 xl:px-40">
-      <table className="w-full h-full border-separate">
-        <thead className="">
+    <div className="h-full p-4 lg:px-20 xl:px-40" data-testid="orders-page">
+      <table
+        className="w-full h-full border-separate"
+        data-testid="orders-table"
+      >
+        <thead className="" data-testid="orders-table-head">
           <tr className="text-center">
             <th className="hidden md:block">Order Id</th>
             <th>Date</th>
@@ -36,7 +39,7 @@ const OrdersPage = () => {
             <th>Status</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody data-testid="orders-table-body">
           {data?.map((item: OrderType) => {
             if (item.status === "Not Paid") {
               return;

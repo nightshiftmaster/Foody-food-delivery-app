@@ -46,14 +46,7 @@ test.describe("testing application", () => {
     ]);
   });
 
-  test("testing navbar", async ({
-    page,
-    browserName,
-  }: {
-    page: Page;
-    browserName: string;
-  }) => {
-    test.skip(browserName === "webkit", "Still working on it");
+  test("testing navbar", async ({ page }: { page: Page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto("/", {
       waitUntil: "networkidle",
