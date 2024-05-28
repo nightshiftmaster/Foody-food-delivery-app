@@ -296,8 +296,5 @@ test.describe("testing application", () => {
       page.waitForSelector('[data-testid="map"]'),
       page.waitForSelector('[data-testid="counter"]'),
     ]);
-    await page.goto("/orders", {
-      waitUntil: "networkidle",
-    });
   });
 });
