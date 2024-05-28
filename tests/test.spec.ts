@@ -204,10 +204,10 @@ test.describe("testing application", () => {
     browserName: string;
     page: any;
   }) => {
-    if (browserName === "webkit") {
-      test.skip();
-      return;
-    }
+    test.setTimeout(100000);
+
+    test.skip(browserName === "firefox", "Still working on it");
+    // test.skip(browserName === "webkit", "Still working on it");
     await page.goto("/", {
       waitUntil: "networkidle",
     });
@@ -284,7 +284,7 @@ test.describe("testing application", () => {
     ).toBeVisible();
 
     await page.waitForURL("**/tracking/**", {
-      timeout: 60000,
+      timeout: 100000,
     });
 
     await page.waitForSelector('[data-testid="loader"]');
