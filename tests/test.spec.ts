@@ -260,7 +260,7 @@ test.describe("testing application", () => {
     );
     const addressElement = await addressElementiframe.contentFrame();
     await addressElement.getByText("Full name").fill("Vlad Medvedev");
-    await addressElement.getByText("Address line 1").fill("Knaanim 3");
+    await addressElement.getByPlaceholder("Street address").fill("Knaanim 3");
     await addressElement.getByText("Country or region").selectOption("Israel");
     await addressElement.getByText("City").last().fill("Eilat");
     await addressElement.getByText("Postal code").fill("8810000");
@@ -296,5 +296,8 @@ test.describe("testing application", () => {
       page.waitForSelector('[data-testid="map"]'),
       page.waitForSelector('[data-testid="counter"]'),
     ]);
+    await page.goto("/orders", {
+      waitUntil: "networkidle",
+    });
   });
 });
