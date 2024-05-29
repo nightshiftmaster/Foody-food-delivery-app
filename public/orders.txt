@@ -1,1 +1,1 @@
-{"price":"49.80","products":[{"id":1,"title":"Sicilian","price":49.8,"img":"/temporary/p1.png","quantity":2,"optionTitle":"Small"}],"status":"delivered","userEmail":"admin","id":"2aae5","createAt":"2024-05-28 21:17:46.980","intent_id":"pi_3PLUalBrmXYcd23g2JSL8Naw"}
+{"price":"49.80","products":[{"id":1,"title":"Sicilian","price":49.8,"img":"/temporary/p1.png","quantity":2,"optionTitle":"Small"}],"status":"order placed","userEmail":"admin","id":"c6659","createAt":"2024-05-29 12:18:29.896","intent_id":"pi_3PLieSBrmXYcd23g119tietK"}
