@@ -38,15 +38,24 @@ const Menu = () => {
   return (
     <div onClick={() => setOpen(!open)}>
       {!open ? (
-        <CiMenuBurger size={22} onClick={() => setOpen(true)} />
+        <CiMenuBurger
+          size={22}
+          onClick={() => setOpen(true)}
+          data-testid="mobile-menu-burger"
+        />
       ) : (
-        <IoMdClose size={22} onClick={() => setOpen(false)} />
+        <IoMdClose
+          size={22}
+          onClick={() => setOpen(false)}
+          data-testid="mobile-menu-close"
+        />
       )}
 
       <div
         className={`bg-red-500 text-white fixed top-24 transition-all ease-in-out delay-300 duration-300 ${
           open ? "left-0" : "left-full"
         } h-[calc(100vh-6rem)] flex items-center justify-center text-2xl flex-col gap-7 w-full z-30`}
+        data-testid="mobile-menu-links"
       >
         {links.map((link, i) => (
           <Link
@@ -64,7 +73,7 @@ const Menu = () => {
           <OrdersIcon />
         </div>
         {!user ? (
-          <div
+          <button
             className="flex justify-start gap-3 items-center w-1/3"
             onClick={() => {
               setOpen(false);
@@ -77,7 +86,7 @@ const Menu = () => {
               <SlLogin size={20} />
             )}
             {session.status === "authenticated" ? "Logout" : "Login"}
-          </div>
+          </button>
         ) : (
           <OrdersIcon />
         )}

@@ -20,7 +20,6 @@ test.describe("testing application", () => {
       page.waitForSelector('[data-testid="navbar"]'),
       page.waitForSelector('[data-testid="featured"]'),
       page.waitForSelector('[data-testid="offer"]'),
-      page.waitForSelector('[data-testid="offer"]'),
       page.waitForSelector('[data-testid="notification"]'),
       page.waitForSelector('[data-testid="footer"]'),
     ]);
@@ -133,7 +132,7 @@ test.describe("testing application", () => {
     // await page.waitForTimeout(6000);
     // expect(await page.screenshot()).toMatchSnapshot();
   });
-  test("testing contact page", async ({ page }: { page: any }) => {
+  test("testing contact page", async ({ page }: { page: Page }) => {
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto("/contact", {
       waitUntil: "networkidle",
@@ -302,6 +301,87 @@ test.describe("testing application", () => {
       page.waitForSelector('[data-testid="stepper"]'),
       page.waitForSelector('[data-testid="map"]'),
       page.waitForSelector('[data-testid="counter"]'),
+    ]);
+  });
+
+  /////// testing with mobile resolution //////////
+
+  test("testing home page mobile", async ({ page }: { page: Page }) => {
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto("/", {
+      waitUntil: "networkidle",
+    });
+    await Promise.all([
+      page.waitForSelector('[data-testid="home"]'),
+      page.waitForSelector('[data-testid="banner"]'),
+      page.waitForSelector('[data-testid="video-content"]'),
+      page.waitForSelector('[data-testid="text-content"]'),
+      page.waitForSelector('[data-testid="menu-button"]'),
+      page.waitForSelector('[data-testid="navbar"]'),
+      page.waitForSelector('[data-testid="featured"]'),
+      page.waitForSelector('[data-testid="offer"]'),
+      page.waitForSelector('[data-testid="notification"]'),
+      page.waitForSelector('[data-testid="footer"]'),
+      page.waitForSelector('[data-testid="mobile-navbar"]'),
+    ]);
+    await expect(page.locator('[data-testid="left-links"]')).toBeHidden();
+
+    // navbar
+    await Promise.all([
+      page.waitForSelector('[data-testid="mobile-home"]'),
+      page.waitForSelector('[data-testid="mobile-menu-burger"]'),
+    ]);
+  });
+
+  test("testing navbar mobile", async ({
+    page,
+    browserName,
+  }: {
+    page: Page;
+    browserName: String;
+  }) => {
+    test.skip(browserName === "firefox", "Still working on it");
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto("/", {
+      waitUntil: "networkidle",
+    });
+
+    await expect(page.getByTestId("mobile-menu-links")).not.toBeInViewport();
+
+    await Promise.all([
+      page.getByTestId("mobile-menu-burger").click(),
+      page.getByRole("link", { name: "Menu" }).click(),
+      page.waitForURL(`/menu`),
+      page.waitForSelector('[data-testid="menu"]'),
+    ]);
+
+    await Promise.all([
+      page.getByTestId("mobile-menu-burger").click(),
+      page.getByRole("link", { name: "Contact" }).click(),
+      page.waitForURL(`/contact`),
+      page.waitForSelector('[data-testid="contact"]'),
+    ]);
+
+    await Promise.all([
+      page.getByTestId("mobile-menu-burger").click(),
+      page.getByRole("button", { name: "Login" }).click(),
+      page.waitForURL(`/login`),
+      page.waitForSelector('[data-testid="login"]'),
+      page
+        .getByRole("button", {
+          name: "Sign in with Facebook",
+        })
+        .click(),
+    ]);
+
+    await Promise.all([
+      page.getByTestId("mobile-menu-burger").click(),
+      page.getByRole("link", { name: "Orders" }).click(),
+      page.waitForURL(`/orders`),
+      page.waitForSelector('[data-testid="orders-page"]'),
+      page.waitForSelector('[data-testid="orders-table"]'),
+      page.waitForSelector('[data-testid="orders-table-head"]'),
+      page.waitForSelector('[data-testid="orders-table-body"]'),
     ]);
   });
 });

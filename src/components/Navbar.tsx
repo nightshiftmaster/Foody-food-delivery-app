@@ -14,7 +14,10 @@ const Navbar = () => {
       data-testid="navbar"
     >
       {/* left links */}
-      <div className="hidden md:flex gap-4 flex-1 items-center ">
+      <div
+        className="hidden md:flex gap-4 flex-1 items-center "
+        data-testid="left-links"
+      >
         <Link className="hover:text-gray-300" href="/">
           HomePage
         </Link>
@@ -27,12 +30,15 @@ const Navbar = () => {
       </div>
       {/* {Logo} */}
       <Link href="/" className="md:hidden">
-        <IoHomeOutline size={22} />
+        <IoHomeOutline size={22} data-testid="mobile-home" />
       </Link>
       <Link href="/">
         <h1 className="anton-regular md:text-3xl text-2xl">Foody</h1>
       </Link>
-      <div className="md:hidden flex items-center gap-3 justify-center">
+      <div
+        className="md:hidden flex items-center gap-3 justify-center"
+        data-testid="mobile-navbar"
+      >
         {/* <PiClockCountdownLight size={23} /> */}
         <CartIcon />
         <Menu />
