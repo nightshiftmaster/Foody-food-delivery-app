@@ -1,1 +1,1 @@
-{"price":"49.80","products":[{"id":1,"title":"Sicilian","price":49.8,"img":"/temporary/p1.png","quantity":2,"optionTitle":"Small"}],"status":"delivered","userEmail":"admin","id":"c04cf","createAt":"2024-06-02 18:40:28.977","intent_id":"pi_3PNGWIBrmXYcd23g3hanUd8d"}
+{"price":"26.90","products":[{"id":4,"title":"Spicy Arrabbiata","price":26.9,"img":"/temporary/p4.png","quantity":1,"optionTitle":"Small"}],"status":"cancelled","userEmail":"admin","id":"23f21","createAt":"2024-06-02 19:02:01.221","intent_id":"pi_3PNGr8BrmXYcd23g1Z174DrT"}
