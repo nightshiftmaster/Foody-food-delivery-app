@@ -10,7 +10,7 @@ import OrderStatusUpdater from "./OrderStatusUpdater";
 const Navbar = () => {
   return (
     <div
-      className="h-12 bg-white text-red-500 px-4 flex justify-between border-b items-center text-center border-b-slate-200 bebas-neue-regular 2xl:text-2xl md:text-xl text-base cursor-pointer md:h-20  xl:px-36"
+      className="h-12 top-0 z-30 shadow-lg sticky bg-white text-red-500 px-4 flex justify-between border-b items-center text-center border-b-slate-200 bebas-neue-regular 2xl:text-2xl md:text-xl text-base cursor-pointer md:h-20  xl:px-36"
       data-testid="navbar"
     >
       {/* left links */}
