@@ -15,7 +15,7 @@ import ErrorAlert from "./ErrorAlert";
 const Featured = () => {
   const {
     isPending,
-    error,
+    isError,
     data: featuredProducts,
   } = useQuery({
     queryKey: ["products"],
@@ -23,7 +23,7 @@ const Featured = () => {
       fetch(`${BASE_API_URL}/api/products`).then((res) => res.json()),
   });
 
-  if (error) {
+  if (isError) {
     return <ErrorAlert />;
   }
 
